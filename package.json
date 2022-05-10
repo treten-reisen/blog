@@ -1,0 +1,19 @@
+{
+  "name": "treten.reisen-monorepo",
+  "version": "1.0.0",
+  "description": "treten.reisen Monorepo",
+  "workspaces": ["packages/strapi", "packages/frontend"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patsimm/treten.reisen.git"
+  },
+  "author": "Patrick Simmelbauer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patsimm/treten.reisen/issues"
+  },
+  "homepage": "https://github.com/patsimm/treten.reisen#readme"
+}
