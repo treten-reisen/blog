@@ -1,0 +1,17 @@
+runtime: nodejs16
+
+instance_class: F2
+
+entrypoint: "npm run start -w packages/strapi"
+
+env_variables:
+  HOST: "0.0.0.0"
+  NODE_ENV: "production"
+  DATABASE_NAME: "strapi"
+  DATABASE_USER: "postgres"
+  INSTANCE_CONNECTION_NAME: "treten-reisen:europe-west3:treten-reisen-postgres"
+  DATABASE_PASSWORD: "#{DATABASE_PASSWORD}#"
+  APP_KEYS: "#{APP_KEYS}#"
+  API_TOKEN_SALT: "#{API_TOKEN_SALT}#"
+  ADMIN_JWT_SECRET: "#{ADMIN_JWT_SECRET}#"
+  JWT_SECRET: "#{ADMIN_JWT_SECRET}#"

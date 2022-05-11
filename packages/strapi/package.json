@@ -1,23 +1,22 @@
 {
-  "name": "my-project",
+  "name": "treten.reisen-strapi",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "treten.reisen Strapi backend",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "gcp-build": "strapi build"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.1.9",
-    "@strapi/plugin-users-permissions": "4.1.9",
-    "@strapi/plugin-i18n": "4.1.9",
-    "better-sqlite3": "7.4.6"
-  },
-  "author": {
-    "name": "A Strapi developer"
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.1.7",
+    "@strapi/plugin-i18n": "4.1.10",
+    "@strapi/plugin-users-permissions": "4.1.10",
+    "@strapi/strapi": "4.1.10",
+    "better-sqlite3": "7.4.6",
+    "pg": "8.7.3"
   },
   "strapi": {
     "uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
@@ -25,6 +24,5 @@
   "engines": {
     "node": ">=12.x.x <=16.x.x",
     "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+  }
 }

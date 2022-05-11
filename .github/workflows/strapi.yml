@@ -1,0 +1,43 @@
+name: strapi
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/strapi/**"
+      - ".github/workflows/strapi.yml"
+      - "app.yaml"
+jobs:
+  deploy-strapi:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+      - run: npm ci
+
+      - uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["app.yaml"]'
+        env:
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          APP_KEYS: ${{ secrets.STRAPI_APP_KEYS }}
+          API_TOKEN_SALT: ${{ secrets.STRAPI_API_TOKEN_SALT }}
+          ADMIN_JWT_SECRET: ${{ secrets.STRAPI_ADMIN_JWT_SECRET }}
+          JWT_SECRET: ${{ secrets.STRAPI_JWT_SECRET }}
+
+      - id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - id: "deploy"
+        uses: "google-github-actions/deploy-appengine@v0"

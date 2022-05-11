@@ -1,13 +1,13 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "treten.reisen-frontend",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "treten.reisen Gatsby frontend",
+  "version": "1.0.0",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@types/react-helmet": "^6.1.5",
+    "deepmerge": "^4.2.2",
     "gatsby": "^4.13.1",
     "gatsby-plugin-emotion": "^7.13.0",
     "gatsby-plugin-gatsby-cloud": "^4.13.0",
@@ -34,7 +34,6 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
