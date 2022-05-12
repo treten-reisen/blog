@@ -2,8 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-console.log(process.env.STRAPI_API_URL)
-
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -46,6 +44,15 @@ module.exports = {
                 defaultSeo: {
                   populate: "*",
                 },
+              },
+            },
+          },
+          {
+            singularName: "hero",
+            queryParams: {
+              populate: {
+                logo: "*",
+                image: "*",
               },
             },
           },
