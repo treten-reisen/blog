@@ -8,7 +8,7 @@
   "scripts": {
     "gcp-build": "npm run gcp-build --ws --if-present",
     "develop:strapi": "npm run develop -w packages/strapi",
-    "develop:frontend": "npm run develop -w packages/frontend",
+    "develop:frontend": "wait-on http://localhost:1337 && npm run develop -w packages/frontend",
     "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold npm:develop:strapi npm:develop:frontend"
   },
   "repository": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/patsimm/treten.reisen#readme",
   "devDependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.1.0",
+    "wait-on": "^6.0.1"
   }
 }
