@@ -20,6 +20,16 @@ jobs:
         with:
           node-version: 16
           cache: "npm"
+
+      - name: Caching Gatsby
+        id: gatsby-cache-build
+        uses: actions/cache@v3
+        with:
+          path: |
+            packages/frontend/public
+            packages/frontend/.cache
+          key: ${{ runner.os }}-gatsby-build
+
       - run: npm ci
       - name: Build
         env:
@@ -39,3 +49,19 @@ jobs:
           path: "packages/frontend/public"
           destination: "treten-reisen.appspot.com"
           parent: false
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+
+      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" gs://treten-reisen.appspot.com/**/*.html
+        continue-on-error: true
+      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" gs://treten-reisen.appspot.com/page-data/**/*.json
+        continue-on-error: true
+      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" gs://treten-reisen.appspot.com/static/**
+        continue-on-error: true
+      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" gs://treten-reisen.appspot.com/**/*.js
+        continue-on-error: true
+      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" gs://treten-reisen.appspot.com/**/*.css
+        continue-on-error: true
+      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" gs://treten-reisen.appspot.com/sw.js
+        continue-on-error: true
