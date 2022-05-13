@@ -74,10 +74,18 @@ module.exports = {
       },
     },
     "gatsby-plugin-emotion",
-    // "gatsby-plugin-offline",
+    "gatsby-plugin-offline",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Open Sans:400,700"],
+        },
+      },
+    },
   ],
 }

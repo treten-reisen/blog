@@ -35,7 +35,9 @@ export const Hero = ({ strapiHero: { title, logo, image } }: HeroProps) => {
             alt="Logo"
           />
           <div tw="flex flex-1 items-center justify-center">
-            <h1 tw="text-white text-2xl font-bold shadow-2xl">{title}</h1>
+            <h1 tw="text-white text-3xl font-bold font-sans tracking-tighter shadow-2xl">
+              {title}
+            </h1>
           </div>
         </div>
       </div>
