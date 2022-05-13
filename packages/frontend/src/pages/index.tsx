@@ -1,29 +1,21 @@
 import { graphql, PageProps } from "gatsby"
-import * as React from "react"
-import { Hero, StrapiHero } from "../components/hero"
+import { Hero } from "../components/hero"
+import "twin.macro"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const Index = ({ data }: PageProps<QueryResult>) => (
+const Index = () => (
   <Layout>
     <Seo />
-    <Hero strapiHero={data.strapiHero} />
-    <h1>treten.reisen</h1>
-    <p>Willkommen bei treten.reisen</p>
+    <header>
+      <Hero />
+    </header>
+    <main tw="md:container p-6">
+      <h1>treten.reisen</h1>
+      <p>Willkommen bei treten.reisen</p>
+    </main>
   </Layout>
 )
-
-type QueryResult = {
-  strapiHero: StrapiHero
-}
-
-export const query = graphql`
-  query IndexQuery {
-    strapiHero {
-      ...Hero
-    }
-  }
-`
 
 export default Index
