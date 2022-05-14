@@ -5,9 +5,10 @@ import Seo, { StrapiSeo } from "../components/seo"
 import type { PageProps } from "gatsby"
 import BlocksRenderer from "../components/blocks-renderer"
 import "twin.macro"
+import { StrapiBlocks } from "../components/blocks"
 
 export type StrapiArticle = {
-  blocks: any
+  blocks: StrapiBlocks
   seo: StrapiSeo
 }
 
