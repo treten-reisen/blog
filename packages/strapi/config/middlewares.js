@@ -9,6 +9,7 @@ module.exports = [
           "connect-src": ["'self'", "https:"],
           "img-src": ["'self'", "data:", "blob:", "storage.googleapis.com"],
           "media-src": ["'self'", "data:", "blob:", "storage.googleapis.com"],
+          "script-src": ["'self'", "'unsafe-inline'"],
           upgradeInsecureRequests: null,
         },
       },
