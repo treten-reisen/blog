@@ -33,6 +33,7 @@ jobs:
           ADMIN_JWT_SECRET: ${{ secrets.STRAPI_ADMIN_JWT_SECRET }}
           JWT_SECRET: ${{ secrets.STRAPI_JWT_SECRET }}
           STRAPI_URL: ${{ secrets.STRAPI_URL }}
+          ASSET_BUCKET_NAME: ${{ secrets.ASSET_BUCKET_NAME }}
 
       - id: "auth"
         uses: "google-github-actions/auth@v0"

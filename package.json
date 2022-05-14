@@ -8,8 +8,10 @@
   "scripts": {
     "gcp-build": "npm run gcp-build --ws --if-present",
     "develop:strapi": "npm run develop -w packages/strapi",
-    "develop:frontend": "wait-on http://localhost:1337 && npm run develop -w packages/frontend",
-    "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold npm:develop:strapi npm:develop:frontend"
+    "develop:frontend": "npm run develop -w packages/frontend",
+    "develop:frontend:wait": "wait-on http://localhost:1337 && npm run develop:frontend",
+    "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold npm:develop:strapi npm:develop:frontend:wait",
+    "preview": "cross-env NODE_ENV=preview npm run develop:frontend"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "homepage": "https://github.com/patsimm/treten.reisen#readme",
   "devDependencies": {
     "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3",
     "wait-on": "^6.0.1"
   }
 }
