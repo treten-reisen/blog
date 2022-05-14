@@ -50,18 +50,18 @@ jobs:
           destination: "treten-reisen.appspot.com"
           parent: false
 
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v0"
 
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" gs://treten-reisen.appspot.com/**/*.html
-        continue-on-error: true
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" gs://treten-reisen.appspot.com/page-data/**/*.json
-        continue-on-error: true
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" gs://treten-reisen.appspot.com/static/**
-        continue-on-error: true
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" gs://treten-reisen.appspot.com/**/*.js
-        continue-on-error: true
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" gs://treten-reisen.appspot.com/**/*.css
-        continue-on-error: true
-      - run: gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" gs://treten-reisen.appspot.com/sw.js
-        continue-on-error: true
+      - name: "Set Bucket Cache and CORS"
+        env:
+          ASSET_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASSETS }}
+          WEB_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_WEB }}
+        run: |
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/**/*.html || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/page-data/**/*.json || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/static/** || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.js || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.css || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/sw.js || true
+          gsutil cors set asset-cors.json $ASSET_BUCKET_URL || true

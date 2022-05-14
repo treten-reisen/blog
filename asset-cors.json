@@ -1,0 +1,16 @@
+[
+  {
+    "origin": [
+      "https://treten.reisen",
+      "https://www.treten.reisen",
+      "https://strapi.treten.reisen"
+    ],
+    "responseHeader": [
+      "Content-Type"
+    ],
+    "method": [
+      "GET"
+    ],
+    "maxAgeSeconds": 3600
+  }
+]
