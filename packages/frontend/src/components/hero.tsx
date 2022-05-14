@@ -1,5 +1,5 @@
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { css, styled } from "twin.macro"
+import { styled } from "twin.macro"
 import { useHero } from "../hooks/use-hero"
 
 const Shade = styled.div`
@@ -21,6 +21,7 @@ const Hero = () => {
           objectFit="cover"
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
+          loading="eager"
           tw="h-full"
         />
       </div>

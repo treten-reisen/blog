@@ -29,6 +29,7 @@ const ArticleListItem = ({ item }: { item: StrapiArticleListItem }) => {
           alt={item.image.alternativeText}
           objectFit="cover"
           tw="h-52 lg:h-64"
+          loading="lazy"
         />
         <h2 tw="font-sans text-lg font-bold tracking-tight text-gray-700">
           {item.title}
