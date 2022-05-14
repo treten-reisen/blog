@@ -12,7 +12,7 @@
       "required": true
     },
     "metaDescription": {
-      "type": "string",
+      "type": "text",
       "required": true
     },
     "shareImage": {
