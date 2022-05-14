@@ -9,13 +9,10 @@ export type StrapiArticleListItem = {
   image: {
     localFile: {
       childImageSharp: {
-        fluid: {
-          srcSetWebp: string
-          srcWebp: string
-          sizes: string
-        }
+        gatsbyImageData: IGatsbyImageData
       }
     }
+    alternativeText: string
   }
 }
 
@@ -34,13 +31,10 @@ export const useArticleList = () => {
             image {
               localFile {
                 childImageSharp {
-                  fluid(maxHeight: 208, maxWidth: 480) {
-                    srcSetWebp
-                    srcWebp
-                    sizes
-                  }
+                  gatsbyImageData(layout: CONSTRAINED, height: 256, width: 660)
                 }
               }
+              alternativeText
             }
           }
         }

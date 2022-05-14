@@ -1,10 +1,6 @@
-import { styled } from "twin.macro"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { css, styled } from "twin.macro"
 import { useHero } from "../hooks/use-hero"
-
-const Container = styled.div<{ src: string }>`
-  background: url(${props => props.src}) center center;
-  height: clamp(200px, 50vw, 700px);
-`
 
 const Shade = styled.div`
   background: linear-gradient(
@@ -19,12 +15,17 @@ const Hero = () => {
   const { title, logo, image } = useHero()
 
   return (
-    <Container
-      tw="w-full bg-cover relative shadow-lg"
-      src={image.localFile.url}
-    >
-      <Shade tw="w-full h-full absolute z-0" />
-      <div tw="w-full h-full absolute z-10 p-4">
+    <div tw="w-full bg-cover relative shadow-lg h-[clamp(15rem, 50vw, 40rem)]">
+      <div tw="w-full h-full absolute z-0">
+        <GatsbyImage
+          objectFit="cover"
+          image={image.localFile.childImageSharp.gatsbyImageData}
+          alt={image.alternativeText}
+          tw="h-full"
+        />
+      </div>
+      <Shade tw="w-full h-full absolute z-10" />
+      <div tw="w-full h-full absolute z-20 p-4">
         <div tw="md:container h-full flex flex-col items-stretch">
           <a href="/">
             <img tw="h-6 self-start" src={logo.localFile.url} alt="Logo" />
@@ -36,7 +37,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   )
 }
 

@@ -77,7 +77,14 @@ module.exports = {
     "gatsby-plugin-emotion",
     "gatsby-plugin-offline",
     "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
+    {
+      resolve: "gatsby-plugin-sharp",
+      options: {
+        defaults: {
+          placeholder: "blurred",
+        },
+      },
+    },
     "gatsby-transformer-sharp",
     "gatsby-transformer-remark",
     {

@@ -1,20 +1,25 @@
 import { graphql, useStaticQuery } from "gatsby"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 export type StrapiHero = {
   title: string
   logo: {
     localFile: {
       childImageSharp: {
-        gatsbyImageData: any
+        gatsbyImageData: IGatsbyImageData
       }
       url: string
     }
     ext: string
+    alternativeText: string
   }
   image: {
     localFile: {
-      url: string
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      }
     }
+    alternativeText: string
   }
 }
 
@@ -30,12 +35,16 @@ export const useHero = () => {
             }
             url
           }
+          alternativeText
           ext
         }
         image {
           localFile {
-            url
+            childImageSharp {
+              gatsbyImageData(layout: FULL_WIDTH)
+            }
           }
+          alternativeText
         }
       }
     }

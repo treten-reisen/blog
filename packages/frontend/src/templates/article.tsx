@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import Seo, { StrapiSeo } from "../components/seo"
 import type { PageProps } from "gatsby"
 import BlocksRenderer from "../components/blocks-renderer"
+import "twin.macro"
 
 export type StrapiArticle = {
   blocks: any
@@ -13,7 +14,10 @@ export type StrapiArticle = {
 const Article = ({ data }: PageProps<{ strapiArticle: StrapiArticle }>) => (
   <Layout>
     <Seo seo={data.strapiArticle.seo} />
-    <BlocksRenderer blocks={data.strapiArticle.blocks} />
+    <a href="/">{"< Back"}</a>
+    <main tw="p-responsive md:container">
+      <BlocksRenderer blocks={data.strapiArticle.blocks} />
+    </main>
   </Layout>
 )
 
