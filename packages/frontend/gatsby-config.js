@@ -31,6 +31,7 @@ module.exports = {
                 blocks: {
                   populate: "*",
                 },
+                image: "*",
               },
             },
           },

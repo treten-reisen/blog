@@ -15,7 +15,7 @@ const Shade = styled.div`
   );
 `
 
-export const Hero = () => {
+const Hero = () => {
   const { title, logo, image } = useHero()
 
   return (
@@ -39,3 +39,5 @@ export const Hero = () => {
     </Container>
   )
 }
+
+export default Hero

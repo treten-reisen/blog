@@ -1,4 +1,4 @@
-import path from "path"
+const path = require("path")
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
@@ -33,7 +33,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   if (articles.length > 0) {
     articles.forEach(article => {
       createPage({
-        path: `/article/${article.slug}`,
+        path: `/articles/${article.slug}`,
         component: articleTemplate,
         context: {
           slug: article.slug,
