@@ -54,6 +54,8 @@ export const query = graphql`
     strapiArticle(slug: { eq: $slug }) {
       slug
       title
+      publishedAt
+      updatedAt
       blocks {
         ...Blocks
       }
