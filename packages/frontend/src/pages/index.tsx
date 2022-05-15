@@ -11,7 +11,7 @@ const Index = () => (
     <header>
       <Hero />
     </header>
-    <main tw="md:container p-responsive">
+    <main tw="md:container py-6 sm:py-responsive px-responsive">
       <ArticleList />
     </main>
   </Layout>

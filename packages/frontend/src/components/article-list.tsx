@@ -12,9 +12,7 @@ const ArticleList = () => {
   return (
     <div tw="grid gap-responsive sm:grid-cols-fit-sm lg:grid-cols-fit-lg">
       {articles.map(article => (
-        <>
-          <ArticleListItem item={article} key={article.slug} />
-        </>
+        <ArticleListItem item={article} key={article.slug} />
       ))}
     </div>
   )

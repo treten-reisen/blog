@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import "twin.macro"
+import tw, { css } from "twin.macro"
 
 export type StrapiRichTextRendererProps = {
   data: StrapiBlockRichText
@@ -7,7 +7,12 @@ export type StrapiRichTextRendererProps = {
 
 const StrapiRichTextRenderer = ({ data }: StrapiRichTextRendererProps) => (
   <article
-    tw="prose mx-auto"
+    css={css`
+      ${tw`prose mx-auto font-serif`}
+      & h1,h2,h3,h4,h5,h6 {
+        ${tw`font-sans`}
+      }
+    `}
     dangerouslySetInnerHTML={{
       __html: data.body.data.childMarkdownRemark.html,
     }}

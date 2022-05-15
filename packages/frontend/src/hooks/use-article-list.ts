@@ -21,7 +21,7 @@ export const useArticleList = () => {
     allStrapiArticle: { edges: Array<{ node: StrapiArticleListItem }> }
   }>(graphql`
     query ArticleListQuery {
-      allStrapiArticle {
+      allStrapiArticle(sort: { fields: createdAt, order: DESC }) {
         edges {
           node {
             slug
