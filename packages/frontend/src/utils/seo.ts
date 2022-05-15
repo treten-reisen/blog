@@ -12,6 +12,7 @@ export const query = graphql`
   fragment Seo on STRAPI__COMPONENT_SHARED_SEO {
     metaTitle
     metaDescription
+    article
     shareImage {
       localFile {
         url

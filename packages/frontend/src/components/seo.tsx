@@ -5,10 +5,12 @@ import { theme } from "twin.macro"
 
 export type SeoProps = {
   seo?: Partial<StrapiSeo>
+  location: Location
+  type: "article" | "website"
 }
 
-const Seo = ({ seo = {} }: SeoProps) => {
-  const { siteName, defaultSeo, favicon } = useGlobal()
+const Seo = ({ seo = {}, location, type }: SeoProps) => {
+  const { siteName, defaultSeo, favicon, siteURL } = useGlobal()
 
   // Merge default and page-specific SEO values
   const fullSeo = { ...defaultSeo, ...seo }
@@ -61,14 +63,12 @@ const Seo = ({ seo = {} }: SeoProps) => {
         }
       )
     }
-    if (fullSeo.article) {
-      tags.push({
-        property: "og:type",
-        content: "article",
-      })
-    }
     tags.push({ name: "twitter:card", content: "summary_large_image" })
     tags.push({ name: "theme-color", content: theme("colors.lime.500") })
+    tags.push({ property: "og:url", content: `${siteURL}${location.pathname}` })
+    tags.push({ property: "og:type", content: type })
+    tags.push({ property: "og:locale", content: "de_DE" })
+    tags.push({ property: "og:site_name", content: siteName })
 
     return tags
   }

@@ -4,10 +4,11 @@ import "twin.macro"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import ArticleList from "../components/article-list"
+import { PageProps } from "gatsby"
 
-const Index = () => (
+const Index = ({ location }: PageProps) => (
   <Layout>
-    <Seo />
+    <Seo location={location} type="website" />
     <header>
       <Hero />
     </header>
