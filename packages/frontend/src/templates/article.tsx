@@ -1,13 +1,16 @@
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Seo, { StrapiSeo } from "../components/seo"
+import Seo from "../components/seo"
 import type { PageProps } from "gatsby"
 import BlocksRenderer from "../components/blocks-renderer"
 import "twin.macro"
 import { StrapiBlocks } from "../components/blocks"
+import { StrapiSeo } from "../utils/seo"
 
 export type StrapiArticle = {
+  slug: string
+  title: string
   blocks: StrapiBlocks
   seo: StrapiSeo
 }
@@ -25,22 +28,13 @@ const Article = ({ data }: PageProps<{ strapiArticle: StrapiArticle }>) => (
 export const query = graphql`
   query ($slug: String) {
     strapiArticle(slug: { eq: $slug }) {
-      id
       slug
       title
       blocks {
         ...Blocks
       }
       seo {
-        metaTitle
-        metaDescription
-        shareImage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
+        ...Seo
       }
     }
   }

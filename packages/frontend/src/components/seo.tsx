@@ -1,60 +1,17 @@
-import React from "react"
 import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
-
-export type StrapiMedia = {
-  localFile: {
-    url: string
-  }
-}
-
-export type StrapiSeo = {
-  metaTitle: string
-  metaDescription: string
-  shareImage: StrapiMedia
-  article: boolean
-}
+import { useGlobal } from "../hooks/use-global"
+import { StrapiSeo } from "../utils/seo"
+import { theme } from "twin.macro"
 
 export type SeoProps = {
   seo?: Partial<StrapiSeo>
 }
 
 const Seo = ({ seo = {} }: SeoProps) => {
-  const { strapiGlobal } = useStaticQuery<{
-    strapiGlobal: {
-      siteName: string
-      favicon: StrapiMedia
-      defaultSeo: StrapiSeo
-    }
-  }>(graphql`
-    query {
-      strapiGlobal {
-        siteName
-        favicon {
-          localFile {
-            url
-          }
-        }
-        defaultSeo {
-          metaTitle
-          metaDescription
-          shareImage {
-            localFile {
-              url
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  const { siteName, defaultSeo, favicon } = strapiGlobal
+  const { siteName, defaultSeo, favicon } = useGlobal()
 
   // Merge default and page-specific SEO values
   const fullSeo = { ...defaultSeo, ...seo }
-
-  // Add site name to title
-  fullSeo.metaTitle = `${fullSeo.metaTitle} | ${siteName}`
 
   const getMetaTags = () => {
     const tags = []
@@ -111,6 +68,7 @@ const Seo = ({ seo = {} }: SeoProps) => {
       })
     }
     tags.push({ name: "twitter:card", content: "summary_large_image" })
+    tags.push({ name: "theme-color", content: theme("colors.lime.500") })
 
     return tags
   }
