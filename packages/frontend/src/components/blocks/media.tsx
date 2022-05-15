@@ -26,7 +26,7 @@ export type StrapiBlockMedia = {
   }
 }
 
-export const query = graphql`
+export const StrapiBlockMediaFragment = graphql`
   fragment BlockMedia on STRAPI__COMPONENT_SHARED_MEDIA {
     file {
       mime

@@ -15,7 +15,7 @@ export type StrapiBlockUnion =
   | StrapiBlock<"STRAPI__COMPONENT_SHARED_RICH_TEXT", StrapiBlockRichText>
   | StrapiBlock<"STRAPI__COMPONENT_SHARED_MEDIA", StrapiBlockMedia>
 
-export const query = graphql`
+export const StrapiBlocksFragment = graphql`
   fragment Blocks on STRAPI__COMPONENT_SHARED_MEDIASTRAPI__COMPONENT_SHARED_RICH_TEXTUnion {
     __typename
     ...BlockRichText

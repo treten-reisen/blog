@@ -4,18 +4,30 @@ import { StrapiMedia } from "./media"
 export type StrapiSeo = {
   metaTitle: string
   metaDescription: string
-  shareImage: StrapiMedia
+  shareImage: {
+    localFile: {
+      childImageSharp: {
+        resize: {
+          src: string
+        }
+      }
+    }
+  }
   article: boolean
 }
 
-export const query = graphql`
+export const StrapiSeoFragment = graphql`
   fragment Seo on STRAPI__COMPONENT_SHARED_SEO {
     metaTitle
     metaDescription
     article
     shareImage {
       localFile {
-        url
+        childImageSharp {
+          resize(width: 1200, height: 630) {
+            src
+          }
+        }
       }
     }
   }

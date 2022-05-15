@@ -30,7 +30,7 @@ export type StrapiBlockRichText = {
   }
 }
 
-export const query = graphql`
+export const strapiBlockRichTextFragment = graphql`
   fragment BlockRichText on STRAPI__COMPONENT_SHARED_RICH_TEXT {
     body {
       data {

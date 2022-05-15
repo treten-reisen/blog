@@ -101,5 +101,6 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-graphql-config`,
   ],
 }
