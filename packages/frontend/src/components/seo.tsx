@@ -47,7 +47,7 @@ const Seo = ({ seo = {}, location, type }: SeoProps) => {
       )
     }
     if (fullSeo.shareImage) {
-      const imageUrl = fullSeo.shareImage.localFile.childImageSharp.resize.src
+      const imageUrl = `${siteURL}${fullSeo.shareImage.localFile.childImageSharp.resize.src}`
       tags.push(
         {
           name: "image",
