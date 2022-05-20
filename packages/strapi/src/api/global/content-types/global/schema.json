@@ -33,6 +33,9 @@
     },
     "siteURL": {
       "type": "string"
+    },
+    "imprint": {
+      "type": "richtext"
     }
   }
 }
