@@ -30,12 +30,12 @@ jobs:
             packages/frontend/.cache
           key: ${{ runner.os }}-gatsby-build
 
-      - run: npm ci
+      - run: yarn install --frozen-lockfile
       - name: Build
         env:
           STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
           STRAPI_API_URL: ${{ secrets.STRAPI_URL }}
-        run: npm run build -w packages/frontend
+        run: yarn workspace @treten-reisen/frontend build
 
       - id: "auth"
         uses: "google-github-actions/auth@v0"

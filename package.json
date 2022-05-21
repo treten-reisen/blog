@@ -1,17 +1,18 @@
 {
-  "name": "treten.reisen-monorepo",
+  "name": "@treten.reisen/monorepo",
   "version": "1.0.0",
   "description": "treten.reisen Monorepo",
+  "private": true,
   "workspaces": [
-    "./packages/*"
+    "packages/*"
   ],
   "scripts": {
-    "gcp-build": "npm run gcp-build --ws --if-present",
-    "develop:strapi": "npm run develop -w packages/strapi",
-    "develop:frontend": "npm run develop -w packages/frontend",
-    "develop:frontend:wait": "wait-on http://localhost:1337 && npm run develop:frontend",
-    "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold npm:develop:strapi npm:develop:frontend:wait",
-    "preview": "cross-env NODE_ENV=preview npm run develop:frontend"
+    "gcp-build": "yarn workspaces foreach gcp-build",
+    "develop:strapi": "yarn workspace @treten-reisen/strapi develop",
+    "develop:frontend": "yarn workspace @treten-reisen/frontend develop",
+    "develop:frontend:wait": "wait-on http://localhost:1337 && yarn develop:frontend",
+    "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold yarn:develop:strapi yarn:develop:frontend:wait",
+    "preview": "cross-env NODE_ENV=preview yarn develop:frontend"
   },
   "repository": {
     "type": "git",

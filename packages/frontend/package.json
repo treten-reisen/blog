@@ -1,11 +1,15 @@
 {
-  "name": "treten.reisen-frontend",
+  "name": "@treten-reisen/frontend",
   "private": true,
   "description": "treten.reisen Gatsby frontend",
   "version": "1.0.0",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@tailwindcss/typography": "0.4.1",
     "@types/react-helmet": "^6.1.5",
     "deepmerge": "^4.2.2",
