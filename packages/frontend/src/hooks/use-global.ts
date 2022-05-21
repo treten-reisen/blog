@@ -7,6 +7,13 @@ export type StrapiGlobal = {
   siteURL: string
   favicon: StrapiMedia
   defaultSeo: StrapiSeo
+  imprint: {
+    data: {
+      childMarkdownRemark: {
+        html: string
+      }
+    }
+  }
 }
 
 export const useGlobal = () => {
@@ -24,6 +31,13 @@ export const useGlobal = () => {
         }
         defaultSeo {
           ...Seo
+        }
+        imprint {
+          data {
+            childMarkdownRemark {
+              html
+            }
+          }
         }
       }
     }

@@ -1,5 +1,4 @@
 import { graphql } from "gatsby"
-import React from "react"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -15,10 +14,7 @@ export type ArticleProps = PageProps<{ strapiArticle: StrapiArticle }>
 const Article = ({ data, location }: ArticleProps) => (
   <Layout>
     <ArticleSeo article={data.strapiArticle} location={location} />
-    <a href="/">{"< Back"}</a>
-    <main tw="p-responsive md:container">
-      <BlocksRenderer blocks={data.strapiArticle.blocks} />
-    </main>
+    <BlocksRenderer blocks={data.strapiArticle.blocks} />
   </Layout>
 )
 

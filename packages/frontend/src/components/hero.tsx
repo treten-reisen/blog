@@ -26,8 +26,8 @@ const Hero = () => {
         />
       </div>
       <Shade tw="w-full h-full absolute z-10" />
-      <div tw="w-full h-full absolute z-20 p-4">
-        <div tw="md:container h-full flex flex-col items-stretch">
+      <div tw="w-full h-full absolute z-20">
+        <div tw="md:container px-responsive py-4 h-full flex flex-col items-stretch">
           <a href="/">
             <img tw="h-6 self-start" src={logo.localFile.url} alt="Logo" />
           </a>
