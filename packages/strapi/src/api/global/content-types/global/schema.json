@@ -36,6 +36,9 @@
     },
     "imprint": {
       "type": "richtext"
+    },
+    "instagramLink": {
+      "type": "string"
     }
   }
 }
