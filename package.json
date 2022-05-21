@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "gcp-build": "yarn workspaces foreach gcp-build",
+    "gcp-build": "yarn workspace @treten-reisen/strapi run gcp-build",
     "develop:strapi": "yarn workspace @treten-reisen/strapi develop",
     "develop:frontend": "yarn workspace @treten-reisen/frontend develop",
     "develop:frontend:wait": "wait-on http://localhost:1337 && yarn develop:frontend",
