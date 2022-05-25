@@ -4,4 +4,3 @@
 node_modules/
 packages/frontend/
 #!include:.gitignore
-!.env
