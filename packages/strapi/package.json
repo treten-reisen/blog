@@ -17,7 +17,7 @@
     "@strapi/plugin-users-permissions": "4.1.11",
     "@strapi/strapi": "4.1.11",
     "better-sqlite3": "7.4.6",
-    "pg": "8.7.3"
+    "pg": "8.6.0"
   },
   "strapi": {
     "uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
