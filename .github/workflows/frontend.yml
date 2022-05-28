@@ -35,7 +35,7 @@ jobs:
         env:
           STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
           STRAPI_API_URL: ${{ secrets.STRAPI_URL }}
-        run: npm run build -w packages/frontend
+        run: npx lerna run build --scope @treten-reisen/frontend
 
       - id: "auth"
         uses: "google-github-actions/auth@v0"

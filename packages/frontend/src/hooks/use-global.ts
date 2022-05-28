@@ -5,6 +5,7 @@ import { StrapiSeo } from "../utils/seo"
 export type StrapiGlobal = {
   siteName: string
   siteURL: string
+  instagramLink: string
   favicon: StrapiMedia
   defaultSeo: StrapiSeo
   imprint: {
@@ -24,6 +25,7 @@ export const useGlobal = () => {
       strapiGlobal {
         siteName
         siteURL
+        instagramLink
         favicon {
           localFile {
             url
