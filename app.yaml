@@ -2,7 +2,7 @@ runtime: nodejs16
 
 instance_class: F2
 
-entrypoint: "npm run start -w packages/strapi"
+entrypoint: "npm run gcp-entrypoint"
 
 env_variables:
   HOST: "0.0.0.0"

@@ -1,14 +1,14 @@
 {
-  "name": "treten.reisen-monorepo",
+  "name": "@treten-reisen/monorepo",
   "version": "1.0.0",
   "description": "treten.reisen Monorepo",
-  "workspaces": [
-    "./packages/*"
-  ],
+  "private": "true",
   "scripts": {
-    "gcp-build": "npm run gcp-build --ws --if-present",
-    "develop:strapi": "npm run develop -w packages/strapi",
-    "develop:frontend": "npm run develop -w packages/frontend",
+    "postinstall": "lerna bootstrap",
+    "gcp-build": "lerna run gcp-build",
+    "gcp-entrypoint": "lerna run start --scope @treten-reisen/strapi",
+    "develop:strapi": "lerna run develop --scope @treten-reisen/strapi",
+    "develop:frontend": "lerna run develop --scope @treten-reisen/frontend",
     "develop:frontend:wait": "wait-on http://localhost:1337 && npm run develop:frontend",
     "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold npm:develop:strapi npm:develop:frontend:wait",
     "preview": "cross-env NODE_ENV=preview npm run develop:frontend"
@@ -26,6 +26,7 @@
   "devDependencies": {
     "concurrently": "^7.1.0",
     "cross-env": "^7.0.3",
+    "lerna": "^5.0.0",
     "wait-on": "^6.0.1"
   }
 }
