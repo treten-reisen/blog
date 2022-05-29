@@ -1,5 +1,6 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
+
 import "twin.macro"
 import {
   StrapiArticleListItem,

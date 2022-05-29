@@ -1,5 +1,6 @@
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { styled } from "twin.macro"
+
 import { useHero } from "../hooks/use-hero"
 
 const Shade = styled.div`

@@ -48,8 +48,8 @@ module.exports = {
                   populate: "*",
                 },
                 socialMedia: {
-                  populate: "*"
-                }
+                  populate: "*",
+                },
               },
             },
           },

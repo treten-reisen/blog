@@ -1,11 +1,10 @@
-import Hero from "../components/hero"
+import { PageProps } from "gatsby"
 import "twin.macro"
 
+import ArticleList from "../components/article-list"
+import Hero from "../components/hero"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import ArticleList from "../components/article-list"
-import { PageProps } from "gatsby"
-import Footer from "../components/footer"
 
 const Index = ({ location }: PageProps) => {
   return (

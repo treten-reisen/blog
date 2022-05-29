@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby"
+
 import { StrapiMedia } from "../utils/media"
 import { StrapiSeo } from "../utils/seo"
 

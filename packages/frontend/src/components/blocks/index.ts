@@ -1,4 +1,5 @@
 import { graphql } from "gatsby"
+
 import StrapiMediaRenderer, { StrapiBlockMedia } from "./media"
 import StrapiRichTextRenderer, { StrapiBlockRichText } from "./rich-text"
 

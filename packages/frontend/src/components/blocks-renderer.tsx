@@ -1,8 +1,8 @@
 import {
-  componentsMap,
   StrapiBlockOfType,
-  StrapiBlocks,
   StrapiBlockTypename,
+  StrapiBlocks,
+  componentsMap,
 } from "./blocks"
 
 type BlockProps<T extends StrapiBlockTypename> = {

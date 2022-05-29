@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet"
+import { theme } from "twin.macro"
+
 import { useGlobal } from "../hooks/use-global"
 import { StrapiSeo } from "../utils/seo"
-import { theme } from "twin.macro"
 
 export type SeoProps = {
   seo?: Partial<StrapiSeo>

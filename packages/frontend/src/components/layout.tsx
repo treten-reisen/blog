@@ -1,8 +1,9 @@
+import { Global } from "@emotion/react"
 import React, { PropsWithChildren } from "react"
 import { GlobalStyles, css } from "twin.macro"
-import { Global } from "@emotion/react"
-import Header from "./header"
+
 import Footer from "./footer"
+import Header from "./header"
 
 export type LayoutProps = PropsWithChildren<{
   header?: React.ReactNode

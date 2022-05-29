@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import tw, { css } from "twin.macro"
+
 import Article from "../article"
 
 export type StrapiRichTextRendererProps = {

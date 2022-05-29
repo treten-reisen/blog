@@ -1,13 +1,12 @@
-import { graphql } from "gatsby"
+import { graphql, PageProps } from "gatsby"
+import "twin.macro"
+import { Helmet } from "react-helmet"
 
+import { StrapiBlocks } from "../components/blocks"
+import BlocksRenderer from "../components/blocks-renderer"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import type { PageProps } from "gatsby"
-import BlocksRenderer from "../components/blocks-renderer"
-import "twin.macro"
-import { StrapiBlocks } from "../components/blocks"
 import { StrapiSeo } from "../utils/seo"
-import { Helmet } from "react-helmet"
 
 export type ArticleProps = PageProps<{ strapiArticle: StrapiArticle }>
 

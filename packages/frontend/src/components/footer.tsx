@@ -1,8 +1,9 @@
 import "twin.macro"
 import { brands } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { StrapiSocialMedia, useGlobal } from "../hooks/use-global"
 import { useCallback } from "react"
+
+import { StrapiSocialMedia, useGlobal } from "../hooks/use-global"
 
 const Footer = () => {
   const { socialMedia } = useGlobal()

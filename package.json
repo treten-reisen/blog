@@ -11,7 +11,9 @@
     "develop:frontend": "lerna run develop --scope @treten-reisen/frontend",
     "develop:frontend:wait": "wait-on http://localhost:1337 && npm run develop:frontend",
     "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold npm:develop:strapi npm:develop:frontend:wait",
-    "preview": "cross-env NODE_ENV=preview npm run develop:frontend"
+    "preview": "cross-env NODE_ENV=preview npm run develop:frontend",
+    "prepare": "husky install",
+    "pre-commit": "lerna run pre-commit"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,9 @@
   "devDependencies": {
     "concurrently": "^7.1.0",
     "cross-env": "^7.0.3",
+    "husky": "^8.0.0",
     "lerna": "^5.0.0",
+    "lint-staged": "^12.4.2",
     "wait-on": "^6.0.1"
   }
 }

@@ -1,5 +1,4 @@
 import { graphql } from "gatsby"
-import { StrapiMedia } from "./media"
 
 export type StrapiSeo = {
   metaTitle: string
