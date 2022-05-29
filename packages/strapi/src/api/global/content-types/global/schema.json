@@ -37,8 +37,10 @@
     "imprint": {
       "type": "richtext"
     },
-    "instagramLink": {
-      "type": "string"
+    "socialMedia": {
+      "type": "component",
+      "repeatable": true,
+      "component": "social-media.social-media-account"
     }
   }
 }

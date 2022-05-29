@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_global_social_media_accounts",
+  "info": {
+    "displayName": "Social Media Account",
+    "icon": "globe",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "facebook",
+        "twitter",
+        "instagram",
+        "youtube"
+      ]
+    }
+  }
+}
