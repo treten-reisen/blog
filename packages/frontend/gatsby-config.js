@@ -47,6 +47,9 @@ module.exports = {
                 defaultSeo: {
                   populate: "*",
                 },
+                socialMedia: {
+                  populate: "*"
+                }
               },
             },
           },

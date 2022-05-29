@@ -5,7 +5,7 @@ import { StrapiSeo } from "../utils/seo"
 export type StrapiGlobal = {
   siteName: string
   siteURL: string
-  instagramLink: string
+  socialMedia: StrapiSocialMedia[]
   favicon: StrapiMedia
   defaultSeo: StrapiSeo
   imprint: {
@@ -17,6 +17,18 @@ export type StrapiGlobal = {
   }
 }
 
+export type StrapiSocialMediaPlatform =
+  | "facebook"
+  | "twitter"
+  | "youtube"
+  | "instagram"
+
+export type StrapiSocialMedia = {
+  platform: StrapiSocialMediaPlatform
+  username: string
+  url: string
+}
+
 export const useGlobal = () => {
   const { strapiGlobal } = useStaticQuery<{
     strapiGlobal: StrapiGlobal
@@ -25,7 +37,11 @@ export const useGlobal = () => {
       strapiGlobal {
         siteName
         siteURL
-        instagramLink
+        socialMedia {
+          platform
+          url
+          username
+        }
         favicon {
           localFile {
             url
