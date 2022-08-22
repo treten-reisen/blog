@@ -11,7 +11,7 @@ const ArticleList = () => {
   const articles = useArticleList()
 
   return (
-    <div tw="grid gap-responsive sm:grid-cols-fit-sm lg:grid-cols-fit-lg">
+    <div tw="grid gap-6 sm:gap-responsive sm:grid-cols-fit-sm lg:grid-cols-fit-lg">
       {articles.map(article => (
         <ArticleListItem item={article} key={article.slug} />
       ))}

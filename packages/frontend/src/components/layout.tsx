@@ -15,9 +15,7 @@ const Layout = ({ children, header }: LayoutProps) => {
       <GlobalStyles />
       <Global styles={css``} />
       {header ? header : <Header />}
-      <main tw="md:container py-6 sm:py-responsive px-responsive flex-1">
-        {children}
-      </main>
+      <main tw="md:container p-6 sm:p-responsive flex-1">{children}</main>
       <Footer />
     </div>
   )
