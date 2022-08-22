@@ -68,13 +68,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
+        scope: "https://treten.reisen/",
         name: `treten.reisen`,
         short_name: `treten.reisen`,
         start_url: `/`,
-        background_color: `#663399`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
+        theme_color: `#84CC16`,
+        background_color: `#F4F4F5`,
         display: `minimal-ui`,
         icon: `src/assets/logo.svg`,
       },
