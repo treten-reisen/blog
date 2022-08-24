@@ -7,8 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "postinstall": "patch-package"
+    "astro": "astro"
   },
   "devDependencies": {
     "@astrojs/react": "^1.0.0",
@@ -29,14 +28,12 @@
     "@astrojs/image": "^0.3.6",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@fortawesome/fontawesome-svg-core": "^6.1.2",
-    "@fortawesome/free-brands-svg-icons": "^6.1.2",
-    "@fortawesome/free-regular-svg-icons": "^6.1.2",
-    "@fortawesome/free-solid-svg-icons": "^6.1.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@fortawesome/fontawesome-svg-core": "patch:@fortawesome/fontawesome-svg-core@6.1.2#../../.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch",
+    "@fortawesome/free-brands-svg-icons": "patch:@fortawesome/free-brands-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch",
+    "@fortawesome/free-regular-svg-icons": "patch:@fortawesome/free-regular-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-regular-svg-icons-npm-6.1.2-deb579d446.patch",
+    "@fortawesome/free-solid-svg-icons": "patch:@fortawesome/free-solid-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-solid-svg-icons-npm-6.1.2-5e8bb67106.patch",
+    "@fortawesome/react-fontawesome": "patch:@fortawesome/react-fontawesome@0.2.0#../../.yarn/patches/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f.patch",
     "date-fns": "^2.29.2",
-    "patch-package": "^6.4.7",
-    "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -46,5 +43,12 @@
     "typescript": "^4.7.4",
     "unified": "^10.1.2",
     "zod": "^3.18.0"
+  },
+  "resolutions": {
+    "@fortawesome/fontawesome-svg-core@6.1.2": "patch:@fortawesome/fontawesome-svg-core@npm:6.1.2#.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch",
+    "@fortawesome/free-brands-svg-icons@6.1.2": "patch:@fortawesome/free-brands-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch",
+    "@fortawesome/free-regular-svg-icons@6.1.2": "patch:@fortawesome/free-regular-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-regular-svg-icons-npm-6.1.2-deb579d446.patch",
+    "@fortawesome/free-solid-svg-icons@6.1.2": "patch:@fortawesome/free-solid-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-solid-svg-icons-npm-6.1.2-5e8bb67106.patch",
+    "@fortawesome/react-fontawesome@0.2.0": "patch:@fortawesome/react-fontawesome@npm:0.2.0#.yarn/patches/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f.patch"
   }
 }

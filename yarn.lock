@@ -1910,6 +1910,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/fontawesome-svg-core@npm:6.1.2":
+  version: 6.1.2
+  resolution: "@fortawesome/fontawesome-svg-core@npm:6.1.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.1.2
+  checksum: bb82ed1e79ade9977746b4bb28ac0d03de7557e7c923446adec78cb3447740aca0859e91d6310007d758055a1b8f3a6f740915f04cac738931135c9bdbfe5d32
+  languageName: node
+  linkType: hard
+
 "@fortawesome/fontawesome-svg-core@npm:^1.2.35":
   version: 1.2.36
   resolution: "@fortawesome/fontawesome-svg-core@npm:1.2.36"
@@ -1919,12 +1928,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:^6.1.2":
+"@fortawesome/fontawesome-svg-core@patch:@fortawesome/fontawesome-svg-core@6.1.2#../../.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch::locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro":
   version: 6.1.2
-  resolution: "@fortawesome/fontawesome-svg-core@npm:6.1.2"
+  resolution: "@fortawesome/fontawesome-svg-core@patch:@fortawesome/fontawesome-svg-core@npm%3A6.1.2#../../.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch::version=6.1.2&hash=dcd7b8&locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro"
   dependencies:
     "@fortawesome/fontawesome-common-types": 6.1.2
-  checksum: bb82ed1e79ade9977746b4bb28ac0d03de7557e7c923446adec78cb3447740aca0859e91d6310007d758055a1b8f3a6f740915f04cac738931135c9bdbfe5d32
+  checksum: 762fd3d3fd12e11e07731ed4fabc4be82773e93c884c77964e79d8057a6a67753d86fe5108bd4ff0d9d21f54b0584e15e955a84d8da008ecb7f932fa8323e60e
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-brands-svg-icons@npm:6.1.2":
+  version: 6.1.2
+  resolution: "@fortawesome/free-brands-svg-icons@npm:6.1.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.1.2
+  checksum: 178b7f97bf64dcc1589bff74fc73cd0de32f002d585254e5dfb362d16c21011a77c61439dd507873d288f3c93de615cfc63235622968b037d8d8ded2d56f1d81
   languageName: node
   linkType: hard
 
@@ -1937,21 +1955,39 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-brands-svg-icons@npm:^6.1.2":
+"@fortawesome/free-brands-svg-icons@patch:@fortawesome/free-brands-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch::locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro":
   version: 6.1.2
-  resolution: "@fortawesome/free-brands-svg-icons@npm:6.1.2"
+  resolution: "@fortawesome/free-brands-svg-icons@patch:@fortawesome/free-brands-svg-icons@npm%3A6.1.2#../../.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch::version=6.1.2&hash=428e83&locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro"
   dependencies:
     "@fortawesome/fontawesome-common-types": 6.1.2
-  checksum: 178b7f97bf64dcc1589bff74fc73cd0de32f002d585254e5dfb362d16c21011a77c61439dd507873d288f3c93de615cfc63235622968b037d8d8ded2d56f1d81
+  checksum: 8128076af4984d2c3fadea232c27af3287037fd99d982635fdbec0ff2094e95ce92593bd8fee400a45f5ab6e845c7cf90ee372e37d3d573d4d7055cab1cfae59
   languageName: node
   linkType: hard
 
-"@fortawesome/free-regular-svg-icons@npm:^6.1.2":
+"@fortawesome/free-regular-svg-icons@npm:6.1.2":
   version: 6.1.2
   resolution: "@fortawesome/free-regular-svg-icons@npm:6.1.2"
   dependencies:
     "@fortawesome/fontawesome-common-types": 6.1.2
   checksum: 1485773e16a019fd4af0053ab7e7f51558fe016dcfd8b975d5fc14069dd494d0c345477c1ceddc0356634a53add780761242aa4b20fc5ce616274aa7808bff39
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-regular-svg-icons@patch:@fortawesome/free-regular-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-regular-svg-icons-npm-6.1.2-deb579d446.patch::locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro":
+  version: 6.1.2
+  resolution: "@fortawesome/free-regular-svg-icons@patch:@fortawesome/free-regular-svg-icons@npm%3A6.1.2#../../.yarn/patches/@fortawesome-free-regular-svg-icons-npm-6.1.2-deb579d446.patch::version=6.1.2&hash=b28bc3&locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.1.2
+  checksum: 45064e66ed7b2baa87552bedd2fdd28620e54e2319ced6d59eb0f1a9b3168af10361e154c50acd5d839ce628a811206b60b8db8a325a270f36c0fe0b480404e3
+  languageName: node
+  linkType: hard
+
+"@fortawesome/free-solid-svg-icons@npm:6.1.2":
+  version: 6.1.2
+  resolution: "@fortawesome/free-solid-svg-icons@npm:6.1.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types": 6.1.2
+  checksum: b7258cd092304f9bd1e557cd3a59e9ff560165631b04f16785da14ce3148873fa8e688d62f95d68f668be32e1207c47a1fe556978ae7e9573a5b0fec09fc0f0c
   languageName: node
   linkType: hard
 
@@ -1964,16 +2000,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/free-solid-svg-icons@npm:^6.1.2":
+"@fortawesome/free-solid-svg-icons@patch:@fortawesome/free-solid-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-solid-svg-icons-npm-6.1.2-5e8bb67106.patch::locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro":
   version: 6.1.2
-  resolution: "@fortawesome/free-solid-svg-icons@npm:6.1.2"
+  resolution: "@fortawesome/free-solid-svg-icons@patch:@fortawesome/free-solid-svg-icons@npm%3A6.1.2#../../.yarn/patches/@fortawesome-free-solid-svg-icons-npm-6.1.2-5e8bb67106.patch::version=6.1.2&hash=8c38d6&locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro"
   dependencies:
     "@fortawesome/fontawesome-common-types": 6.1.2
-  checksum: b7258cd092304f9bd1e557cd3a59e9ff560165631b04f16785da14ce3148873fa8e688d62f95d68f668be32e1207c47a1fe556978ae7e9573a5b0fec09fc0f0c
+  checksum: 1eb7f54ffc427581c1d1513dd51c4636993cc3e34cc87f6426fba25deb0ff1a8404dd9839a242f5a1bcb3872fb6cb31ea621bd27d00acce7339a2cd59ac4d69e
   languageName: node
   linkType: hard
 
-"@fortawesome/react-fontawesome@npm:^0.2.0":
+"@fortawesome/react-fontawesome@npm:0.2.0, @fortawesome/react-fontawesome@npm:^0.2.0":
   version: 0.2.0
   resolution: "@fortawesome/react-fontawesome@npm:0.2.0"
   dependencies:
@@ -1982,6 +2018,18 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ~1 || ~6
     react: ">=16.3"
   checksum: f652a0c2172e7b209e2d9e7e511f9b8c17abad85f55e0bd09bb1175ea1927693215da47eb6cd95b1f3a23bd124368553c677907fa76cb17c5093afc1fcffe338
+  languageName: node
+  linkType: hard
+
+"@fortawesome/react-fontawesome@patch:@fortawesome/react-fontawesome@0.2.0#../../.yarn/patches/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f.patch::locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro":
+  version: 0.2.0
+  resolution: "@fortawesome/react-fontawesome@patch:@fortawesome/react-fontawesome@npm%3A0.2.0#../../.yarn/patches/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f.patch::version=0.2.0&hash=9f1e90&locator=%40treten-reisen%2Fastro%40workspace%3Apackages%2Fastro"
+  dependencies:
+    prop-types: ^15.8.1
+  peerDependencies:
+    "@fortawesome/fontawesome-svg-core": ~1 || ~6
+    react: ">=16.3"
+  checksum: 1b039a9a9c646002adf6eef78d3c0f66bd04087537aa7aab4c552d1f51f5939b825a11d43c984479bcef84cfeca479e81bc8f6ddcac99970c808c35e722630fa
   languageName: node
   linkType: hard
 
@@ -2940,11 +2988,11 @@ __metadata:
     "@astrojs/tailwind": ^1.0.0
     "@emotion/react": ^11.10.0
     "@emotion/styled": ^11.10.0
-    "@fortawesome/fontawesome-svg-core": ^6.1.2
-    "@fortawesome/free-brands-svg-icons": ^6.1.2
-    "@fortawesome/free-regular-svg-icons": ^6.1.2
-    "@fortawesome/free-solid-svg-icons": ^6.1.2
-    "@fortawesome/react-fontawesome": ^0.2.0
+    "@fortawesome/fontawesome-svg-core": "patch:@fortawesome/fontawesome-svg-core@6.1.2#../../.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch"
+    "@fortawesome/free-brands-svg-icons": "patch:@fortawesome/free-brands-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch"
+    "@fortawesome/free-regular-svg-icons": "patch:@fortawesome/free-regular-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-regular-svg-icons-npm-6.1.2-deb579d446.patch"
+    "@fortawesome/free-solid-svg-icons": "patch:@fortawesome/free-solid-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-solid-svg-icons-npm-6.1.2-5e8bb67106.patch"
+    "@fortawesome/react-fontawesome": "patch:@fortawesome/react-fontawesome@0.2.0#../../.yarn/patches/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f.patch"
     "@tailwindcss/typography": ^0.5.4
     "@types/react": ^18.0.17
     "@types/react-helmet": ^6.1.5
@@ -2952,11 +3000,9 @@ __metadata:
     autoprefixer: ^10.4.8
     babel-plugin-macros: ^3.1.0
     date-fns: ^2.29.2
-    patch-package: ^6.4.7
     postcss: ^8.4.16
     postcss-import: ^14.1.0
     postcss-scss: ^4.0.4
-    postinstall-postinstall: ^2.1.0
     react: ^18.2.0
     react-dom: ^18.2.0
     react-helmet: ^6.1.0
@@ -3770,13 +3816,6 @@ __metadata:
   version: 4.2.2
   resolution: "@xtuc/long@npm:4.2.2"
   checksum: 8ed0d477ce3bc9c6fe2bf6a6a2cc316bb9c4127c5a7827bae947fa8ec34c7092395c5a283cc300c05b5fa01cbbfa1f938f410a7bf75db7c7846fea41949989ec
-  languageName: node
-  linkType: hard
-
-"@yarnpkg/lockfile@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@yarnpkg/lockfile@npm:1.1.0"
-  checksum: 05b881b4866a3546861fee756e6d3812776ea47fa6eb7098f983d6d0eefa02e12b66c3fff931574120f196286a7ad4879ce02743c8bb2be36c6a576c7852083a
   languageName: node
   linkType: hard
 
@@ -5283,13 +5322,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ci-info@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "ci-info@npm:2.0.0"
-  checksum: 3b374666a85ea3ca43fa49aa3a048d21c9b475c96eb13c133505d2324e7ae5efd6a454f41efe46a152269e9b6a00c9edbe63ec7fa1921957165aae16625acd67
-  languageName: node
-  linkType: hard
-
 "cipher-base@npm:^1.0.0, cipher-base@npm:^1.0.1, cipher-base@npm:^1.0.3":
   version: 1.0.4
   resolution: "cipher-base@npm:1.0.4"
@@ -6002,7 +6034,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^6.0.0, cross-spawn@npm:^6.0.5":
+"cross-spawn@npm:^6.0.0":
   version: 6.0.5
   resolution: "cross-spawn@npm:6.0.5"
   dependencies:
@@ -7672,15 +7704,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-yarn-workspace-root@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "find-yarn-workspace-root@npm:2.0.0"
-  dependencies:
-    micromatch: ^4.0.2
-  checksum: fa5ca8f9d08fe7a54ce7c0a5931ff9b7e36f9ee7b9475fb13752bcea80ec6b5f180fa5102d60b376d5526ce924ea3fc6b19301262efa0a5d248dd710f3644242
-  languageName: node
-  linkType: hard
-
 "findup-sync@npm:^2.0.0":
   version: 2.0.0
   resolution: "findup-sync@npm:2.0.0"
@@ -7906,17 +7929,6 @@ __metadata:
     jsonfile: ^6.0.1
     universalify: ^2.0.0
   checksum: dc94ab37096f813cc3ca12f0f1b5ad6744dfed9ed21e953d72530d103cea193c2f81584a39e9dee1bea36de5ee66805678c0dddc048e8af1427ac19c00fffc50
-  languageName: node
-  linkType: hard
-
-"fs-extra@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "fs-extra@npm:7.0.1"
-  dependencies:
-    graceful-fs: ^4.1.2
-    jsonfile: ^4.0.0
-    universalify: ^0.1.0
-  checksum: 141b9dccb23b66a66cefdd81f4cda959ff89282b1d721b98cea19ba08db3dcbe6f862f28841f3cf24bb299e0b7e6c42303908f65093cb7e201708e86ea5a8dcf
   languageName: node
   linkType: hard
 
@@ -8315,7 +8327,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.5, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6, graceful-fs@npm:^4.2.9":
+"graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.5, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6, graceful-fs@npm:^4.2.9":
   version: 4.2.10
   resolution: "graceful-fs@npm:4.2.10"
   checksum: 3f109d70ae123951905d85032ebeae3c2a5a7a997430df00ea30df0e3a6c60cf6689b109654d6fdacd28810a053348c4d14642da1d075049e6be1ba5216218da
@@ -9432,17 +9444,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-ci@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "is-ci@npm:2.0.0"
-  dependencies:
-    ci-info: ^2.0.0
-  bin:
-    is-ci: bin.js
-  checksum: 77b869057510f3efa439bbb36e9be429d53b3f51abd4776eeea79ab3b221337fe1753d1e50058a9e2c650d38246108beffb15ccfd443929d77748d8c0cc90144
-  languageName: node
-  linkType: hard
-
 "is-class-hotfix@npm:~0.0.6":
   version: 0.0.6
   resolution: "is-class-hotfix@npm:0.0.6"
@@ -9873,7 +9874,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-wsl@npm:^2.1.1, is-wsl@npm:^2.2.0":
+"is-wsl@npm:^2.2.0":
   version: 2.2.0
   resolution: "is-wsl@npm:2.2.0"
   dependencies:
@@ -10103,18 +10104,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonfile@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "jsonfile@npm:4.0.0"
-  dependencies:
-    graceful-fs: ^4.1.6
-  dependenciesMeta:
-    graceful-fs:
-      optional: true
-  checksum: 6447d6224f0d31623eef9b51185af03ac328a7553efcee30fa423d98a9e276ca08db87d71e17f2310b0263fd3ffa6c2a90a6308367f661dc21580f9469897c9e
-  languageName: node
-  linkType: hard
-
 "jsonfile@npm:^6.0.1":
   version: 6.1.0
   resolution: "jsonfile@npm:6.1.0"
@@ -10259,15 +10248,6 @@ __metadata:
   version: 6.0.3
   resolution: "kind-of@npm:6.0.3"
   checksum: 3ab01e7b1d440b22fe4c31f23d8d38b4d9b91d9f291df683476576493d5dfd2e03848a8b05813dd0c3f0e835bc63f433007ddeceb71f05cb25c45ae1b19c6d3b
-  languageName: node
-  linkType: hard
-
-"klaw-sync@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "klaw-sync@npm:6.0.0"
-  dependencies:
-    graceful-fs: ^4.1.11
-  checksum: 0da397f8961313c3ef8f79fb63af9002cde5a8fb2aeb1a37351feff0dd6006129c790400c3f5c3b4e757bedcabb13d21ec0a5eaef5a593d59515d4f2c291e475
   languageName: node
   linkType: hard
 
@@ -12656,16 +12636,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open@npm:^7.4.2":
-  version: 7.4.2
-  resolution: "open@npm:7.4.2"
-  dependencies:
-    is-docker: ^2.0.0
-    is-wsl: ^2.1.1
-  checksum: 3333900ec0e420d64c23b831bc3467e57031461d843c801f569b2204a1acc3cd7b3ec3c7897afc9dde86491dfa289708eb92bba164093d8bd88fb2c231843c91
-  languageName: node
-  linkType: hard
-
 "ora@npm:5.4.1, ora@npm:^5.4.1":
   version: 5.4.1
   resolution: "ora@npm:5.4.1"
@@ -13009,29 +12979,6 @@ __metadata:
     pause: 0.0.1
     utils-merge: ^1.0.1
   checksum: ef932ad671d50de34765c7a53cd1e058d8331a82a6df09265a9c6c1168911aee4a7b5215803d0101110ab7f317e096b4954ca7e18fb2c33b9929f0bd17dbe159
-  languageName: node
-  linkType: hard
-
-"patch-package@npm:^6.4.7":
-  version: 6.4.7
-  resolution: "patch-package@npm:6.4.7"
-  dependencies:
-    "@yarnpkg/lockfile": ^1.1.0
-    chalk: ^2.4.2
-    cross-spawn: ^6.0.5
-    find-yarn-workspace-root: ^2.0.0
-    fs-extra: ^7.0.1
-    is-ci: ^2.0.0
-    klaw-sync: ^6.0.0
-    minimist: ^1.2.0
-    open: ^7.4.2
-    rimraf: ^2.6.3
-    semver: ^5.6.0
-    slash: ^2.0.0
-    tmp: ^0.0.33
-  bin:
-    patch-package: index.js
-  checksum: f36d5324da3b69ee635e7cd2c68f4d3dd89dc91d60ffdaad3b602fd953277f4da901c91033683bf6ff31c14799bc049849af3a389455c25d0435fe9cfb0d4088
   languageName: node
   linkType: hard
 
@@ -13484,13 +13431,6 @@ __metadata:
   dependencies:
     xtend: ^4.0.0
   checksum: 746b71f93805ae33b03528e429dc624706d1f9b20ee81bf743263efb6a0cd79ae02a642a8a480dbc0f09547b4315ab7df6ce5ec0be77ed700bac42730f5c76b2
-  languageName: node
-  linkType: hard
-
-"postinstall-postinstall@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "postinstall-postinstall@npm:2.1.0"
-  checksum: e1d34252cf8d2c5641c7d2db7426ec96e3d7a975f01c174c68f09ef5b8327bc8d5a9aa2001a45e693db2cdbf69577094d3fe6597b564ad2d2202b65fba76134b
   languageName: node
   linkType: hard
 
@@ -15406,13 +15346,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"slash@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "slash@npm:2.0.0"
-  checksum: 512d4350735375bd11647233cb0e2f93beca6f53441015eea241fe784d8068281c3987fbaa93e7ef1c38df68d9c60013045c92837423c69115297d6169aa85e6
-  languageName: node
-  linkType: hard
-
 "slash@npm:^3.0.0":
   version: 3.0.0
   resolution: "slash@npm:3.0.0"
@@ -16875,13 +16808,6 @@ __metadata:
     unist-util-is: ^5.0.0
     unist-util-visit-parents: ^5.1.1
   checksum: c4a63734b0a5b439c62d20901bb472bdafdbbcd80c383e254aedeb98b23d0bae815a331e776ce7d63ea3c8018a54318abb8709d07cdf7dd094f79b2f07bb39f0
-  languageName: node
-  linkType: hard
-
-"universalify@npm:^0.1.0":
-  version: 0.1.2
-  resolution: "universalify@npm:0.1.2"
-  checksum: 40cdc60f6e61070fe658ca36016a8f4ec216b29bf04a55dce14e3710cc84c7448538ef4dad3728d0bfe29975ccd7bfb5f414c45e7b78883567fb31b246f02dff
   languageName: node
   linkType: hard
 
