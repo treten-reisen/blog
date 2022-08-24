@@ -6,6 +6,8 @@ on:
     paths:
       - "packages/astro/**"
       - ".github/workflows/astro.yml"
+      - "package.json"
+      - ".gcloundignore"
 jobs:
   deploy-astro:
     runs-on: ubuntu-latest
