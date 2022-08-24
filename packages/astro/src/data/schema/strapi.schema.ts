@@ -30,7 +30,9 @@ export const strapiImageSchema = z.object({
     z.object({
       url: z
         .string()
-        .transform(url => `${import.meta.env.STRAPI_API_URL}${url}`),
+        .transform(url =>
+          new URL(url, import.meta.env.STRAPI_API_URL).toString()
+        ),
       alternativeText: z.string(),
     })
   ),
