@@ -1,0 +1,92 @@
+---
+import colors from "tailwindcss/colors"
+import type { StrapiGlobal } from "../data/schema/global.schema"
+import type { StrapiSeo } from "../data/schema/seo.schema"
+
+export type Props = {
+  seo?: Partial<StrapiSeo>
+  global: StrapiGlobal
+  type: "website" | "article"
+}
+
+const { type, seo, global } = Astro.props as Props
+const { url } = Astro
+
+const { siteName, defaultSeo, favicon, siteURL } = global.attributes
+
+// Merge default and page-specific SEO values
+const fullSeo = {
+  ...defaultSeo,
+  ...seo,
+}
+
+const getMetaTags = () => {
+  const tags = []
+
+  if (fullSeo.metaTitle) {
+    tags.push(
+      {
+        property: "og:title",
+        content: fullSeo.metaTitle,
+      },
+      {
+        name: "twitter:title",
+        content: fullSeo.metaTitle,
+      }
+    )
+  }
+  if (fullSeo.metaDescription) {
+    tags.push(
+      {
+        name: "description",
+        content: fullSeo.metaDescription,
+      },
+      {
+        property: "og:description",
+        content: fullSeo.metaDescription,
+      },
+      {
+        name: "twitter:description",
+        content: fullSeo.metaDescription,
+      }
+    )
+  }
+  if (fullSeo.shareImage) {
+    const imageUrl = `${siteURL}${fullSeo.shareImage.src}`
+    tags.push(
+      {
+        name: "image",
+        content: imageUrl,
+      },
+      {
+        property: "og:image",
+        content: imageUrl,
+      },
+      {
+        name: "twitter:image",
+        content: imageUrl,
+      }
+    )
+  }
+  tags.push({ name: "twitter:card", content: "summary_large_image" })
+  tags.push({ name: "theme-color", content: colors.lime[100] })
+  tags.push({ property: "og:url", content: `${siteURL}${url.pathname}` })
+  tags.push({ property: "og:type", content: type })
+  tags.push({ property: "og:locale", content: "de_DE" })
+  tags.push({ property: "og:site_name", content: siteName })
+
+  return tags
+}
+
+const metaTags = getMetaTags()
+---
+
+<title>
+  {
+    seo?.metaTitle
+      ? `${seo.metaTitle} · ${defaultSeo.metaTitle}`
+      : defaultSeo.metaTitle
+  }
+</title>
+<link rel="icon" href={favicon.data.attributes.url} />
+{metaTags.map(tag => <meta {...tag} />)}

@@ -1,0 +1,40 @@
+---
+import BlocksRenderer from "../../components/blocks-renderer"
+import Seo from "../../components/Seo.astro"
+import { getArticle } from "../../data/get-article"
+import {
+  getArticleList,
+  StrapiArticleListItem,
+} from "../../data/get-article-list"
+import { getGlobal } from "../../data/get-global"
+import Layout from "../../layouts/Layout.astro"
+
+export async function getStaticPaths() {
+  const articles = await getArticleList()
+
+  return articles.data.map(article => ({
+    params: { slug: article.attributes.slug },
+    props: { article },
+  }))
+}
+
+export type Props = {
+  article: StrapiArticleListItem
+}
+
+const {
+  article: { id },
+} = Astro.props as Props
+const global = await getGlobal()
+const article = await getArticle(id)
+---
+
+<Layout title="Welcome to Astro.">
+  <Seo
+    type="article"
+    global={global.data}
+    seo={article.data.attributes.seo}
+    slot="seo"
+  />
+  <BlocksRenderer blocks={article.data.attributes.blocks} />
+</Layout>

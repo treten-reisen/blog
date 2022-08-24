@@ -1,0 +1,14 @@
+---
+import Seo from "../components/Seo.astro"
+import { getGlobal } from "../data/get-global"
+import Layout from "../layouts/Layout.astro"
+
+const global = await getGlobal()
+---
+
+<Layout>
+  <Seo type="website" global={global.data} seo={{ metaTitle: "404" }} slot="seo"
+  />
+  <h1>404: Not Found</h1>
+  <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+</Layout>

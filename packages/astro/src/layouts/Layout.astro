@@ -1,0 +1,40 @@
+---
+import { getGlobal } from "../data/get-global"
+import { getHero } from "../data/get-hero"
+import { config } from "@fortawesome/fontawesome-svg-core"
+import "@fortawesome/fontawesome-svg-core/styles.css" // Import the CSS
+import Header from "../components/header"
+import Footer from "../components/footer"
+config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
+
+const global = await getGlobal()
+const hero = await getHero()
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CMerriweather:400%7CInconsolata:400"
+			media="all"
+		/>
+		<meta name="generator" content={Astro.generator} />
+		<slot name="seo" />
+	</head>
+	<body>
+		<div
+			class="flex min-h-screen flex-col justify-between bg-gray-50 text-gray-900"
+		>
+			<slot name="header">
+				<Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
+			</slot>
+			<main class="md:container p-6 sm:p-responsive flex-1">
+				<slot />
+			</main>
+			<Footer socialMedia={global.data.attributes.socialMedia} />
+		</div>
+	</body>
+</html>

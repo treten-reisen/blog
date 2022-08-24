@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { getArticleList } from "../data/get-article-list"
+import ArticleList from "../components/article-list"
+import Hero from "../components/hero"
+import { getHero } from "../data/get-hero"
+import Seo from "../components/Seo.astro"
+import { getGlobal } from "../data/get-global"
+
+const list = await getArticleList()
+const hero = await getHero()
+const global = await getGlobal()
+---
+
+<Layout title="Welcome to Astro.">
+	<Seo type="website" global={global.data} slot="seo" />
+	<Hero hero={hero.data} slot="header" />
+	<ArticleList articles={list.data} />
+</Layout>
