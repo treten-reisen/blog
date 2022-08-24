@@ -19,14 +19,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "npm"
 
-      - run: npm ci
+      - name: yarn
+        run: yarn set version stable
+
+      - name: Install
+        run: yarn install
+
       - name: Build
         env:
           STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
           STRAPI_API_URL: ${{ secrets.STRAPI_URL }}
-        run: npx lerna run build --scope @treten-reisen/astro
+        run: yarn workspace @treten-reisen/astro build
 
       - id: "auth"
         uses: "google-github-actions/auth@v0"

@@ -2,7 +2,7 @@ name: strapi
 on:
   push:
     branches:
-      - main
+      - astro
     paths:
       - "packages/strapi/**"
       - ".github/workflows/strapi.yml"
@@ -20,9 +20,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "npm"
-      - run: npm ci
 
+      - name: yarn
+        run: yarn set version stable
+
+      - name: Install
+        run: yarn install
       - uses: cschleiden/replace-tokens@v1
         with:
           files: '["app.yaml"]'

@@ -45,7 +45,6 @@ $RECYCLE.BIN/
 *.jar
 *.rar
 *.tar
-*.zip
 *.com
 *.class
 *.dll
@@ -120,3 +119,15 @@ build
 .env*
 .cache/
 packages/frontend/public
+
+############################
+# Yarn
+############################
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
