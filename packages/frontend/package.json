@@ -12,6 +12,8 @@
     "@fortawesome/react-fontawesome": "0.1.18",
     "@tailwindcss/typography": "0.4.1",
     "@types/react-helmet": "^6.1.5",
+    "@types/topojson-specification": "^1.0.2",
+    "d3": "^7.4.4",
     "deepmerge": "^4.2.2",
     "gatsby": "^4.13.1",
     "gatsby-plugin-emotion": "^7.13.0",
@@ -33,9 +35,14 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "tailwindcss": "^2.2.19",
-    "twin.macro": "^2.8.2"
+    "topojson": "^3.0.2",
+    "topojson-client": "^3.1.0",
+    "twin.macro": "^2.8.2",
+    "world-atlas": "^2.0.2"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.0",
+    "@types/topojson": "^3.2.3",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "eslint-config-prettier": "^8.5.0",

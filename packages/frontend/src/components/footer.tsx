@@ -15,7 +15,7 @@ const Footer = () => {
           <a href="/imprint">Impressum</a>
           <div tw="text-2xl">
             {socialMedia.map(item => (
-              <SocialMediaLink socialMedia={item} />
+              <SocialMediaLink key={item.platform} socialMedia={item} />
             ))}
           </div>
         </div>
