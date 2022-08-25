@@ -1,0 +1,4 @@
+hr {
+  @apply border-gray-200;
+  @apply border-t-2;
+}
