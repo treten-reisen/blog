@@ -2,11 +2,13 @@ name: strapi
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - "packages/strapi/**"
       - ".github/workflows/strapi.yml"
       - "app.yaml"
+      - "package.json"
+      - ".gcloundignore"
 jobs:
   deploy-strapi:
     runs-on: ubuntu-latest
@@ -20,9 +22,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: "npm"
-      - run: npm ci
 
+      - name: Install
+        run: yarn install
       - uses: cschleiden/replace-tokens@v1
         with:
           files: '["app.yaml"]'

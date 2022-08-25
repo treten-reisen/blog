@@ -1,0 +1,73 @@
+---
+import colors from "tailwindcss/colors"
+import type { StrapiGlobal } from "../data/schema/global.schema"
+import type { StrapiSeo } from "../data/schema/seo.schema"
+
+export type Props = {
+  seo?: Partial<StrapiSeo>
+  global: StrapiGlobal
+  type: "website" | "article"
+}
+
+const { type, seo, global } = Astro.props as Props
+const { url } = Astro
+
+const { siteName, defaultSeo, favicon, siteURL } = global.attributes
+
+// Merge default and page-specific SEO values
+const fullSeo = {
+  ...defaultSeo,
+  ...seo,
+}
+
+const absoluteShareImageUrl =
+  fullSeo.shareImage?.src && new URL(fullSeo.shareImage.src, siteURL)
+---
+
+<title>
+  {
+    seo?.metaTitle
+      ? `${seo.metaTitle} · ${defaultSeo.metaTitle}`
+      : defaultSeo.metaTitle
+  }
+</title>
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="icon" href={favicon.data.attributes.url} />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="msapplication-TileColor" content={colors.lime[100]} />
+<meta name="theme-color" content={colors.lime[100]} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:url" content={`${siteURL}${url.pathname}`} />
+<meta property="og:type" content={type} />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:site_name" content={siteName} />
+
+{
+  absoluteShareImageUrl && (
+    <>
+      <meta name="image" content={absoluteShareImageUrl} />
+      <meta property="og:image" content={absoluteShareImageUrl} />
+      <meta name="twitter:image" content={absoluteShareImageUrl} />
+    </>
+  )
+}
+
+{
+  fullSeo.metaDescription && (
+    <>
+      <meta name="description" content={fullSeo.metaDescription} />
+      <meta property="og:description" content={fullSeo.metaDescription} />
+      <meta name="twitter:description" content={fullSeo.metaDescription} />
+    </>
+  )
+}
+
+{
+  fullSeo.metaTitle && (
+    <>
+      <meta name="description" content={fullSeo.metaDescription} />
+      <meta property="og:title" content={fullSeo.metaTitle} />
+      <meta name="twitter:title" content={fullSeo.metaTitle} />
+    </>
+  )
+}

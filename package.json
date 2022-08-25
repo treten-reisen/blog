@@ -1,19 +1,21 @@
 {
   "name": "@treten-reisen/monorepo",
+  "packageManager": "yarn@3.2.3",
   "version": "1.0.0",
   "description": "treten.reisen Monorepo",
-  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "postinstall": "lerna bootstrap",
-    "gcp-build": "lerna run gcp-build",
-    "gcp-entrypoint": "lerna run start --scope @treten-reisen/strapi",
-    "develop:strapi": "lerna run develop --scope @treten-reisen/strapi",
-    "develop:frontend": "lerna run develop --scope @treten-reisen/frontend",
-    "develop:frontend:wait": "wait-on http://localhost:1337 && npm run develop:frontend",
-    "develop": "concurrently -n strapi,frontend -c bgBlue.bold,bgMagenta.bold npm:develop:strapi npm:develop:frontend:wait",
-    "preview": "cross-env NODE_ENV=preview npm run develop:frontend",
+    "gcp-build": "yarn workspaces foreach run gcp-build",
+    "gcp-entrypoint": "yarn workspace @treten-reisen/strapi start",
+    "develop:strapi": "yarn workspace @treten-reisen/strapi develop",
+    "develop:astro": "yarn workspace @treten-reisen/astro start",
+    "develop:astro:wait": "wait-on http://localhost:1337 && yarn run develop:astro",
+    "develop": "concurrently -n strapi,astro -c bgBlue.bold,bgMagenta.bold yarn:develop:strapi yarn:develop:astro:wait",
+    "preview": "cross-env NODE_ENV=preview yarn run develop:astro",
     "prepare": "husky install",
-    "pre-commit": "lerna run pre-commit"
+    "pre-commit": "yarn workspaces foreach run pre-commit"
   },
   "repository": {
     "type": "git",
@@ -29,8 +31,11 @@
     "concurrently": "^7.1.0",
     "cross-env": "^7.0.3",
     "husky": "^8.0.0",
-    "lerna": "^5.0.0",
     "lint-staged": "^12.4.2",
     "wait-on": "^6.0.1"
+  },
+  "resolutions": {
+    "@fortawesome/fontawesome-svg-core@6.1.2": "patch:@fortawesome/fontawesome-svg-core@npm:6.1.2#.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch",
+    "@fortawesome/free-brands-svg-icons@6.1.2": "patch:@fortawesome/free-brands-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch"
   }
 }
