@@ -16,6 +16,7 @@ export const strapiSeoSchema = z
       src: seo.shareImage.data.attributes.url,
       width: 1200,
       height: 630,
+      format: "webp",
     }),
   }))
 
