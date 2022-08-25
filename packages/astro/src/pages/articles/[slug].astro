@@ -1,5 +1,6 @@
 ---
 import BlocksRenderer from "../../components/blocks-renderer"
+import Comments from "../../components/comments.astro"
 import Seo from "../../components/Seo.astro"
 import { getArticle } from "../../data/get-article"
 import {
@@ -36,5 +37,17 @@ const article = await getArticle(id)
     seo={article.data.attributes.seo}
     slot="seo"
   />
-  <BlocksRenderer blocks={article.data.attributes.blocks} />
+  <div class="h-full flex flex-col gap-6 sm:gap-responsive">
+    <div class="flex-1">
+      <BlocksRenderer blocks={article.data.attributes.blocks} />
+    </div>
+    <Comments
+      url={new URL(
+        `/articles/${article.data.attributes.slug}`,
+        global.data.attributes.siteURL
+      ).toString()}
+      identifier={`treten-reisen.article.${article.data.id}`}
+      title={article.data.attributes.seo.metaTitle}
+    />
+  </div>
 </Layout>
