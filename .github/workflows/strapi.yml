@@ -23,9 +23,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: yarn
-        run: yarn set version stable
-
       - name: Install
         run: yarn install
       - uses: cschleiden/replace-tokens@v1

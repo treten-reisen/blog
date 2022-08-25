@@ -1,6 +1,6 @@
 {
   "name": "@treten-reisen/monorepo",
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "version": "1.0.0",
   "description": "treten.reisen Monorepo",
   "workspaces": [

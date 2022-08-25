@@ -12,7 +12,7 @@ const hero = await getHero()
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -24,10 +24,8 @@ const hero = await getHero()
 		<meta name="generator" content={Astro.generator} />
 		<slot name="seo" />
 	</head>
-	<body>
-		<div
-			class="flex min-h-screen flex-col justify-between bg-gray-50 text-gray-900"
-		>
+	<body class="h-full">
+		<div class="flex h-full flex-col justify-between bg-gray-50 text-gray-900">
 			<slot name="header">
 				<Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
 			</slot>
