@@ -6,22 +6,19 @@ export type Props = {
 }
 
 const { identifier, title, url } = Astro.props as Props
-
-console.log(url)
 ---
 
-<style>
-  *:focus-visible,
-  *:focus {
-    outline: none !important;
+<style is:global>
+  #disqus_thread iframe:focus-visible {
+    outline: none;
   }
 </style>
 
-<div id="disqus_thread"></div>
+<div id="disqus_thread" class="my-responsive"></div>
 <script is:inline define:vars={{ url, identifier, title }}>
   var disqus_config = function () {
-    this.page.url = url // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = identifier // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.url = url
+    this.page.identifier = identifier
   }
 
   ;(function () {

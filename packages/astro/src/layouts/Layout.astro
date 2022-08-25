@@ -12,7 +12,7 @@ const global = await getGlobal()
 const hero = await getHero()
 ---
 
-<html class="h-full">
+<html class="h-full flex flex-col">
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
 	<link
@@ -23,20 +23,16 @@ const hero = await getHero()
 	<meta name="generator" content={Astro.generator} />
 	<slot name="seo" />
 
-	<body class="h-full">
-		<div
-			class="flex h-full flex-col justify-between bg-gray-50 text-gray-900 overflow-y-scroll"
-		>
-			<div class="shrink-0">
-				<slot name="header">
-					<Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
-				</slot>
-			</div>
-			<main class="md:container p-6 sm:p-responsive flex-grow">
-				<slot />
-			</main>
-			<Footer socialMedia={global.data.attributes.socialMedia} />
-		</div>
+	<body
+		class="flex-grow flex-shrink-0 flex flex-col justify-between bg-gray-50 text-gray-900"
+	>
+		<slot name="header">
+			<Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
+		</slot>
+		<main class="md:container p-6 sm:p-responsive flex-grow">
+			<slot />
+		</main>
+		<Footer socialMedia={global.data.attributes.socialMedia} />
 		<script src="../index.ts"></script>
 	</body>
 </html>

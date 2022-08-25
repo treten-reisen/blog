@@ -38,10 +38,9 @@ const article = await getArticle(id)
     slot="seo"
   />
   <div class="h-full flex flex-col gap-6 sm:gap-responsive">
-    <div class="flex-1">
+    <div class="flex-1 mb-responsive">
       <BlocksRenderer blocks={article.data.attributes.blocks} />
     </div>
-    <hr />
     <Comments
       url={new URL(
         `/articles/${article.data.attributes.slug}`,

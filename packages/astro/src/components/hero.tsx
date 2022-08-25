@@ -9,7 +9,7 @@ const Hero = ({ hero }: HeroProps) => {
   const { title, logo, image } = hero.attributes
 
   return (
-    <div className="w-full bg-cover relative shadow-lg h-hero">
+    <header className="w-full bg-cover relative shadow-lg h-hero">
       <div className="w-full h-full absolute z-0">
         <img
           className="h-full w-full object-cover"
@@ -34,7 +34,7 @@ const Hero = ({ hero }: HeroProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   )
 }
 
