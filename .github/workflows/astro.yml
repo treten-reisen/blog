@@ -2,7 +2,7 @@ name: astro
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - "packages/astro/**"
       - ".github/workflows/astro.yml"
