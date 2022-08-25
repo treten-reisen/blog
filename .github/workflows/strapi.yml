@@ -2,7 +2,7 @@ name: strapi
 on:
   push:
     branches:
-      - astro
+      - master
     paths:
       - "packages/strapi/**"
       - ".github/workflows/strapi.yml"
