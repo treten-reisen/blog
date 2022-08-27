@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "live_locations",
+  "info": {
+    "singularName": "live-location",
+    "pluralName": "live-locations",
+    "displayName": "Live Location",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "values": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.location"
+    }
+  }
+}
