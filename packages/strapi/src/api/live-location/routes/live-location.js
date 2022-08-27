@@ -6,4 +6,4 @@
 
 const { createCoreRouter } = require("@strapi/strapi").factories;
 
-module.exports = createCoreRouter("api::live-location.live-location");
+module.exports = createCoreRouter("api::live-location.live-location", { only: ["find"] });
