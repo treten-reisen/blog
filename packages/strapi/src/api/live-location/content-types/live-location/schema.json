@@ -8,14 +8,15 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "values": {
+      "displayName": "Timed Location",
       "type": "component",
       "repeatable": true,
-      "component": "shared.location"
+      "component": "live-location.timed-location"
     }
   }
 }

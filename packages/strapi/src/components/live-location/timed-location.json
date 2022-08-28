@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_live_location_timed_locations",
+  "info": {
+    "displayName": "Timed Location",
+    "icon": "walking",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "timestamp": {
+      "type": "datetime",
+      "required": true
+    },
+    "location": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.location",
+      "required": true
+    }
+  }
+}
