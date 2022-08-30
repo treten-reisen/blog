@@ -1,5 +1,5 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "live_locations",
   "info": {
     "singularName": "live-location",
@@ -12,11 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "values": {
-      "displayName": "Timed Location",
+    "location": {
       "type": "component",
-      "repeatable": true,
-      "component": "live-location.timed-location"
+      "repeatable": false,
+      "component": "shared.location",
+      "required": true
+    },
+    "timestamp": {
+      "type": "datetime",
+      "required": true
     }
   }
 }

@@ -1,29 +1,29 @@
 {
-	"name": "@treten-reisen/strapi",
-	"private": true,
-	"version": "0.0.0",
-	"description": "treten.reisen Strapi backend",
-	"scripts": {
-		"develop": "strapi develop",
-		"start": "strapi start",
-		"build": "strapi build",
-		"strapi": "strapi",
-		"gcp-build": "strapi build"
-	},
-	"dependencies": {
-		"@strapi-community/strapi-provider-upload-google-cloud-storage": "4.2.3",
-		"@strapi/plugin-i18n": "4.3.6",
-		"@strapi/plugin-users-permissions": "4.3.6",
-		"@strapi/strapi": "4.3.6",
-		"better-sqlite3": "7.6.2",
-		"pg": "8.8.0",
-		"react-select": "5.4.0"
-	},
-	"strapi": {
-		"uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
-	},
-	"engines": {
-		"node": ">=12.x.x <=16.x.x",
-		"npm": ">=6.0.0"
-	}
+  "name": "@treten-reisen/strapi",
+  "private": true,
+  "version": "0.0.0",
+  "description": "treten.reisen Strapi backend",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "gcp-build": "strapi build"
+  },
+  "dependencies": {
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.2.3",
+    "@strapi/plugin-i18n": "4.3.6",
+    "@strapi/plugin-users-permissions": "4.3.6",
+    "@strapi/strapi": "4.3.6",
+    "better-sqlite3": "7.6.2",
+    "pg": "8.8.0",
+    "react-select": "5.4.0"
+  },
+  "strapi": {
+    "uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
+  },
+  "engines": {
+    "node": ">=12.x.x <=16.x.x",
+    "npm": ">=6.0.0"
+  }
 }

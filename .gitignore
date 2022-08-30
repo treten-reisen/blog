@@ -111,14 +111,8 @@ exports
 *.cache
 build
 .strapi-updater.json
-
-############################
-# Gatsby
-############################
-
-.env*
-.cache/
-packages/frontend/public
+packages/strapi/dist
+*.local
 
 ############################
 # Yarn
