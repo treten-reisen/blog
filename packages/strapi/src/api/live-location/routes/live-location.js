@@ -10,5 +10,10 @@ module.exports = {
       path: "/live-location/latest",
       handler: "live-location.latest",
     },
+    {
+      method: "GET",
+      path: "/live-location/history",
+      handler: "live-location.history",
+    },
   ],
 };
