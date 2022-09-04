@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Seo from "../components/Seo.astro"
+import { getGlobal } from "../data/get-global"
+import Map from "../components/map/map"
+
+const global = await getGlobal()
+
+const strapiUrl = import.meta.env.STRAPI_API_URL
+---
+
+<Layout>
+  <Seo type="website" global={global.data} slot="seo" />
+  <Map client:load backendUrl={strapiUrl} />
+</Layout>
