@@ -13,7 +13,7 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
 
     return (
       latest &&
-      point([latest.location.latitude, latest.location.longitude], {
+      point([latest.location.longitude, latest.location.latitude], {
         timestamp: latest.timestamp,
       })
     );
@@ -24,7 +24,7 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
     return (
       locations.length &&
       lineString(
-        locations.map((loc) => [loc.location.latitude, loc.location.longitude]),
+        locations.map((loc) => [loc.location.longitude, loc.location.latitude]),
         { times: locations.map((loc) => loc.timestamp) }
       )
     );
