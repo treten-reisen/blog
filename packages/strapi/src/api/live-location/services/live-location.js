@@ -8,9 +8,18 @@ const { createCoreService } = require("@strapi/strapi").factories;
 
 module.exports = createCoreService("api::live-location.live-location", ({ strapi }) => ({
   latest: async () => {
-    return await strapi.db.query("api::live-location.live-location").findOne({
-      select: ["timestamp"],
-      orderBy: { timestamp: "desc" },
+    return (
+      await strapi.entityService.findMany("api::live-location.live-location", {
+        fields: ["timestamp"],
+        sort: { timestamp: "DESC" },
+        populate: { location: "*" },
+      })
+    )[0];
+  },
+  history: async () => {
+    return await strapi.entityService.findMany("api::live-location.live-location", {
+      fields: ["timestamp"],
+      sort: { timestamp: "DESC" },
       populate: { location: "*" },
     });
   },
