@@ -24,7 +24,7 @@
     "babel-plugin-macros": "^3.1.0",
     "postcss": "^8.4.16",
     "postcss-import": "^14.1.0",
-    "postcss-scss": "^4.0.4",
+    "postcss-nesting": "^10.1.10",
     "tailwindcss": "^3.1.8",
     "vite-plugin-babel-macros": "^1.0.6",
     "vite-plugin-pwa": "^0.12.3"
@@ -33,13 +33,15 @@
     "@astrojs/image": "^0.3.6",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@fortawesome/fontawesome-svg-core": "patch:@fortawesome/fontawesome-svg-core@6.1.2#../../.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch",
-    "@fortawesome/free-brands-svg-icons": "patch:@fortawesome/free-brands-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch",
-    "@fortawesome/free-regular-svg-icons": "patch:@fortawesome/free-regular-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-regular-svg-icons-npm-6.1.2-deb579d446.patch",
-    "@fortawesome/free-solid-svg-icons": "patch:@fortawesome/free-solid-svg-icons@6.1.2#../../.yarn/patches/@fortawesome-free-solid-svg-icons-npm-6.1.2-5e8bb67106.patch",
-    "@fortawesome/react-fontawesome": "patch:@fortawesome/react-fontawesome@0.2.0#../../.yarn/patches/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f.patch",
-    "d3": "^7.6.1",
+    "@fortawesome/fontawesome-svg-core": "6.2.0",
+    "@fortawesome/free-brands-svg-icons": "6.2.0",
+    "@fortawesome/free-regular-svg-icons": "6.2.0",
+    "@fortawesome/free-solid-svg-icons": "6.2.0",
+    "@fortawesome/react-fontawesome": "0.2.0",
+    "@turf/helpers": "^6.5.0",
     "date-fns": "^2.29.2",
+    "ol": "^7.1.0",
+    "ol-mapbox-style": "^9.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -51,12 +53,5 @@
     "unified": "^10.1.2",
     "world-atlas": "^2.0.2",
     "zod": "^3.18.0"
-  },
-  "resolutions": {
-    "@fortawesome/fontawesome-svg-core@6.1.2": "patch:@fortawesome/fontawesome-svg-core@npm:6.1.2#.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch",
-    "@fortawesome/free-brands-svg-icons@6.1.2": "patch:@fortawesome/free-brands-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch",
-    "@fortawesome/free-regular-svg-icons@6.1.2": "patch:@fortawesome/free-regular-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-regular-svg-icons-npm-6.1.2-deb579d446.patch",
-    "@fortawesome/free-solid-svg-icons@6.1.2": "patch:@fortawesome/free-solid-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-solid-svg-icons-npm-6.1.2-5e8bb67106.patch",
-    "@fortawesome/react-fontawesome@0.2.0": "patch:@fortawesome/react-fontawesome@npm:0.2.0#.yarn/patches/@fortawesome-react-fontawesome-npm-0.2.0-a36215138f.patch"
   }
 }

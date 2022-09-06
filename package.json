@@ -33,9 +33,5 @@
     "husky": "^8.0.0",
     "lint-staged": "^12.4.2",
     "wait-on": "^6.0.1"
-  },
-  "resolutions": {
-    "@fortawesome/fontawesome-svg-core@6.1.2": "patch:@fortawesome/fontawesome-svg-core@npm:6.1.2#.yarn/patches/@fortawesome-fontawesome-svg-core-npm-6.1.2-d28be61e36.patch",
-    "@fortawesome/free-brands-svg-icons@6.1.2": "patch:@fortawesome/free-brands-svg-icons@npm:6.1.2#.yarn/patches/@fortawesome-free-brands-svg-icons-npm-6.1.2-5b5e679607.patch"
   }
 }

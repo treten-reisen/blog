@@ -8,6 +8,12 @@ import Footer from "../components/footer"
 import "./layout.css"
 config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
 
+export type Props = {
+  noPadding?: boolean
+}
+
+const { noPadding = false } = Astro.props as Props
+
 const global = await getGlobal()
 const hero = await getHero()
 ---
@@ -29,7 +35,7 @@ const hero = await getHero()
 		<slot name="header">
 			<Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
 		</slot>
-		<main class="md:container p-6 sm:p-responsive flex-grow">
+		<main class:list={["flex-grow", { "md:container p-6 sm:p-responsive": !noPadding }]}>
 			<slot />
 		</main>
 		<Footer socialMedia={global.data.attributes.socialMedia} />

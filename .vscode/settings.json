@@ -1,5 +1,4 @@
 {
   "editor.tabSize": 2,
-  "liveServer.settings.root": "packages/astro/dist",
-  "css.customData": ["./.vscode/css-data.json"]
+  "liveServer.settings.root": "packages/astro/dist"
 }

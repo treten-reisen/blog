@@ -1,0 +1,29 @@
+import { applyStyle } from "ol-mapbox-style"
+import MVT from "ol/format/MVT"
+import VectorTileLayer from "ol/layer/VectorTile"
+import VectorTileSource from "ol/source/VectorTile"
+import { useEffect, useRef, useState } from "react"
+import { useMap } from "./map.context"
+
+export const useMapLayer = (apiKey: string) => {
+  const map = useMap()
+
+  const tileLayer = useRef(
+    new VectorTileLayer({
+      declutter: true,
+      source: new VectorTileSource({
+        format: new MVT(),
+        url: `https://maps.geoapify.com/v1/tile/positron/{z}/{x}/{y}.png?apiKey=${apiKey}`,
+      }),
+    })
+  )
+
+  useEffect(() => {
+    applyStyle(
+      tileLayer.current,
+      `https://maps.geoapify.com/v1/styles/positron/style.json?apiKey=${apiKey}`
+    ).then(() => {
+      map.addLayer(tileLayer.current)
+    })
+  }, [tileLayer])
+}

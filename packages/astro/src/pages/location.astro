@@ -2,14 +2,15 @@
 import Layout from "../layouts/Layout.astro"
 import Seo from "../components/Seo.astro"
 import { getGlobal } from "../data/get-global"
-import Map from "../components/map/map"
+import OlMap from "../components/map/map"
 
 const global = await getGlobal()
 
 const strapiUrl = import.meta.env.STRAPI_API_URL
+const apiKey = import.meta.env.GEOAPIFY_API_KEY
 ---
 
-<Layout>
+<Layout noPadding>
   <Seo type="website" global={global.data} slot="seo" />
-  <Map client:load backendUrl={strapiUrl} />
+  <OlMap backendUrl={strapiUrl} apiKey={apiKey} client:only="react" />
 </Layout>
