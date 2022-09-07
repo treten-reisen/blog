@@ -9,13 +9,13 @@ import remarkHtml from "remark-html"
 
 export const strapiGlobalSchema = strapiEntitySchema(
   z.object({
-    publishedAt: dateStringSchema,
     siteName: z.string(),
     siteURL: z.string().url(),
     imprint: z.string(),
     favicon: strapiImageSchema,
     socialMedia: z.array(strapiSocialMediaSchema),
     defaultSeo: strapiSeoSchema,
+    avatar: strapiImageSchema,
   })
 ).transform(async global => ({
   ...global,

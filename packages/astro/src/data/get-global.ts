@@ -10,7 +10,7 @@ export const getGlobal = async () => {
   const response = await fetch(
     `${
       import.meta.env.STRAPI_API_URL
-    }/api/global?populate[favicon]=%2A&populate[defaultSeo][populate]=%2A&populate[socialMedia][populate]=%2A`,
+    }/api/global?populate[favicon]=%2A&populate[defaultSeo][populate]=%2A&populate[socialMedia][populate]=%2A&populate[avatar]=%2A`,
     {
       headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
     }

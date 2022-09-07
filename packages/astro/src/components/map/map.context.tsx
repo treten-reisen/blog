@@ -1,4 +1,5 @@
 import { Map, View } from "ol"
+import { defaults } from "ol/control"
 import { createContext, PropsWithChildren, useContext } from "react"
 
 const map = new Map({
@@ -6,6 +7,7 @@ const map = new Map({
     center: [0, 0],
     zoom: 2,
   }),
+  controls: defaults({ attribution: true }),
 })
 
 export type MapContext = {

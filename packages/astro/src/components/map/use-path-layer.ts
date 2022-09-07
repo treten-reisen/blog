@@ -18,22 +18,22 @@ export const usePathLayer = (backendUrl: string) => {
       zIndex: 1,
     })
   )
-  const { data } = useLocationHistory(backendUrl)
+  const { data: locationHistory } = useLocationHistory(backendUrl)
 
   useEffect(() => {
-    if (data) {
+    if (locationHistory) {
       const feature = new GeoJSON({
         featureProjection: "EPSG:3857",
-      }).readFeature(data)
+      }).readFeature(locationHistory)
 
       const vectorSource = new VectorSource({
         features: [feature],
       })
 
       vectorLayer.current.setSource(vectorSource)
-      map.getView().fit(vectorSource.getExtent())
+      map.getView().fit(vectorSource.getExtent(), { padding: [50, 50, 50, 50] })
     }
-  }, [data])
+  }, [locationHistory])
 
   useEffect(() => {
     map.addLayer(vectorLayer.current)

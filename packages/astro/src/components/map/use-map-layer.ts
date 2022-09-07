@@ -8,12 +8,17 @@ import { useMap } from "./map.context"
 export const useMapLayer = (apiKey: string) => {
   const map = useMap()
 
+  const url =
+    window.devicePixelRatio > 1
+      ? `https://maps.geoapify.com/v1/tile/positron/{z}/{x}/{y}@2x.png?apiKey=${apiKey}`
+      : `https://maps.geoapify.com/v1/tile/positron/{z}/{x}/{y}.png?apiKey=${apiKey}`
+
   const tileLayer = useRef(
     new VectorTileLayer({
       declutter: true,
       source: new VectorTileSource({
         format: new MVT(),
-        url: `https://maps.geoapify.com/v1/tile/positron/{z}/{x}/{y}.png?apiKey=${apiKey}`,
+        url,
       }),
     })
   )
