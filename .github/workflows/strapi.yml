@@ -18,13 +18,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
 
-      - name: Install
-        run: yarn install
       - uses: cschleiden/replace-tokens@v1
         with:
           files: '["app.yaml"]'
