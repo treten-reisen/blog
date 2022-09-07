@@ -8,7 +8,7 @@ on:
       - ".github/workflows/strapi.yml"
       - "app.yaml"
       - "package.json"
-      - ".gcloundignore"
+      - ".gcloudignore"
 jobs:
   deploy-strapi:
     runs-on: ubuntu-latest
