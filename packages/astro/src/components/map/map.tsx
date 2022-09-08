@@ -1,10 +1,10 @@
-import { useRef, useEffect, PropsWithChildren } from "react"
 import "ol/ol.css"
-import { MapProvider, useMap } from "./map.context"
-import { useMapLayer } from "./use-map-layer"
-import { usePathLayer } from "./use-path-layer"
-import MapOverlay from "./MapOverlay"
-import LatestLocationOverlay from "./LatestLocationOverlay"
+import { MapProvider } from "./map.context"
+import PathLayer from "./path-layer"
+import AvatarOverlay from "./avatar-overlay"
+import MapLayer from "./map-layer"
+import useLatestLocation from "../../hooks/use-latest-location"
+import { fromLonLat } from "ol/proj"
 
 export type MapProps = {
   backendUrl: string
@@ -12,28 +12,19 @@ export type MapProps = {
   avatarUrl: string
 }
 
-const OlMap = ({ backendUrl, apiKey, avatarUrl }: MapProps) => {
-  const map = useMap()
-  const mapRef = useRef<HTMLDivElement>(null)
+const Map = ({ backendUrl, apiKey, avatarUrl }: MapProps) => {
+  const { data: latestLocation } = useLatestLocation(backendUrl)
 
-  useMapLayer(apiKey)
-  usePathLayer(backendUrl)
-
-  useEffect(() => {
-    if (map && mapRef.current) {
-      map.setTarget(mapRef.current)
-    }
-  }, [map, mapRef])
+  const position =
+    latestLocation && fromLonLat(latestLocation.geometry.coordinates)
 
   return (
-    <div className="w-full h-full" ref={mapRef}>
-      <LatestLocationOverlay backendUrl={backendUrl} avatarUrl={avatarUrl} />
-    </div>
+    <MapProvider center={position}>
+      {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
+      <MapLayer apiKey={apiKey} />
+      <PathLayer backendUrl={backendUrl} />
+    </MapProvider>
   )
 }
 
-export default (props: PropsWithChildren<MapProps>) => (
-  <MapProvider>
-    <OlMap {...props} />
-  </MapProvider>
-)
+export default Map

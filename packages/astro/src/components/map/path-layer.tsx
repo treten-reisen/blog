@@ -7,7 +7,11 @@ import { useEffect, useRef } from "react"
 import { useMap } from "./map.context"
 import { asColorLike } from "ol/colorlike"
 
-export const usePathLayer = (backendUrl: string) => {
+export type PathLayerProps = {
+  backendUrl: string
+}
+
+const PathLayer = ({ backendUrl }: PathLayerProps) => {
   const map = useMap()
   const vectorLayer = useRef(
     new VectorLayer({
@@ -31,11 +35,14 @@ export const usePathLayer = (backendUrl: string) => {
       })
 
       vectorLayer.current.setSource(vectorSource)
-      map.getView().fit(vectorSource.getExtent(), { padding: [50, 50, 50, 50] })
     }
   }, [locationHistory])
 
   useEffect(() => {
     map.addLayer(vectorLayer.current)
   }, [map, vectorLayer])
+
+  return <></>
 }
+
+export default PathLayer

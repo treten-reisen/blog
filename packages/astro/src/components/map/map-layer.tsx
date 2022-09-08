@@ -5,7 +5,11 @@ import VectorTileSource from "ol/source/VectorTile"
 import { useEffect, useRef, useState } from "react"
 import { useMap } from "./map.context"
 
-export const useMapLayer = (apiKey: string) => {
+export type MapLayerProps = {
+  apiKey: string
+}
+
+const MapLayer = ({ apiKey }: MapLayerProps) => {
   const map = useMap()
 
   const url =
@@ -31,4 +35,8 @@ export const useMapLayer = (apiKey: string) => {
       map.addLayer(tileLayer.current)
     })
   }, [tileLayer])
+
+  return <></>
 }
+
+export default MapLayer

@@ -1,11 +1,12 @@
 import { Map, View } from "ol"
 import { defaults } from "ol/control"
-import { createContext, PropsWithChildren, useContext } from "react"
+import type { Coordinate } from "ol/coordinate"
+import { createContext, PropsWithChildren, useContext, useEffect } from "react"
 
 const map = new Map({
   view: new View({
     center: [0, 0],
-    zoom: 2,
+    zoom: 10,
   }),
   controls: defaults({ attribution: true }),
 })
@@ -18,11 +19,28 @@ const mapContext = createContext({
   map: map,
 })
 
-export type MapContextProps = {}
+export type MapContextProps = {
+  center?: Coordinate
+}
 export const MapProvider = ({
   children,
+  center,
 }: PropsWithChildren<MapContextProps>) => {
-  return <mapContext.Provider value={{ map }}>{children}</mapContext.Provider>
+  useEffect(() => {
+    center && map.getView().setCenter(center)
+  }, [center])
+
+  return (
+    <>
+      <div
+        className="w-full h-full"
+        ref={el => {
+          el && map.setTarget(el)
+        }}
+      />
+      <mapContext.Provider value={{ map }}>{children}</mapContext.Provider>
+    </>
+  )
 }
 
 export const useMap = () => useContext(mapContext).map

@@ -1,21 +1,15 @@
+import type { Coordinate } from "ol/coordinate"
+import type { Positioning } from "ol/Overlay"
 import { fromLonLat } from "ol/proj"
 import useLatestLocation from "../../hooks/use-latest-location"
-import MapOverlay from "./MapOverlay"
+import MapOverlay from "./map-overlay"
 
 export type LatestLocationOverlayProps = {
-  backendUrl: string
   avatarUrl: string
+  position: Coordinate
 }
 
-const LatestLocationOverlay = ({
-  backendUrl,
-  avatarUrl,
-}: LatestLocationOverlayProps) => {
-  const { data: latestLocation } = useLatestLocation(backendUrl)
-
-  const position =
-    latestLocation && fromLonLat(latestLocation.geometry.coordinates)
-
+const AvatarOverlay = ({ avatarUrl, position }: LatestLocationOverlayProps) => {
   return (
     <>
       {position && (
@@ -30,4 +24,4 @@ const LatestLocationOverlay = ({
   )
 }
 
-export default LatestLocationOverlay
+export default AvatarOverlay
