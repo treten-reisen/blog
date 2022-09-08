@@ -6,14 +6,26 @@ import Hero from "../components/hero"
 import { getHero } from "../data/get-hero"
 import Seo from "../components/Seo.astro"
 import { getGlobal } from "../data/get-global"
+import Map from "../components/map/map"
+import HeroMapOverlay from "../components/hero-map-overlay"
 
 const list = await getArticleList()
 const hero = await getHero()
 const global = await getGlobal()
+
+const strapiUrl = import.meta.env.STRAPI_API_URL
+const apiKey = import.meta.env.GEOAPIFY_API_KEY
+const avatarUrl = global.data.attributes.avatar.data.attributes.url
 ---
 
 <Layout>
   <Seo type="website" global={global.data} slot="seo" />
-  <Hero hero={hero.data} slot="header" />
+  <div class="w-full"slot="header" >
+    <Hero hero={hero.data} />
+    <div class="w-full h-20 relative shadow bg-gray-200" >
+      <Map backendUrl={strapiUrl} apiKey={apiKey} avatarUrl={avatarUrl} controls={[]} client:only="react" />
+      <HeroMapOverlay />
+    </div>
+  </div>
   <ArticleList articles={list.data} />
 </Layout>

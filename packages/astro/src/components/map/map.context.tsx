@@ -1,5 +1,5 @@
 import { Map, View } from "ol"
-import { defaults } from "ol/control"
+import { Control, defaults } from "ol/control"
 import type { Coordinate } from "ol/coordinate"
 import { createContext, PropsWithChildren, useContext, useEffect } from "react"
 
@@ -21,10 +21,18 @@ const mapContext = createContext({
 
 export type MapContextProps = {
   center?: Coordinate
+  controls?: Control[]
 }
-export const MapProvider = ({ children, center }: PropsWithChildren<MapContextProps>) => {
+export const MapProvider = ({ children, center, controls }: PropsWithChildren<MapContextProps>) => {
   useEffect(() => {
     center && map.getView().setCenter(center)
+  }, [center])
+
+  useEffect(() => {
+    if (controls) {
+      map.getControls().forEach(c => map.removeControl(c))
+      controls.forEach(c => map.addControl(c))
+    }
   }, [center])
 
   return (
