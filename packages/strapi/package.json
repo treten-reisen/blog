@@ -17,7 +17,8 @@
 		"@strapi/strapi": "4.3.6",
 		"better-sqlite3": "7.6.2",
 		"pg": "8.8.0",
-		"react-select": "5.4.0"
+		"react-select": "5.4.0",
+		"strapi-plugin-comments": "latest"
 	},
 	"strapi": {
 		"uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"

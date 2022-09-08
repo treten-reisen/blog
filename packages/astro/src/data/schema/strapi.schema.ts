@@ -1,5 +1,4 @@
-import { getImage } from "@astrojs/image"
-import { AnyZodObject, z, ZodObject, ZodRawShape, ZodTypeAny } from "zod"
+import { AnyZodObject, z, ZodTypeAny } from "zod"
 import { dateStringSchema } from "./date.schema"
 
 export const strapiEntitySchema = <T extends AnyZodObject>(

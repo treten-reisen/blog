@@ -41,13 +41,6 @@ const article = await getArticle(id)
     <div class="flex-1 mb-responsive">
       <BlocksRenderer blocks={article.data.attributes.blocks} />
     </div>
-    <Comments
-      url={new URL(
-        `/articles/${article.data.attributes.slug}`,
-        global.data.attributes.siteURL
-      ).toString()}
-      identifier={`treten-reisen.article.${article.data.id}`}
-      title={article.data.attributes.seo.metaTitle}
-    />
+    <Comments id={article.data.id} collection={"article.article"} />
   </div>
 </Layout>
