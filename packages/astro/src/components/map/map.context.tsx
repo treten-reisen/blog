@@ -22,10 +22,7 @@ const mapContext = createContext({
 export type MapContextProps = {
   center?: Coordinate
 }
-export const MapProvider = ({
-  children,
-  center,
-}: PropsWithChildren<MapContextProps>) => {
+export const MapProvider = ({ children, center }: PropsWithChildren<MapContextProps>) => {
   useEffect(() => {
     center && map.getView().setCenter(center)
   }, [center])

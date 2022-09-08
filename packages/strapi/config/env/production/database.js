@@ -8,4 +8,4 @@ module.exports = ({ env }) => ({
       password: env("DATABASE_PASSWORD"),
     },
   },
-});
+})

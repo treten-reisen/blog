@@ -1,7 +1,5 @@
-import type {
-  StrapiBlockComponentName,
-  StrapiBlockOfType,
-} from "../../data/schema/blocks.schema"
+import type { StrapiBlockComponentName, StrapiBlockOfType } from "../../data/schema/blocks.schema"
+
 import StrapiMediaRenderer from "./media"
 import StrapiRichTextRenderer from "./rich-text"
 

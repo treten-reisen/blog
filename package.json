@@ -15,7 +15,8 @@
     "develop": "concurrently -n strapi,astro -c bgBlue.bold,bgMagenta.bold yarn:develop:strapi yarn:develop:astro:wait",
     "preview": "cross-env NODE_ENV=preview yarn run develop:astro",
     "prepare": "husky install",
-    "pre-commit": "yarn workspaces foreach run pre-commit"
+    "pre-commit": "yarn workspaces foreach run pre-commit",
+    "lint": "yarn workspaces foreach run lint"
   },
   "repository": {
     "type": "git",
@@ -28,10 +29,10 @@
   },
   "homepage": "https://github.com/patsimm/treten.reisen#readme",
   "devDependencies": {
-    "concurrently": "^7.1.0",
-    "cross-env": "^7.0.3",
-    "husky": "^8.0.0",
-    "lint-staged": "^12.4.2",
-    "wait-on": "^6.0.1"
+    "concurrently": "7.4.0",
+    "cross-env": "7.0.3",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "wait-on": "6.0.1"
   }
 }

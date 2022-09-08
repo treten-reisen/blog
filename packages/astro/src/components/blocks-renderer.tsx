@@ -1,17 +1,12 @@
-import type {
-  StrapiBlock,
-  StrapiBlockComponentName,
-  StrapiBlockOfType,
-} from "../data/schema/blocks.schema"
+import type { StrapiBlock, StrapiBlockComponentName, StrapiBlockOfType } from "../data/schema/blocks.schema"
+
 import { componentsMap } from "./blocks"
 
 type BlockProps<T extends StrapiBlockComponentName> = {
   block: StrapiBlockOfType<T>
 }
 
-const Block = <T extends StrapiBlockComponentName>({
-  block,
-}: BlockProps<T>) => {
+const Block = <T extends StrapiBlockComponentName>({ block }: BlockProps<T>) => {
   const Component = componentsMap[block.__component] as React.ComponentType<{
     data: StrapiBlockOfType<T>
   }>

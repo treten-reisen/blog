@@ -1,26 +1,24 @@
-"use strict";
-
 /**
  * live-location service.
  */
 
-const { createCoreService } = require("@strapi/strapi").factories;
+const { createCoreService } = require("@strapi/strapi").factories
 
 module.exports = createCoreService("api::live-location.live-location", ({ strapi }) => ({
-  latest: async () => {
+  async latest() {
     return (
       await strapi.entityService.findMany("api::live-location.live-location", {
         fields: ["timestamp"],
         sort: { timestamp: "DESC" },
         populate: { location: "*" },
       })
-    )[0];
+    )[0]
   },
-  history: async () => {
-    return await strapi.entityService.findMany("api::live-location.live-location", {
+  async history() {
+    return strapi.entityService.findMany("api::live-location.live-location", {
       fields: ["timestamp"],
       sort: { timestamp: "DESC" },
       populate: { location: "*" },
-    });
+    })
   },
-}));
+}))

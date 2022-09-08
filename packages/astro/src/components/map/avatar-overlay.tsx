@@ -1,7 +1,5 @@
 import type { Coordinate } from "ol/coordinate"
-import type { Positioning } from "ol/Overlay"
-import { fromLonLat } from "ol/proj"
-import useLatestLocation from "../../hooks/use-latest-location"
+
 import MapOverlay from "./map-overlay"
 
 export type LatestLocationOverlayProps = {

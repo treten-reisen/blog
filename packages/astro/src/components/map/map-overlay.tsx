@@ -3,6 +3,7 @@ import type { Coordinate } from "ol/coordinate"
 import type { Positioning } from "ol/Overlay"
 import { PropsWithChildren, useEffect, useRef } from "react"
 import { createPortal } from "react-dom"
+
 import { useMap } from "./map.context"
 
 export type MapOverlayProps = {
@@ -10,11 +11,7 @@ export type MapOverlayProps = {
   positioning?: Positioning
 }
 
-const MapOverlay = ({
-  children,
-  position,
-  positioning = "center-center",
-}: PropsWithChildren<MapOverlayProps>) => {
+const MapOverlay = ({ children, position, positioning = "center-center" }: PropsWithChildren<MapOverlayProps>) => {
   const map = useMap()
   const overlay = useRef(
     new Overlay({
@@ -36,7 +33,9 @@ const MapOverlay = ({
     }
   }, [map, overlay])
 
-  return createPortal(children, overlay.current.getElement()!)
+  const element = overlay.current.getElement()
+
+  return <>{element && createPortal(children, element)}</>
 }
 
 export default MapOverlay

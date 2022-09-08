@@ -1,11 +1,13 @@
+import { asColorLike } from "ol/colorlike"
+import { GeoJSON } from "ol/format"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
-import { GeoJSON } from "ol/format"
 import { Stroke, Style } from "ol/style"
-import useLocationHistory from "../../hooks/use-location-history"
 import { useEffect, useRef } from "react"
+
+import useLocationHistory from "../../hooks/use-location-history"
+
 import { useMap } from "./map.context"
-import { asColorLike } from "ol/colorlike"
 
 export type PathLayerProps = {
   backendUrl: string

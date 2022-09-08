@@ -1,5 +1,6 @@
 import { getImage } from "@astrojs/image"
 import { z } from "zod"
+
 import { strapiImageSchema } from "./strapi.schema"
 
 export const strapiSeoSchema = z

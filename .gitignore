@@ -125,3 +125,9 @@ packages/strapi/dist
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+############################
+# ESlint
+############################
+
+.eslintcache

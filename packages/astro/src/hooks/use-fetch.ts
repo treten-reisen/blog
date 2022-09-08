@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 const useFetch = <T>(url: string) => {
   const [data, setData] = useState<T | undefined>(undefined)
   const [state, setState] = useState<"pending" | "success" | "error">("pending")
-  const [error, setError] = useState<any | undefined>(undefined)
+  const [error, setError] = useState<unknown | undefined>(undefined)
 
   useEffect(() => {
     fetch(url)

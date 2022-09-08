@@ -1,5 +1,4 @@
 import type { StrapiBlockMedia } from "../../data/schema/blocks.schema"
-import { Image } from "@astrojs/image/components"
 
 export type StrapiMediaRendererProps = {
   data: StrapiBlockMedia

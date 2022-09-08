@@ -2,6 +2,7 @@
 import { brands } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCallback } from "react"
+
 import type { StrapiSocialMedia } from "../data/schema/social-media.schema"
 
 export type FooterProps = {

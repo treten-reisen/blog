@@ -5,8 +5,6 @@ export type StrapiRichTextRendererProps = {
   data: StrapiBlockRichText
 }
 
-const StrapiRichTextRenderer = ({ data }: StrapiRichTextRendererProps) => (
-  <Article html={String(data.html)} />
-)
+const StrapiRichTextRenderer = ({ data }: StrapiRichTextRendererProps) => <Article html={String(data.html)} />
 
 export default StrapiRichTextRenderer

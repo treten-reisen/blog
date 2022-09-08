@@ -19,26 +19,31 @@ const hero = await getHero()
 ---
 
 <html class="h-full flex flex-col">
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width" />
-	<link
-		rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CMerriweather:400%7CInconsolata:400"
-		media="all"
-	/>
-	<meta name="generator" content={Astro.generator} />
-	<slot name="seo" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CMerriweather:400%7CInconsolata:400"
+    media="all"
+  />
+  <meta name="generator" content={Astro.generator} />
+  <slot name="seo" />
 
-	<body
-		class="flex-grow flex-shrink-0 flex flex-col justify-between bg-gray-50 text-gray-900"
-	>
-		<slot name="header">
-			<Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
-		</slot>
-		<main class:list={["flex-grow", { "md:container p-6 sm:p-responsive": !noPadding }]}>
-			<slot />
-		</main>
-		<Footer socialMedia={global.data.attributes.socialMedia} />
-		<script src="../index.ts"></script>
-	</body>
+  <body
+    class="flex-grow flex-shrink-0 flex flex-col justify-between bg-gray-50 text-gray-900"
+  >
+    <slot name="header">
+      <Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
+    </slot>
+    <main
+      class:list={[
+        "flex-grow",
+        { "md:container p-6 sm:p-responsive": !noPadding },
+      ]}
+    >
+      <slot />
+    </main>
+    <Footer socialMedia={global.data.attributes.socialMedia} />
+    <script src="../index.ts"></script>
+  </body>
 </html>

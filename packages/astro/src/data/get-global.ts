@@ -1,4 +1,5 @@
 import type { z } from "zod"
+
 import { strapiGlobalSchema } from "./schema/global.schema"
 import { strapiSingleSchema } from "./schema/strapi.schema"
 

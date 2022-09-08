@@ -1,10 +1,12 @@
 import "ol/ol.css"
-import { MapProvider } from "./map.context"
-import PathLayer from "./path-layer"
+import { fromLonLat } from "ol/proj"
+
+import useLatestLocation from "../../hooks/use-latest-location"
+
 import AvatarOverlay from "./avatar-overlay"
 import MapLayer from "./map-layer"
-import useLatestLocation from "../../hooks/use-latest-location"
-import { fromLonLat } from "ol/proj"
+import { MapProvider } from "./map.context"
+import PathLayer from "./path-layer"
 
 export type MapProps = {
   backendUrl: string
@@ -15,8 +17,7 @@ export type MapProps = {
 const Map = ({ backendUrl, apiKey, avatarUrl }: MapProps) => {
   const { data: latestLocation } = useLatestLocation(backendUrl)
 
-  const position =
-    latestLocation && fromLonLat(latestLocation.geometry.coordinates)
+  const position = latestLocation && fromLonLat(latestLocation.geometry.coordinates)
 
   return (
     <MapProvider center={position}>

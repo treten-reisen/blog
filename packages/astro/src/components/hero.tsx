@@ -21,16 +21,10 @@ const Hero = ({ hero }: HeroProps) => {
       <div className="w-full h-full absolute z-20">
         <div className="md:container px-responsive py-4 h-full flex flex-col items-stretch">
           <a href="/">
-            <img
-              className="h-6 self-start"
-              src={logo.data.attributes.url}
-              alt="Logo"
-            />
+            <img className="h-6 self-start" src={logo.data.attributes.url} alt="Logo" />
           </a>
           <div className="flex flex-1 items-center justify-center">
-            <h1 className="text-gray-50 text-3xl font-bold font-sans tracking-tighter text-center">
-              {title}
-            </h1>
+            <h1 className="text-gray-50 text-3xl font-bold font-sans tracking-tighter text-center">{title}</h1>
           </div>
         </div>
       </div>

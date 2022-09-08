@@ -1,10 +1,8 @@
-import { getImage } from "@astrojs/image"
-import { AnyZodObject, z, ZodObject, ZodRawShape, ZodTypeAny } from "zod"
+import { AnyZodObject, z, ZodTypeAny } from "zod"
+
 import { dateStringSchema } from "./date.schema"
 
-export const strapiEntitySchema = <T extends AnyZodObject>(
-  attributesShape: T
-) =>
+export const strapiEntitySchema = <T extends AnyZodObject>(attributesShape: T) =>
   z.object({
     id: z.number(),
     attributes: z
@@ -28,11 +26,7 @@ export const strapiSingleSchema = <T extends ZodTypeAny>(itemSchema: T) =>
 export const strapiImageSchema = z.object({
   data: strapiEntitySchema(
     z.object({
-      url: z
-        .string()
-        .transform(url =>
-          new URL(url, import.meta.env.STRAPI_API_URL).toString()
-        ),
+      url: z.string().transform(url => new URL(url, import.meta.env.STRAPI_API_URL).toString()),
       alternativeText: z.string(),
     })
   ),
