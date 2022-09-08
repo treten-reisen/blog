@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "packages/strapi/**"
+      - ".github/workflows/strapi.yml"
+      - "Dockerfile"
+      - "package.json"
+      - ".dockerignore"
 jobs:
   docker:
     runs-on: ubuntu-latest
