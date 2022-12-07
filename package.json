@@ -29,10 +29,10 @@
   },
   "homepage": "https://github.com/patsimm/treten.reisen#readme",
   "devDependencies": {
-    "concurrently": "7.4.0",
+    "concurrently": "7.6.0",
     "cross-env": "7.0.3",
-    "husky": "8.0.1",
-    "lint-staged": "13.0.3",
+    "husky": "8.0.2",
+    "lint-staged": "13.1.0",
     "wait-on": "6.0.1"
   }
 }
