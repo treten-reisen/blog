@@ -9,15 +9,23 @@ import { useMap } from "./map.context"
 export type MapOverlayProps = {
   position: Coordinate
   positioning?: Positioning
+  stopEvent?: boolean
 }
 
-const MapOverlay = ({ children, position, positioning = "center-center" }: PropsWithChildren<MapOverlayProps>) => {
+const MapOverlay = ({
+  children,
+  position,
+  positioning = "center-center",
+  stopEvent = true,
+}: PropsWithChildren<MapOverlayProps>) => {
   const map = useMap()
+  const element = useRef(document.createElement("div"))
   const overlay = useRef(
     new Overlay({
-      element: document.createElement("div"),
+      element: element.current,
       position,
       positioning,
+      stopEvent,
     })
   )
 
@@ -33,9 +41,7 @@ const MapOverlay = ({ children, position, positioning = "center-center" }: Props
     }
   }, [map, overlay])
 
-  const element = overlay.current.getElement()
-
-  return <>{element && createPortal(children, element)}</>
+  return <>{createPortal(children, element.current)}</>
 }
 
 export default MapOverlay
