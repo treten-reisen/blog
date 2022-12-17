@@ -19,7 +19,12 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos", "audios"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "defaultSeo": {
       "type": "component",
@@ -38,9 +43,17 @@
       "component": "social-media.social-media-account"
     },
     "avatar": {
-      "allowedTypes": ["images"],
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "dataPolicy": {
+      "type": "richtext",
+      "required": true,
+      "default": "# Datenschutzerklärung"
     }
   }
 }
