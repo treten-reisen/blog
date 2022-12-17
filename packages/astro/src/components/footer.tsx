@@ -2,6 +2,7 @@
 import { brands } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCallback } from "react"
+import "./footer.css"
 
 import type { StrapiSocialMedia } from "../data/schema/social-media.schema"
 
@@ -13,8 +14,11 @@ const Footer = ({ socialMedia }: FooterProps) => {
   return (
     <footer className="bg-gray-700 text-gray-100">
       <div className="md:container px-responsive py-4">
-        <div className="flex justify-between flex-wrap-reverse gap-y-2">
-          <a href="/imprint">Impressum</a>
+        <div className="flex justify-between items-center flex-wrap-reverse gap-y-2">
+          <div className="flex flex-col">
+            <a href="/imprint">Impressum</a>
+            <a href="/data-policy">Datenschutz</a>
+          </div>
           <div className="text-2xl">
             {socialMedia.map(item => (
               <SocialMediaLink key={item.id} socialMedia={item} />

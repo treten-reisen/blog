@@ -12,6 +12,7 @@ export const strapiGlobalSchema = strapiEntitySchema(
     siteName: z.string(),
     siteURL: z.string().url(),
     imprint: z.string(),
+    dataPolicy: z.string(),
     favicon: strapiImageSchema,
     socialMedia: z.array(strapiSocialMediaSchema),
     defaultSeo: strapiSeoSchema,
@@ -22,6 +23,7 @@ export const strapiGlobalSchema = strapiEntitySchema(
   attributes: {
     ...global.attributes,
     imprintHtml: String(await unified().use(remarkParse).use(remarkHtml).process(global.attributes.imprint)),
+    dataPolicyHtml: String(await unified().use(remarkParse).use(remarkHtml).process(global.attributes.dataPolicy)),
   },
 }))
 
