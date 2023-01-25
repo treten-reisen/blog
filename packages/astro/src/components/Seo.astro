@@ -1,5 +1,6 @@
 ---
 import colors from "tailwindcss/colors"
+
 import type { StrapiGlobal } from "../data/schema/global.schema"
 import type { StrapiSeo } from "../data/schema/seo.schema"
 
@@ -20,16 +21,11 @@ const fullSeo = {
   ...seo,
 }
 
-const absoluteShareImageUrl =
-  fullSeo.shareImage?.src && new URL(fullSeo.shareImage.src, siteURL)
+const absoluteShareImageUrl = fullSeo.shareImage?.src && new URL(fullSeo.shareImage.src, siteURL)
 ---
 
 <title>
-  {
-    seo?.metaTitle
-      ? `${seo.metaTitle} · ${defaultSeo.metaTitle}`
-      : defaultSeo.metaTitle
-  }
+  {seo?.metaTitle ? `${seo.metaTitle} · ${defaultSeo.metaTitle}` : defaultSeo.metaTitle}
 </title>
 <link rel="manifest" href="/manifest.webmanifest" />
 <link rel="icon" href={favicon.data.attributes.url} />

@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import OlMap from "../components/map/map"
 import Seo from "../components/Seo.astro"
 import { getGlobal } from "../data/get-global"
-import OlMap from "../components/map/map"
+import Layout from "../layouts/Layout.astro"
 
 const global = await getGlobal()
 
@@ -13,10 +13,5 @@ const avatarUrl = global.data.attributes.avatar.data.attributes.url
 
 <Layout noPadding>
   <Seo type="website" global={global.data} slot="seo" />
-  <OlMap
-    backendUrl={strapiUrl}
-    apiKey={apiKey}
-    avatarUrl={avatarUrl}
-    client:only="react"
-  />
+  <OlMap backendUrl={strapiUrl} apiKey={apiKey} avatarUrl={avatarUrl} client:only="react" />
 </Layout>

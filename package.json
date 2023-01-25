@@ -1,6 +1,6 @@
 {
   "name": "@treten-reisen/monorepo",
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@3.3.1",
   "version": "1.0.0",
   "description": "treten.reisen Monorepo",
   "workspaces": [
@@ -9,10 +9,7 @@
   "scripts": {
     "gcp-build": "yarn workspaces foreach run gcp-build",
     "gcp-entrypoint": "yarn workspace @treten-reisen/strapi start",
-    "develop:strapi": "yarn workspace @treten-reisen/strapi develop",
-    "develop:astro": "yarn workspace @treten-reisen/astro start",
-    "develop:astro:wait": "wait-on http://localhost:1337 && yarn run develop:astro",
-    "develop": "concurrently -n strapi,astro -c bgBlue.bold,bgMagenta.bold yarn:develop:strapi yarn:develop:astro:wait",
+    "develop": "yarn workspaces foreach -piA run develop",
     "preview": "cross-env NODE_ENV=preview yarn run develop:astro",
     "prepare": "husky install",
     "pre-commit": "yarn workspaces foreach run pre-commit",
@@ -29,10 +26,9 @@
   },
   "homepage": "https://github.com/patsimm/treten.reisen#readme",
   "devDependencies": {
-    "concurrently": "7.6.0",
     "cross-env": "7.0.3",
-    "husky": "8.0.2",
+    "husky": "8.0.3",
     "lint-staged": "13.1.0",
-    "wait-on": "6.0.1"
+    "wait-on": "7.0.1"
   }
 }

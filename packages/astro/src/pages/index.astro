@@ -1,13 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro"
-import { getArticleList } from "../data/get-article-list"
 import ArticleList from "../components/article-list"
 import Hero from "../components/hero"
-import { getHero } from "../data/get-hero"
-import Seo from "../components/Seo.astro"
-import { getGlobal } from "../data/get-global"
-import Map from "../components/map/map"
 import HeroMapOverlay from "../components/hero-map-overlay"
+import Map from "../components/map/map"
+import Seo from "../components/Seo.astro"
+import { getArticleList } from "../data/get-article-list"
+import { getGlobal } from "../data/get-global"
+import { getHero } from "../data/get-hero"
+import Layout from "../layouts/Layout.astro"
 
 const list = await getArticleList()
 const hero = await getHero()
@@ -20,9 +20,9 @@ const avatarUrl = global.data.attributes.avatar.data.attributes.url
 
 <Layout>
   <Seo type="website" global={global.data} slot="seo" />
-  <div class="w-full"slot="header" >
+  <div className="w-full" slot="header">
     <Hero hero={hero.data} />
-    <div class="w-full h-20 relative shadow bg-gray-200" >
+    <div className="w-full h-20 relative shadow bg-gray-200">
       <Map backendUrl={strapiUrl} apiKey={apiKey} avatarUrl={avatarUrl} controls={[]} client:only="react" />
       <HeroMapOverlay />
     </div>

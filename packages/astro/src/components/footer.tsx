@@ -13,8 +13,8 @@ export type FooterProps = {
 const Footer = ({ socialMedia }: FooterProps) => {
   return (
     <footer className="bg-gray-700 text-gray-100">
-      <div className="md:container px-responsive py-4">
-        <div className="flex justify-between items-center flex-wrap-reverse gap-y-2">
+      <div className="px-responsive py-4 md:container">
+        <div className="flex flex-wrap-reverse items-center justify-between gap-y-2">
           <div className="flex flex-col">
             <a href="/imprint">Impressum</a>
             <a href="/data-policy">Datenschutz</a>

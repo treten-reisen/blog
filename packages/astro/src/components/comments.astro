@@ -5,7 +5,7 @@ export type Props = {
   url: string
 }
 
-const { identifier, title, url } = Astro.props as Props
+const { identifier, url } = Astro.props as Props
 ---
 
 <style is:global>
@@ -15,7 +15,8 @@ const { identifier, title, url } = Astro.props as Props
 </style>
 
 <div id="disqus_thread" class="my-responsive"></div>
-<script is:inline define:vars={{ url, identifier, title }}>
+<script is:inline define:vars={{ url, identifier }}>
+  // eslint-disable-next-line no-unused-vars
   var disqus_config = function () {
     this.page.url = url
     this.page.identifier = identifier
@@ -31,8 +32,5 @@ const { identifier, title, url } = Astro.props as Props
   })()
 </script>
 <noscript
-  >Please enable JavaScript to view the <a
-    href="https://disqus.com/?ref_noscript"
-    >comments powered by Disqus.
-  </a>
+  >Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
 </noscript>

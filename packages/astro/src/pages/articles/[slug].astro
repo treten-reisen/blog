@@ -3,10 +3,7 @@ import BlocksRenderer from "../../components/blocks-renderer"
 import Comments from "../../components/comments.astro"
 import Seo from "../../components/Seo.astro"
 import { getArticle } from "../../data/get-article"
-import {
-  getArticleList,
-  StrapiArticleListItem,
-} from "../../data/get-article-list"
+import { getArticleList, StrapiArticleListItem } from "../../data/get-article-list"
 import { getGlobal } from "../../data/get-global"
 import Layout from "../../layouts/Layout.astro"
 
@@ -31,21 +28,13 @@ const article = await getArticle(id)
 ---
 
 <Layout>
-  <Seo
-    type="article"
-    global={global.data}
-    seo={article.data.attributes.seo}
-    slot="seo"
-  />
-  <div class="h-full flex flex-col gap-6 sm:gap-responsive">
-    <div class="flex-1 mb-responsive">
+  <Seo type="article" global={global.data} seo={article.data.attributes.seo} slot="seo" />
+  <div class="sm:gap-responsive flex h-full flex-col gap-6">
+    <div class="mb-responsive flex-1">
       <BlocksRenderer blocks={article.data.attributes.blocks} />
     </div>
     <Comments
-      url={new URL(
-        `/articles/${article.data.attributes.slug}`,
-        global.data.attributes.siteURL
-      ).toString()}
+      url={new URL(`/articles/${article.data.attributes.slug}`, global.data.attributes.siteURL).toString()}
       identifier={`treten-reisen.article.${article.data.id}`}
       title={article.data.attributes.seo.metaTitle}
     />
