@@ -11,11 +11,7 @@ const Hero = ({ hero }: HeroProps) => {
   return (
     <header className="w-full bg-cover relative shadow-lg h-hero">
       <div className="w-full h-full absolute z-0">
-        <img
-          className="h-full w-full object-cover"
-          src={image.data.attributes.url}
-          alt={image.data.attributes.alternativeText}
-        />
+        <img className="h-full w-full object-cover" src={image.src || undefined} alt={image.alt || undefined} />
       </div>
       <div className="w-full h-full absolute z-10 hero-shade" />
       <div className="w-full h-full absolute z-20">

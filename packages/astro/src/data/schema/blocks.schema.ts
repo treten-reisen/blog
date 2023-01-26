@@ -3,7 +3,7 @@ import remarkParse from "remark-parse"
 import { unified } from "unified"
 import { z } from "zod"
 
-import { strapiImageSchema } from "./strapi.schema"
+import { strapiAstroImageSchema } from "./strapi.schema"
 
 const strapiBlockRichTextSchema = z
   .object({
@@ -21,7 +21,7 @@ export type StrapiBlockRichText = z.infer<typeof strapiBlockRichTextSchema>
 const strapiBlockMediaSchema = z.object({
   id: z.number(),
   __component: z.literal("shared.media"),
-  file: strapiImageSchema,
+  file: strapiAstroImageSchema(),
 })
 
 export type StrapiBlockMedia = z.infer<typeof strapiBlockMediaSchema>

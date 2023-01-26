@@ -18,12 +18,16 @@ const ArticleListItem = ({ item }: { item: StrapiArticleListItem }) => {
   return (
     <a href={`/articles/${item.attributes.slug}`} className="flex flex-col space-y-2">
       <header className="flex flex-col space-y-2">
-        <img src={item.attributes.image.data.attributes.url} className="h-52 lg:h-64 object-cover" />
+        <img src={item.attributes.image.src || undefined} className="h-52 lg:h-64 object-cover" />
         <h2 className="font-sans text-lg font-bold tracking-tight text-gray-700">{item.attributes.title}</h2>
       </header>
       <section className="font-sans text-gray-600 tracking-tight">{item.attributes.summary}</section>
       <footer className="self-end font-sans text-base tracking-tight text-gray-500">
-        {dateFns.intlFormat(item.attributes.createdAt)}
+        {dateFns.intlFormat(
+          item.attributes.createdAt,
+          { year: "numeric", month: "long", day: "numeric" },
+          { locale: "de" }
+        )}
       </footer>
     </a>
   )

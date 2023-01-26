@@ -6,7 +6,9 @@ export type StrapiMediaRendererProps = {
 
 const StrapiMediaRenderer = ({ data }: StrapiMediaRendererProps) => (
   <div className="flex justify-center py-8 md:py-responsive">
-    <img src={data.file.data.attributes.url} alt={"test"} />
+    <a className="cursor-zoom-in" href={data.file.src || undefined}>
+      <img src={data.file.src || undefined} alt={data.file.alt || undefined} />
+    </a>
   </div>
 )
 

@@ -15,7 +15,10 @@ const global = await getGlobal()
 
 const strapiUrl = import.meta.env.STRAPI_API_URL
 const apiKey = import.meta.env.MAPTILER_API_KEY
-const avatarUrl = global.data.attributes.avatar.data.attributes.url
+const avatarUrl = global.data.attributes.avatar.src
+if (!avatarUrl) {
+  throw new Error("No avatar found")
+}
 ---
 
 <Layout>

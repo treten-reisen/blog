@@ -9,6 +9,8 @@ on:
       - "Dockerfile"
       - "package.json"
       - ".dockerignore"
+    paths-ignore:
+      - "packages/strapi/dev-data.db"
 jobs:
   docker:
     runs-on: ubuntu-latest

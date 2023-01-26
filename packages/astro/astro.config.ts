@@ -7,7 +7,13 @@ import { VitePWA } from "vite-plugin-pwa"
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind(), image()],
+  integrations: [
+    react(),
+    tailwind(),
+    image({
+      serviceEntryPoint: "@astrojs/image/sharp",
+    }),
+  ],
   vite: {
     plugins: [
       macrosPlugin(),

@@ -5,7 +5,7 @@ import { z } from "zod"
 
 import { strapiSeoSchema } from "./seo.schema"
 import { strapiSocialMediaSchema } from "./social-media.schema"
-import { strapiEntitySchema, strapiImageSchema } from "./strapi.schema"
+import { strapiAstroImageSchema, strapiEntitySchema, strapiImageSchema } from "./strapi.schema"
 
 export const strapiGlobalSchema = strapiEntitySchema(
   z.object({
@@ -16,7 +16,7 @@ export const strapiGlobalSchema = strapiEntitySchema(
     favicon: strapiImageSchema,
     socialMedia: z.array(strapiSocialMediaSchema),
     defaultSeo: strapiSeoSchema,
-    avatar: strapiImageSchema,
+    avatar: strapiAstroImageSchema(),
   })
 ).transform(async global => ({
   ...global,
