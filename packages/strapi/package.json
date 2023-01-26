@@ -14,24 +14,24 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.3.6",
-    "@strapi/plugin-i18n": "4.5.3",
-    "@strapi/plugin-users-permissions": "4.5.3",
-    "@strapi/strapi": "4.5.3",
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.5.6",
+    "@strapi/plugin-i18n": "4.6.0",
+    "@strapi/plugin-users-permissions": "4.6.0",
+    "@strapi/strapi": "4.6.0",
     "@turf/helpers": "6.5.0",
     "better-sqlite3": "8.0.1",
     "pg": "8.8.0",
-    "react-select": "5.4.0"
+    "react-select": "5.7.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
     "@strapi-community/eslint-config": "^0.4.3",
-    "eslint": "^8.29.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "lint-staged": "^13.1.0",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.3"
   },
   "strapi": {
     "uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
