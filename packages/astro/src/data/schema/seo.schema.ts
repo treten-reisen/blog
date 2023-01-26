@@ -18,6 +18,7 @@ export const strapiSeoSchema = z
       width: 1200,
       height: 630,
       format: "webp",
+      alt: seo.shareImage.data.attributes.alternativeText,
     }),
   }))
 

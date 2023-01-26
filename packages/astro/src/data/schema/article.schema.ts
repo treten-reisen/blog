@@ -11,7 +11,7 @@ export const strapiArticleSchema = strapiEntitySchema(
     slug: z.string(),
     summary: z.string(),
     image: strapiImageSchema,
-    publishedAt: dateStringSchema,
+    publishedAt: z.nullable(dateStringSchema),
     blocks: z.array(strapiBlockSchema),
     seo: strapiSeoSchema,
   })
