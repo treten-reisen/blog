@@ -30,6 +30,7 @@ jobs:
           STRAPI_TOKEN: ${{ secrets.STRAPI_TOKEN }}
           STRAPI_API_URL: ${{ secrets.STRAPI_URL }}
           MAPTILER_API_KEY: ${{ secrets.MAPTILER_API_KEY }}
+          STRAPI_PUBLICATION_STATE: "live"
         run: yarn workspace @treten-reisen/astro build
 
       - id: "auth"

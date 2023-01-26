@@ -8,14 +8,17 @@ const strapiArticleResponseSchema = strapiSingleSchema(strapiArticleSchema)
 export type StrapiArticleResponse = z.infer<typeof strapiArticleResponseSchema>
 
 export const getArticle = async (id: number) => {
-  const response = await fetch(
-    `${
-      import.meta.env.STRAPI_API_URL
-    }/api/articles/${id}?populate[image]=%2A&populate[seo][populate]=%2A&populate[blocks][populate]=%2A`,
-    {
-      headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
-    }
-  )
+  const publicationState = import.meta.env.STRAPI_PUBLICATION_STATE === "preview" ? "preview" : "live"
+  const params = new URLSearchParams({
+    publicationState,
+    "populate[image]": "*",
+    "populate[seo][populate]": "*",
+    "populate[blocks][populate]": "*",
+  })
+
+  const response = await fetch(`${import.meta.env.STRAPI_API_URL}/api/articles/${id}?${params}`, {
+    headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
+  })
   const data = await response.json()
   return strapiArticleResponseSchema.parseAsync(data)
 }

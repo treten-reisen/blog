@@ -4201,6 +4201,7 @@ __metadata:
     cross-env: 7.0.3
     husky: 8.0.3
     lint-staged: 13.1.0
+    prettier: 2.8.3
   languageName: unknown
   linkType: soft
 
@@ -17019,7 +17020,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.8.3":
+"prettier@npm:2.8.3, prettier@npm:^2.8.3":
   version: 2.8.3
   resolution: "prettier@npm:2.8.3"
   bin:

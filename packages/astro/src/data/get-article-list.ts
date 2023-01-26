@@ -22,7 +22,16 @@ export type StrapiArticleListResponse = z.infer<typeof strapiArticleListResponse
 export type StrapiArticleListItem = StrapiArticleListResponse["data"][number]
 
 export const getArticleList = async () => {
-  const response = await fetch(`${import.meta.env.STRAPI_API_URL}/api/articles?populate[image]=%2A`, {
+  const publicationState = import.meta.env.STRAPI_PUBLICATION_STATE === "preview" ? "preview" : "live"
+
+  const params = new URLSearchParams({
+    publicationState,
+    "populate[image]": "*",
+  })
+
+  const url = new URL(`${import.meta.env.STRAPI_API_URL}/api/articles?${params}`)
+
+  const response = await fetch(url, {
     headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
   })
   const data = await response.json()
