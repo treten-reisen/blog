@@ -3935,6 +3935,7 @@ __metadata:
     unified: ^10.1.2
     vite-plugin-babel-macros: ^1.0.6
     vite-plugin-pwa: ^0.13.3
+    wait-on: 7.0.1
     world-atlas: ^2.0.2
     zod: ^3.19.1
   languageName: unknown
@@ -3947,7 +3948,6 @@ __metadata:
     cross-env: 7.0.3
     husky: 8.0.3
     lint-staged: 13.1.0
-    wait-on: 7.0.1
   languageName: unknown
   linkType: soft
 

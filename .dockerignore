@@ -3,5 +3,6 @@
 .gitignore
 node_modules/
 packages/astro/
+packages/strapi/dev-data.db
 #!include:.gitignore
 !.env
