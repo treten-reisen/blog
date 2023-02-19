@@ -17,7 +17,7 @@ const Footer = ({ socialMedia }: FooterProps) => {
         <div className="flex flex-wrap-reverse items-center justify-between gap-y-2">
           <div className="flex flex-col">
             <a href="/imprint">Impressum</a>
-            <a href="/data-policy">Datenschutz</a>
+            <a href="/privacy">Datenschutz</a>
           </div>
           <div className="text-2xl">
             {socialMedia.map(item => (
