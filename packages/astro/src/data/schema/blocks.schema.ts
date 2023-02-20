@@ -1,7 +1,6 @@
-import remarkHtml from "remark-html"
-import remarkParse from "remark-parse"
-import { unified } from "unified"
 import { z } from "zod"
+
+import { markdownToHtml } from "../parse-markdown"
 
 import { strapiAstroImageSchema } from "./strapi.schema"
 
@@ -13,7 +12,7 @@ const strapiBlockRichTextSchema = z
   })
   .transform(async rt => ({
     ...rt,
-    html: String(await unified().use(remarkParse).use(remarkHtml).process(rt.body)),
+    html: String(await markdownToHtml(rt.body)),
   }))
 
 export type StrapiBlockRichText = z.infer<typeof strapiBlockRichTextSchema>

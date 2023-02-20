@@ -1,7 +1,6 @@
-import remarkHtml from "remark-html"
-import remarkParse from "remark-parse"
-import { unified } from "unified"
 import { z } from "zod"
+
+import { markdownToHtml } from "../parse-markdown"
 
 import { strapiSeoSchema } from "./seo.schema"
 import { strapiSocialMediaSchema } from "./social-media.schema"
@@ -22,8 +21,8 @@ export const strapiGlobalSchema = strapiEntitySchema(
   ...global,
   attributes: {
     ...global.attributes,
-    imprintHtml: String(await unified().use(remarkParse).use(remarkHtml).process(global.attributes.imprint)),
-    dataPolicyHtml: String(await unified().use(remarkParse).use(remarkHtml).process(global.attributes.dataPolicy)),
+    imprintHtml: String(await markdownToHtml(global.attributes.imprint)),
+    dataPolicyHtml: String(await markdownToHtml(global.attributes.dataPolicy)),
   },
 }))
 
