@@ -27,6 +27,7 @@ export const getArticleList = async () => {
   const params = new URLSearchParams({
     publicationState,
     "populate[image]": "*",
+    sort: "publishedAt:desc",
   })
 
   const url = new URL(`${import.meta.env.STRAPI_API_URL}/api/articles?${params}`)
