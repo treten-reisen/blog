@@ -1,4 +1,6 @@
 ---
+import * as dateFns from "date-fns"
+
 import BlocksRenderer from "../../components/blocks-renderer"
 import Comments from "../../components/comments.astro"
 import Seo from "../../components/Seo.astro"
@@ -8,7 +10,7 @@ import { getGlobal } from "../../data/get-global"
 import Layout from "../../layouts/Layout.astro"
 
 export async function getStaticPaths() {
-  const articles = await getArticleList()
+  const articles = await getArticleList({ includeUnlisted: true })
 
   return articles.data.map(article => ({
     params: { slug: article.attributes.slug },
@@ -30,13 +32,35 @@ const article = await getArticle(id)
 <Layout>
   <Seo type="article" global={global.data} seo={article.data.attributes.seo} slot="seo" />
   <div class="sm:gap-responsive flex h-full flex-col gap-6">
-    <div class="mb-responsive flex-1">
+    <span class="self-end text-gray-500">
+      {
+        article.data.attributes.publishedAt &&
+          (article.data.attributes.publishedAt.toDateString() === article.data.attributes.updatedAt.toDateString()
+            ? dateFns.intlFormat(
+                article.data.attributes.publishedAt,
+                { year: "numeric", month: "long", day: "numeric" },
+                { locale: "de" }
+              )
+            : `aktualisiert am ${dateFns.intlFormat(
+                article.data.attributes.updatedAt,
+                { year: "numeric", month: "long", day: "numeric" },
+                { locale: "de" }
+              )}`)
+      }
+    </span>
+    <div class="flex-1">
       <BlocksRenderer blocks={article.data.attributes.blocks} />
     </div>
-    <Comments
-      url={new URL(`/articles/${article.data.attributes.slug}`, global.data.attributes.siteURL).toString()}
-      identifier={`treten-reisen.article.${article.data.id}`}
-      title={article.data.attributes.seo.metaTitle}
-    />
+    {
+      article.data.attributes.listed && (
+        <div class="mt-responsive">
+          <Comments
+            url={new URL(`/articles/${article.data.attributes.slug}`, global.data.attributes.siteURL).toString()}
+            identifier={`treten-reisen.article.${article.data.id}`}
+            title={article.data.attributes.seo.metaTitle || "treten.reisen"}
+          />
+        </div>
+      )
+    }
   </div>
 </Layout>

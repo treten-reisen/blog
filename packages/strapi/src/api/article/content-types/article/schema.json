@@ -18,7 +18,10 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "components": ["shared.media", "shared.rich-text"]
+      "components": [
+        "shared.media",
+        "shared.rich-text"
+      ]
     },
     "slug": {
       "type": "uid",
@@ -36,9 +39,16 @@
       "required": true
     },
     "image": {
-      "allowedTypes": ["images"],
       "type": "media",
       "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "listed": {
+      "type": "boolean",
+      "default": true,
       "required": true
     }
   }
