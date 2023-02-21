@@ -1,4 +1,4 @@
-import type { z } from "zod"
+import { z, ZodError } from "zod"
 
 import { strapiArticleSchema } from "./schema/article.schema"
 import { strapiSingleSchema } from "./schema/strapi.schema"
@@ -20,5 +20,13 @@ export const getArticle = async (id: number) => {
     headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
   })
   const data = await response.json()
-  return strapiArticleResponseSchema.parseAsync(data)
+
+  try {
+    return await strapiArticleResponseSchema.parseAsync(data)
+  } catch (error) {
+    if (error instanceof ZodError) {
+      console.log(JSON.stringify(error.issues, undefined, 2))
+    }
+    throw error
+  }
 }

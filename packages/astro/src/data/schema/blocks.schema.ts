@@ -1,8 +1,9 @@
 import { z } from "zod"
 
+import { transformStrapiImage } from "../image"
 import { markdownToHtml } from "../parse-markdown"
 
-import { strapiAstroImageSchema } from "./strapi.schema"
+import { strapiImageDataSchema, strapiSingleSchema } from "./strapi.schema"
 
 const strapiBlockRichTextSchema = z
   .object({
@@ -20,7 +21,7 @@ export type StrapiBlockRichText = z.infer<typeof strapiBlockRichTextSchema>
 const strapiBlockMediaSchema = z.object({
   id: z.number(),
   __component: z.literal("shared.media"),
-  file: strapiAstroImageSchema(),
+  file: strapiSingleSchema(strapiImageDataSchema).transform(async image => transformStrapiImage(image.data)),
 })
 
 export type StrapiBlockMedia = z.infer<typeof strapiBlockMediaSchema>
