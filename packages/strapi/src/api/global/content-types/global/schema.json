@@ -37,10 +37,6 @@
       "type": "string",
       "required": true
     },
-    "imprint": {
-      "type": "richtext",
-      "required": false
-    },
     "socialMedia": {
       "type": "component",
       "repeatable": true,
@@ -53,11 +49,6 @@
       "allowedTypes": [
         "images"
       ]
-    },
-    "dataPolicy": {
-      "type": "richtext",
-      "required": true,
-      "default": "# Datenschutzerklärung"
     }
   }
 }
