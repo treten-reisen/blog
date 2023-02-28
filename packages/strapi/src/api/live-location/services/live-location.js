@@ -33,6 +33,7 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
     WHERE l.longitude!=l.last_longitude 
     OR l.latitude!=l.last_latitude
     `)
+    strapi.log.info(`Executed history request. Count: ${resp.length}`)
     return resp
   },
 }))
