@@ -15,6 +15,7 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
     )[0]
   },
   async history() {
+    strapi.log.info(`Trying to get history from db...`)
     const resp = await strapi.db.connection.raw(`
     SELECT timestamp, longitude, latitude FROM (
       SELECT *, 

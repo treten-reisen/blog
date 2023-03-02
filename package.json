@@ -10,6 +10,7 @@
     "gcp-build": "yarn workspaces foreach run gcp-build",
     "gcp-entrypoint": "yarn workspace @treten-reisen/strapi start",
     "develop": "yarn workspaces foreach -piA run develop",
+    "dev": "yarn develop",
     "preview": "cross-env NODE_ENV=preview yarn run develop:astro",
     "prepare": "husky install",
     "pre-commit": "yarn workspaces foreach run pre-commit",
