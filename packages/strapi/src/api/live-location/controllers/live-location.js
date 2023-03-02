@@ -17,7 +17,6 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
     )
   },
   async history() {
-    strapi.log.info("history request received")
     const locations = await strapi.service("api::live-location.live-location").history()
 
     return (

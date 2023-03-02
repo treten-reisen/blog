@@ -34,7 +34,13 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
     WHERE l.longitude!=l.last_longitude 
     OR l.latitude!=l.last_latitude
     `)
-    strapi.log.info(`Executed history request. Count: ${resp.length}`)
-    return resp
+
+    // this is needed because raw responses differ from the local sqlite to the production postgres db
+    // postgres: { rows: [..data] }
+    // sqlite: [...data]
+    const data = resp && resp.rows ? resp.rows : resp || []
+
+    strapi.log.info(`Executed history query. Count: ${data.length}`)
+    return data
   },
 }))
