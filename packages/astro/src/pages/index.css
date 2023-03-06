@@ -1,0 +1,18 @@
+.maplibregl-ctrl-top-left,
+.mapboxgl-ctrl-top-left,
+.maplibregl-ctrl-top-right,
+.mapboxgl-ctrl-top-right,
+.maplibregl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right,
+.mapboxgl-ctrl-bottom-right {
+  .mapboxgl-ctrl-attrib.mapboxgl-compact,
+  .maplibregl-ctrl-attrib.maplibregl-compact {
+    @apply mx-0;
+  }
+  @apply px-6 sm:px-responsive;
+}
+
+.maplibregl-control-container {
+  @apply w-full h-full relative md:container box-border;
+}

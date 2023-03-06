@@ -5,8 +5,6 @@ import useLatestLocation from "../../hooks/use-latest-location"
 import AvatarOverlay from "./avatar-overlay"
 import { MapProvider } from "./map.context"
 
-import "maplibre-gl/dist/maplibre-gl.css"
-
 export type MapProps = {
   backendUrl: string
   apiKey: string

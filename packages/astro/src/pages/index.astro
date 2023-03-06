@@ -10,6 +10,8 @@ import { getHero } from "../data/get-hero"
 import { getLiveLocation } from "../data/get-live-location"
 import Layout from "../layouts/Layout.astro"
 
+import "./index.css"
+
 const list = await getArticleList()
 const hero = await getHero()
 const global = await getGlobal()

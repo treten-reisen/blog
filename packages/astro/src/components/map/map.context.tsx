@@ -2,6 +2,8 @@ import type { Position } from "geojson"
 import { AttributionControl, Map, NavigationControl } from "maplibre-gl"
 import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from "react"
 
+import "maplibre-gl/dist/maplibre-gl.css"
+
 export type MapContext = {
   map?: Map
 }
@@ -18,12 +20,14 @@ export type MapContextProps = {
 export const MapProvider = ({ children, center, apiKey, hideControls = false }: PropsWithChildren<MapContextProps>) => {
   const elementRef = useRef<HTMLDivElement>(null)
 
-  const [map, setMap] = useState<Map>()
+  const [isLoaded, setIsLoaded] = useState<boolean>()
 
   const navigationControlRef = useRef<NavigationControl>(new NavigationControl({}))
+  const attributionControlRef = useRef(new AttributionControl({ compact: hideControls ? true : undefined }))
+  const mapRef = useRef<Map>()
 
   useEffect(() => {
-    if (map || !elementRef.current) return
+    if (mapRef.current || !elementRef.current) return
     const createdMap = new Map({
       container: elementRef.current,
       center: center ? [center[0], center[1]] : [0, 0],
@@ -31,33 +35,39 @@ export const MapProvider = ({ children, center, apiKey, hideControls = false }: 
       style: `https://api.maptiler.com/maps/topo/style.json?key=${apiKey}`,
       attributionControl: false,
     })
-    createdMap.on("load", () => setMap(createdMap))
-    createdMap.addControl(new AttributionControl(), "bottom-left")
+
+    createdMap.on("load", () => {
+      setIsLoaded(true)
+      hideControls && attributionControlRef.current._container.querySelector("summary")?.click()
+    })
+    createdMap.addControl(attributionControlRef.current, "bottom-left")
+    mapRef.current = createdMap
   })
 
   useEffect(() => {
-    if (!center || !map) return
-    map.setCenter([center[0], center[1]])
-  }, [center, map])
+    if (!center || !mapRef.current) return
+    mapRef.current.setCenter([center[0], center[1]])
+  }, [center, mapRef.current])
 
   useEffect(() => {
-    if (!map) return
+    if (!mapRef.current) return
     if (hideControls) {
-      map.hasControl(navigationControlRef.current) && map.removeControl(navigationControlRef.current)
+      mapRef.current.hasControl(navigationControlRef.current) &&
+        mapRef.current.removeControl(navigationControlRef.current)
     } else {
-      map.hasControl(navigationControlRef.current) || map.addControl(navigationControlRef.current)
+      mapRef.current.hasControl(navigationControlRef.current) || mapRef.current.addControl(navigationControlRef.current)
     }
-  }, [hideControls, map])
+  }, [hideControls, mapRef])
 
   return (
     <>
       <div className="w-full h-full" ref={elementRef} />
       <mapContext.Provider
         value={{
-          map,
+          map: mapRef.current,
         }}
       >
-        {map && children}
+        {isLoaded && children}
       </mapContext.Provider>
     </>
   )
