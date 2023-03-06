@@ -16,15 +16,17 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
       })
     )
   },
-  async history() {
+  async history(ctx) {
     const locations = await strapi.service("api::live-location.live-location").history()
 
-    return (
-      locations.length &&
-      lineString(
-        locations.map(loc => [loc.longitude, loc.latitude]),
-        { times: locations.map(loc => loc.timestamp) }
-      )
+    if (locations.length < 2) {
+      ctx.status = 404
+      return "There are less than two locations"
+    }
+
+    return lineString(
+      locations.map(loc => [loc.longitude, loc.latitude]),
+      { times: locations.map(loc => loc.timestamp) }
     )
   },
 }))
