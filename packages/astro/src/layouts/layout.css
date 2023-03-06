@@ -45,7 +45,6 @@ hr {
   @apply border-gray-200 border-t-2;
 }
 
-
 body {
   @apply bg-gray-50;
 }
@@ -59,7 +58,7 @@ html:after {
   height: 50%;
   position: fixed;
   bottom: 0;
-  content: '';
+  content: "";
   z-index: -1;
-  @apply bg-gray-700
+  @apply bg-gray-700;
 }

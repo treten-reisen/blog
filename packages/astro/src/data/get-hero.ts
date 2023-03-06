@@ -1,4 +1,4 @@
-import type { z } from "zod"
+import { z, ZodError } from "zod"
 
 import { strapiHeroSchema } from "./schema/hero.schema"
 import { strapiSingleSchema } from "./schema/strapi.schema"
@@ -12,5 +12,12 @@ export const getHero = async () => {
     headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
   })
   const data = await response.json()
-  return strapiHeroResponseSchema.parseAsync(data)
+  try {
+    return strapiHeroResponseSchema.parseAsync(data)
+  } catch (error) {
+    if (error instanceof ZodError) {
+      console.log(JSON.stringify(error.issues, undefined, 2))
+    }
+    throw error
+  }
 }

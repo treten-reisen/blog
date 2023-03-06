@@ -1,9 +1,6 @@
-import { asColorLike } from "ol/colorlike"
-import { GeoJSON } from "ol/format"
-import VectorLayer from "ol/layer/Vector"
-import VectorSource from "ol/source/Vector"
-import { Stroke, Style } from "ol/style"
-import { useEffect, useRef } from "react"
+import type { Feature, GeoJsonProperties, LineString } from "geojson"
+import type { Map } from "maplibre-gl"
+import { useEffect } from "react"
 
 import useLocationHistory from "../../hooks/use-location-history"
 
@@ -13,36 +10,35 @@ export type PathLayerProps = {
   backendUrl: string
 }
 
+const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>) => {
+  map.addSource("route", {
+    type: "geojson",
+    data: routeData,
+  })
+  map.addLayer({
+    id: "route",
+    type: "line",
+    source: "route",
+    layout: {
+      "line-join": "round",
+      "line-cap": "round",
+    },
+    paint: {
+      "line-color": "#84cc16",
+      "line-width": 3,
+    },
+  })
+}
+
 const PathLayer = ({ backendUrl }: PathLayerProps) => {
   const map = useMap()
-  const vectorLayer = useRef(
-    new VectorLayer({
-      style: () =>
-        new Style({
-          stroke: new Stroke({ color: asColorLike("#84CC16"), width: 2 }),
-        }),
-      zIndex: 1,
-    })
-  )
   const { data: locationHistory } = useLocationHistory(backendUrl)
 
   useEffect(() => {
     if (locationHistory) {
-      const feature = new GeoJSON({
-        featureProjection: "EPSG:3857",
-      }).readFeature(locationHistory)
-
-      const vectorSource = new VectorSource({
-        features: [feature],
-      })
-
-      vectorLayer.current.setSource(vectorSource)
+      addRoute(map, locationHistory)
     }
-  }, [locationHistory])
-
-  useEffect(() => {
-    map.addLayer(vectorLayer.current)
-  }, [map, vectorLayer])
+  }, [map, locationHistory])
 
   return <></>
 }

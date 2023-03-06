@@ -1,4 +1,4 @@
-import type { z } from "zod"
+import { z, ZodError } from "zod"
 
 import { strapiGlobalSchema } from "./schema/global.schema"
 import { strapiSingleSchema } from "./schema/strapi.schema"
@@ -17,5 +17,12 @@ export const getGlobal = async () => {
     }
   )
   const data = await response.json()
-  return strapiGlobalResponseSchema.parseAsync(data)
+  try {
+    return strapiGlobalResponseSchema.parseAsync(data)
+  } catch (error) {
+    if (error instanceof ZodError) {
+      console.log(JSON.stringify(error.issues, undefined, 2))
+    }
+    throw error
+  }
 }

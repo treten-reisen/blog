@@ -19,6 +19,7 @@
     "@strapi/plugin-users-permissions": "4.7.0",
     "@strapi/strapi": "4.7.0",
     "@turf/helpers": "6.5.0",
+    "@turf/projection": "^6.5.0",
     "better-sqlite3": "8.1.0",
     "pg": "8.9.0",
     "react-select": "5.7.0"

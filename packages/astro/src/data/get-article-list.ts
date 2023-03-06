@@ -1,4 +1,4 @@
-import type { z } from "zod"
+import { z, ZodError } from "zod"
 
 import { strapiArticleSchema } from "./schema/article.schema"
 import { strapiCollectionSchema, strapiEntitySchema } from "./schema/strapi.schema"
@@ -43,7 +43,9 @@ export const getArticleList = async ({ includeUnlisted = false }: { includeUnlis
   try {
     return await strapiArticleListResponseSchema.parseAsync(data)
   } catch (error) {
-    console.log(error)
+    if (error instanceof ZodError) {
+      console.log(JSON.stringify(error.issues, undefined, 2))
+    }
     throw error
   }
 }

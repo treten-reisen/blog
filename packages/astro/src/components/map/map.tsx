@@ -1,31 +1,29 @@
-import type { Control } from "ol/control"
-import "ol/ol.css"
-import { fromLonLat } from "ol/proj"
+import type { Feature, Point } from "geojson"
 
 import useLatestLocation from "../../hooks/use-latest-location"
 
 import AvatarOverlay from "./avatar-overlay"
-import MapLayer from "./map-layer"
 import { MapProvider } from "./map.context"
-import PathLayer from "./path-layer"
+
+import "maplibre-gl/dist/maplibre-gl.css"
 
 export type MapProps = {
   backendUrl: string
   apiKey: string
   avatarUrl: string
-  controls?: Control[]
+  center: Feature<Point>
+  hideControls?: boolean
 }
 
-const Map = ({ backendUrl, apiKey, avatarUrl, controls }: MapProps) => {
+const Map = ({ backendUrl, apiKey, avatarUrl, center, hideControls = false }: MapProps) => {
   const { data: latestLocation } = useLatestLocation(backendUrl)
 
-  const position = latestLocation && fromLonLat(latestLocation.geometry.coordinates)
+  const position = latestLocation?.geometry.coordinates
 
   return (
-    <MapProvider center={position} controls={controls}>
+    <MapProvider center={position || center.geometry.coordinates} apiKey={apiKey} hideControls={hideControls}>
       {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
-      <MapLayer apiKey={apiKey} />
-      <PathLayer backendUrl={backendUrl} />
+      {/* <PathLayer backendUrl={backendUrl} /> */}
     </MapProvider>
   )
 }

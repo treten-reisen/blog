@@ -7,6 +7,7 @@ import Seo from "../components/Seo.astro"
 import { getArticleList } from "../data/get-article-list"
 import { getGlobal } from "../data/get-global"
 import { getHero } from "../data/get-hero"
+import { getLiveLocation } from "../data/get-live-location"
 import Layout from "../layouts/Layout.astro"
 
 const list = await getArticleList()
@@ -19,6 +20,7 @@ const avatarUrl = global.data.attributes.avatar.src
 if (!avatarUrl) {
   throw new Error("No avatar found")
 }
+const center = await getLiveLocation()
 ---
 
 <Layout>
@@ -26,7 +28,14 @@ if (!avatarUrl) {
   <div class="w-full" slot="header">
     <Hero hero={hero.data} />
     <div class="w-full h-20 relative shadow bg-gray-200">
-      <Map backendUrl={strapiUrl} apiKey={apiKey} avatarUrl={avatarUrl} controls={[]} client:only="react" />
+      <Map
+        backendUrl={strapiUrl}
+        apiKey={apiKey}
+        avatarUrl={avatarUrl}
+        center={center}
+        hideControls
+        client:only="react"
+      />
       <HeroMapOverlay />
     </div>
   </div>

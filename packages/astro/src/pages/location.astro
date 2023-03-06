@@ -1,7 +1,8 @@
 ---
-import OlMap from "../components/map/map"
+import Map from "../components/map/map"
 import Seo from "../components/Seo.astro"
 import { getGlobal } from "../data/get-global"
+import { getLiveLocation } from "../data/get-live-location"
 import Layout from "../layouts/Layout.astro"
 
 const global = await getGlobal()
@@ -12,9 +13,16 @@ const avatarUrl = global.data.attributes.avatar.src
 if (!avatarUrl) {
   throw new Error("No avatar found")
 }
+const center = await getLiveLocation()
 ---
 
 <Layout noPadding>
   <Seo type="website" global={global.data} slot="seo" />
-  <OlMap backendUrl={strapiUrl} apiKey={apiKey} avatarUrl={avatarUrl} client:only="react" />
+  <Map
+    backendUrl={strapiUrl}
+    apiKey={apiKey}
+    avatarUrl={avatarUrl}
+    center={center}
+    client:only="react"
+  />
 </Layout>
