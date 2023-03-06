@@ -8,6 +8,7 @@ on:
       - ".github/workflows/astro.yml"
       - "package.json"
       - ".gcloundignore"
+  workflow_dispatch:
 jobs:
   deploy-astro:
     runs-on: ubuntu-latest
