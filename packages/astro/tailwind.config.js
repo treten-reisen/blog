@@ -14,7 +14,7 @@ module.exports = {
         responsive: "4vw",
       },
       height: {
-        hero: "clamp(15rem, 50vw, 40rem)",
+        hero: "clamp(15rem, 50vw, 30rem)",
       },
     },
     colors: {

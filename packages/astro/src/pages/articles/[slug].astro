@@ -31,8 +31,9 @@ const article = await getArticle(id)
 
 <Layout>
   <Seo type="article" global={global.data} seo={article.data.attributes.seo} slot="seo" />
-  <div class="sm:gap-responsive flex h-full flex-col gap-6">
-    <span class="self-end text-gray-500">
+
+  <div class="flex h-full flex-col">
+    <span class="self-end text-gray-500 mb-2">
       {
         article.data.attributes.publishedAt &&
           (article.data.attributes.publishedAt.toDateString() === article.data.attributes.updatedAt.toDateString()
@@ -48,7 +49,7 @@ const article = await getArticle(id)
               )}`)
       }
     </span>
-    <div class="flex-1">
+    <div class="flex-1 mb-6 sm:mb-responsive">
       <BlocksRenderer blocks={article.data.attributes.blocks} />
     </div>
     {
