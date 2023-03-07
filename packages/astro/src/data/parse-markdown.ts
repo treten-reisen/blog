@@ -11,6 +11,5 @@ const richTextProcessor = unified()
   .use(rehypeStringify, { allowDangerousHtml: true })
 
 export const markdownToHtml = (markdown: string) => {
-  console.log(markdown)
   return richTextProcessor.process(markdown)
 }

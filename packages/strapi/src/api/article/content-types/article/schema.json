@@ -20,7 +20,8 @@
       "type": "dynamiczone",
       "components": [
         "shared.media",
-        "shared.rich-text"
+        "shared.rich-text",
+        "shared.embedded-media"
       ]
     },
     "slug": {

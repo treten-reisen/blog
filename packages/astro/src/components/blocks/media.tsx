@@ -5,7 +5,7 @@ export type StrapiMediaRendererProps = {
 }
 
 const StrapiMediaRenderer = ({ data }: StrapiMediaRendererProps) => (
-  <div className="flex justify-center py-8 md:py-responsive w-full max-w-prose font-serif">
+  <div className="flex justify-center my-8 md:my-responsive w-full max-w-prose font-serif">
     <a className="cursor-zoom-in" href={data.file.src || undefined}>
       <img className="max-h-96" src={data.file.src || undefined} alt={data.file.alt || undefined} />
     </a>

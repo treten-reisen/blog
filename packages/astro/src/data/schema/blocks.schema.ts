@@ -26,7 +26,24 @@ const strapiBlockMediaSchema = z.object({
 
 export type StrapiBlockMedia = z.infer<typeof strapiBlockMediaSchema>
 
-export const strapiBlockSchema = z.union([strapiBlockMediaSchema, strapiBlockRichTextSchema])
+const strapiBlockEmbeddedMediaSchema = z
+  .object({
+    id: z.number(),
+    __component: z.literal("shared.embedded-media"),
+    content: z.string(),
+  })
+  .transform(async rt => ({
+    ...rt,
+    html: String(await markdownToHtml(rt.content)),
+  }))
+
+export type StrapiBlockEmbeddedMedia = z.infer<typeof strapiBlockEmbeddedMediaSchema>
+
+export const strapiBlockSchema = z.union([
+  strapiBlockMediaSchema,
+  strapiBlockRichTextSchema,
+  strapiBlockEmbeddedMediaSchema,
+])
 
 export type StrapiBlock = z.infer<typeof strapiBlockSchema>
 

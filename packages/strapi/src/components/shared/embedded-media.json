@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_embedded_medias",
+  "info": {
+    "displayName": "Embedded Media",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    }
+  }
+}
