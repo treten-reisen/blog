@@ -18,11 +18,5 @@ const center = await getLiveLocation()
 
 <Layout noPadding>
   <Seo type="website" global={global.data} slot="seo" />
-  <Map
-    backendUrl={strapiUrl}
-    apiKey={apiKey}
-    avatarUrl={avatarUrl}
-    center={center}
-    client:only="react"
-  />
+  <Map backendUrl={strapiUrl} apiKey={apiKey} avatarUrl={avatarUrl} center={center} client:only="react" />
 </Layout>

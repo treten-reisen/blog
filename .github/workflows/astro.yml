@@ -1,7 +1,7 @@
 name: astro
 on:
   schedule:
-    - cron: "0 8-20/4 * * *"
+    - cron: "0 */4 * * *"
   push:
     branches:
       - main

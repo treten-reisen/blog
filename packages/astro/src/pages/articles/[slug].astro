@@ -9,6 +9,8 @@ import { getArticleList, StrapiArticleListItem } from "../../data/get-article-li
 import { getGlobal } from "../../data/get-global"
 import Layout from "../../layouts/Layout.astro"
 
+import "./article.css"
+
 export async function getStaticPaths() {
   const articles = await getArticleList({ includeUnlisted: true })
 
@@ -32,29 +34,32 @@ const article = await getArticle(id)
 <Layout>
   <Seo type="article" global={global.data} seo={article.data.attributes.seo} slot="seo" />
 
-  <div class="flex h-full flex-col">
-    <span class="self-end text-gray-500 mb-2">
-      {
-        article.data.attributes.publishedAt &&
-          (article.data.attributes.publishedAt.toDateString() === article.data.attributes.updatedAt.toDateString()
-            ? dateFns.intlFormat(
-                article.data.attributes.publishedAt,
-                { year: "numeric", month: "long", day: "numeric" },
-                { locale: "de" }
-              )
-            : `aktualisiert am ${dateFns.intlFormat(
-                article.data.attributes.updatedAt,
-                { year: "numeric", month: "long", day: "numeric" },
-                { locale: "de" }
-              )}`)
-      }
-    </span>
+  <article class="flex h-full flex-col font-serif">
+    <div class="flex w-full justify-end mb-2 max-w-prose">
+      <span class="font-sans text-gray-500">
+        {
+          article.data.attributes.publishedAt &&
+            (article.data.attributes.publishedAt.toDateString() === article.data.attributes.updatedAt.toDateString()
+              ? dateFns.intlFormat(
+                  article.data.attributes.publishedAt,
+                  { year: "numeric", month: "long", day: "numeric" },
+                  { locale: "de" }
+                )
+              : `aktualisiert am ${dateFns.intlFormat(
+                  article.data.attributes.updatedAt,
+                  { year: "numeric", month: "long", day: "numeric" },
+                  { locale: "de" }
+                )}`)
+        }
+      </span>
+    </div>
+
     <div class="flex-1 mb-6 sm:mb-responsive">
       <BlocksRenderer blocks={article.data.attributes.blocks} />
     </div>
     {
       article.data.attributes.listed && (
-        <div class="mt-responsive">
+        <div class="mt-responsive font-sans">
           <Comments
             url={new URL(`/articles/${article.data.attributes.slug}`, global.data.attributes.siteURL).toString()}
             identifier={`treten-reisen.article.${article.data.id}`}
@@ -63,5 +68,5 @@ const article = await getArticle(id)
         </div>
       )
     }
-  </div>
+  </article>
 </Layout>

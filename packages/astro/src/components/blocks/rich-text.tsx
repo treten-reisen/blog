@@ -1,10 +1,16 @@
 import type { StrapiBlockRichText } from "../../data/schema/blocks.schema"
-import Article from "../article"
 
 export type StrapiRichTextRendererProps = {
   data: StrapiBlockRichText
 }
 
-const StrapiRichTextRenderer = ({ data }: StrapiRichTextRendererProps) => <Article html={String(data.html)} />
+const StrapiRichTextRenderer = ({ data }: StrapiRichTextRendererProps) => (
+  <div
+    className="prose"
+    dangerouslySetInnerHTML={{
+      __html: data.html,
+    }}
+  />
+)
 
 export default StrapiRichTextRenderer
