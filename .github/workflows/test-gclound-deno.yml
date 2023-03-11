@@ -1,0 +1,30 @@
+name: "Test GCloud deno"
+on: push
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    steps:
+      - name: "Git Checkout"
+        uses: actions/checkout@v2
+
+      - name: "GCloud Auth"
+        id: auth
+        uses: google-github-actions/auth@v1
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          create_credentials_file: true
+
+      - name: "Deno Setup"
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.27.0
+
+      - name: "Deno Test"
+        env:
+          GCLOUD_CREDENTIALS_FILE: ${{ steps.auth.outputs.credentials_file_path }}
+        run: |
+          deno run ./scripts/sync-secrets.ts
