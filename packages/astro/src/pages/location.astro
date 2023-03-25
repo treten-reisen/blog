@@ -7,8 +7,6 @@ import Layout from "../layouts/Layout.astro"
 
 const global = await getGlobal()
 
-const strapiUrl = import.meta.env.STRAPI_API_URL
-const apiKey = import.meta.env.MAPTILER_API_KEY
 const avatarUrl = global.data.attributes.avatar.src
 if (!avatarUrl) {
   throw new Error("No avatar found")
@@ -18,5 +16,5 @@ const center = await getLiveLocation()
 
 <Layout noPadding>
   <Seo type="website" global={global.data} slot="seo" />
-  <Map backendUrl={strapiUrl} apiKey={apiKey} avatarUrl={avatarUrl} center={center} client:only="react" />
+  <Map avatarUrl={avatarUrl} center={center} client:only="react" />
 </Layout>

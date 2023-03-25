@@ -1,25 +1,22 @@
 import type { Feature, Point } from "geojson"
 
-import useLatestLocation from "../../hooks/use-latest-location"
-
 import AvatarOverlay from "./avatar-overlay"
 import { MapProvider } from "./map.context"
+import useLatestLocation from "./use-latest-location"
 
 export type MapProps = {
-  backendUrl: string
-  apiKey: string
   avatarUrl: string
   center: Feature<Point>
   hideControls?: boolean
 }
 
-const Map = ({ backendUrl, apiKey, avatarUrl, center, hideControls = false }: MapProps) => {
-  const { data: latestLocation } = useLatestLocation(backendUrl)
+const Map = ({ avatarUrl, center, hideControls = false }: MapProps) => {
+  const { data: latestLocation } = useLatestLocation()
 
   const position = latestLocation?.geometry.coordinates
 
   return (
-    <MapProvider center={position || center.geometry.coordinates} apiKey={apiKey} hideControls={hideControls}>
+    <MapProvider center={position || center.geometry.coordinates} hideControls={hideControls}>
       {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
       {/* <PathLayer backendUrl={backendUrl} /> */}
     </MapProvider>

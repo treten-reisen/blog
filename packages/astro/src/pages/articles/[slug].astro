@@ -30,8 +30,6 @@ const {
 } = Astro.props as Props
 const global = await getGlobal()
 const article = await getArticle(id)
-
-const strapiUrl = import.meta.env.STRAPI_API_URL
 ---
 
 <Layout>
@@ -64,7 +62,7 @@ const strapiUrl = import.meta.env.STRAPI_API_URL
     {
       article.data.attributes.listed && (
         <aside class="sticky bottom-8 right-8 mt-2 ml-6 self-end rounded-full border border-gray-200 bg-gray-50 p-3 md:top-12 md:bottom-auto md:self-start md:rounded-none md:border-none md:p-4 ">
-          <LikeButton articleId={article.data.id} backendUrl={strapiUrl} client:only="react" />
+          <LikeButton articleId={article.data.id} client:only="react" />
         </aside>
       )
     }

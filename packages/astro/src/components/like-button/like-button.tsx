@@ -3,21 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import classnames from "classnames"
 import { useState } from "react"
 
-import useLike from "../../hooks/use-like"
-
 import { LikeButtonExplosion } from "./explosion"
+import useLike from "./use-like"
 import { useTransitionClass } from "./use-transition-class"
 
 import "./like-button.css"
 
 export type LikeButtonProps = {
-  backendUrl: string
   articleId: number
 }
 
-export const LikeButton = ({ backendUrl, articleId }: LikeButtonProps) => {
+export const LikeButton = ({ articleId }: LikeButtonProps) => {
   const [explode, setExplode] = useState(false)
-  const { data, error, performLike, initialFetchState } = useLike(backendUrl, articleId)
+  const { data, error, performLike, initialFetchState } = useLike(articleId)
 
   const {
     className: likeAnimationClassName,

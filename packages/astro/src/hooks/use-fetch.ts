@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
 
-const useFetch = <T>(url: string, init?: RequestInit) => {
+const useFetch = <T>(fetchFunc: () => Promise<T>) => {
   const [data, setData] = useState<T | undefined>(undefined)
   const [state, setState] = useState<"pending" | "success" | "error">("pending")
   const [error, setError] = useState<unknown | undefined>(undefined)
 
   useEffect(() => {
-    fetch(url, init)
-      .then(response => response.json())
+    fetchFunc()
       .then(data => {
         setData(data)
         setState("success")
@@ -16,7 +15,7 @@ const useFetch = <T>(url: string, init?: RequestInit) => {
         setError(error)
         setState("error")
       })
-  }, [url])
+  }, [fetchFunc])
 
   return {
     data,

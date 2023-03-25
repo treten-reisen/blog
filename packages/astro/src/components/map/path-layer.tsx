@@ -2,13 +2,8 @@ import type { Feature, GeoJsonProperties, LineString } from "geojson"
 import type { Map } from "maplibre-gl"
 import { useEffect } from "react"
 
-import useLocationHistory from "../../hooks/use-location-history"
-
 import { useMap } from "./map.context"
-
-export type PathLayerProps = {
-  backendUrl: string
-}
+import useLocationHistory from "./use-location-history"
 
 const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>) => {
   map.addSource("route", {
@@ -30,9 +25,9 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>) =
   })
 }
 
-const PathLayer = ({ backendUrl }: PathLayerProps) => {
+const PathLayer = () => {
   const map = useMap()
-  const { data: locationHistory } = useLocationHistory(backendUrl)
+  const { data: locationHistory } = useLocationHistory()
 
   useEffect(() => {
     if (locationHistory) {

@@ -1,14 +1,13 @@
 import { useState } from "react"
 
-const useLazyFetch = <T>(url: string, init?: Omit<RequestInit, "body">) => {
+const useLazyFetch = <Args extends [], T>(fetchFunc: (...args: Args) => Promise<T>) => {
   const [data, setData] = useState<T | undefined>(undefined)
   const [state, setState] = useState<"pending" | "success" | "error" | null>(null)
   const [error, setError] = useState<unknown | undefined>(undefined)
 
-  const perform = (body?: unknown) => {
+  const perform = (...args: Args) => {
     setState("pending")
-    fetch(url, { ...init, body: JSON.stringify(body) })
-      .then(response => response.json())
+    fetchFunc(...args)
       .then(data => {
         setData(data)
         setState("success")

@@ -16,8 +16,6 @@ const list = await getArticleList()
 const hero = await getHero()
 const global = await getGlobal()
 
-const strapiUrl = import.meta.env.STRAPI_API_URL
-const apiKey = import.meta.env.MAPTILER_API_KEY
 const avatarUrl = global.data.attributes.avatar.src
 if (!avatarUrl) {
   throw new Error("No avatar found")
@@ -30,14 +28,7 @@ const center = await getLiveLocation()
   <div class="w-full" slot="header">
     <Hero hero={hero.data} />
     <div class="relative h-20 w-full bg-gray-200 shadow">
-      <Map
-        backendUrl={strapiUrl}
-        apiKey={apiKey}
-        avatarUrl={avatarUrl}
-        center={center}
-        hideControls
-        client:only="react"
-      />
+      <Map avatarUrl={avatarUrl} center={center} hideControls client:only="react" />
       <HeroMapOverlay />
     </div>
   </div>

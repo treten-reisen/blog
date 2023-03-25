@@ -13,11 +13,10 @@ const mapContext = createContext<MapContext>({
 })
 
 export type MapContextProps = {
-  apiKey: string
   center?: Position
   hideControls?: boolean
 }
-export const MapProvider = ({ children, center, apiKey, hideControls = false }: PropsWithChildren<MapContextProps>) => {
+export const MapProvider = ({ children, center, hideControls = false }: PropsWithChildren<MapContextProps>) => {
   const elementRef = useRef<HTMLDivElement>(null)
 
   const [isLoaded, setIsLoaded] = useState<boolean>()
@@ -32,7 +31,7 @@ export const MapProvider = ({ children, center, apiKey, hideControls = false }: 
       container: elementRef.current,
       center: center ? [center[0], center[1]] : [0, 0],
       zoom: 10,
-      style: `https://api.maptiler.com/maps/topo/style.json?key=${apiKey}`,
+      style: `https://api.maptiler.com/maps/topo/style.json?key=${import.meta.env.PUBLIC_MAPTILER_API_KEY}`,
       attributionControl: false,
     })
 

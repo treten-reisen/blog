@@ -1,5 +1,7 @@
-import { z, ZodError } from "zod"
+import type { z } from "zod"
 
+import { setAuthHeaders } from "./config"
+import { parseResponse } from "./request"
 import { strapiArticleSchema } from "./schema/article.schema"
 import { strapiCollectionSchema, strapiEntitySchema } from "./schema/strapi.schema"
 
@@ -34,18 +36,9 @@ export const getArticleList = async ({ includeUnlisted = false }: { includeUnlis
     params.append("filters[listed][$eq]", "true")
   }
 
-  const url = new URL(`${import.meta.env.STRAPI_API_URL}/api/articles?${params}`)
+  const url = new URL(`${import.meta.env.PUBLIC_STRAPI_API_URL}/api/articles?${params}`)
 
-  const response = await fetch(url, {
-    headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
-  })
-  const data = await response.json()
-  try {
-    return await strapiArticleListResponseSchema.parseAsync(data)
-  } catch (error) {
-    if (error instanceof ZodError) {
-      console.log(JSON.stringify(error.issues, undefined, 2))
-    }
-    throw error
-  }
+  const response = await fetch(url, setAuthHeaders())
+
+  return parseResponse(response, strapiArticleListResponseSchema)
 }

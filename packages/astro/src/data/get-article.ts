@@ -1,5 +1,7 @@
-import { z, ZodError } from "zod"
+import type { z } from "zod"
 
+import { setAuthHeaders } from "./config"
+import { parseResponse } from "./request"
 import { strapiArticleSchema } from "./schema/article.schema"
 import { strapiSingleSchema } from "./schema/strapi.schema"
 
@@ -16,17 +18,9 @@ export const getArticle = async (id: number) => {
     "populate[blocks][populate]": "*",
   })
 
-  const response = await fetch(`${import.meta.env.STRAPI_API_URL}/api/articles/${id}?${params}`, {
-    headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
-  })
-  const data = await response.json()
-
-  try {
-    return await strapiArticleResponseSchema.parseAsync(data)
-  } catch (error) {
-    if (error instanceof ZodError) {
-      console.log(JSON.stringify(error.issues, undefined, 2))
-    }
-    throw error
-  }
+  const response = await fetch(
+    `${import.meta.env.PUBLIC_STRAPI_API_URL}/api/articles/${id}?${params}`,
+    setAuthHeaders()
+  )
+  return parseResponse(response, strapiArticleResponseSchema)
 }

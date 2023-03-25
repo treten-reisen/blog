@@ -1,4 +1,7 @@
-import { z, ZodError } from "zod"
+import { z } from "zod"
+
+import { setAuthHeaders } from "./config"
+import { parseResponse } from "./request"
 
 const pointSchema = z.object({
   type: z.literal("Point"),
@@ -13,16 +16,7 @@ const featureSchema = (geometrySchema: typeof pointSchema) =>
   })
 
 export const getLiveLocation = async () => {
-  const response = await fetch(`${import.meta.env.STRAPI_API_URL}/api/live-location/latest`, {
-    headers: { Authorization: `bearer ${import.meta.env.STRAPI_TOKEN}` },
-  })
-  const data = await response.json()
-  try {
-    return featureSchema(pointSchema).parse(data)
-  } catch (error) {
-    if (error instanceof ZodError) {
-      console.log(JSON.stringify(error.issues, undefined, 2))
-    }
-    throw error
-  }
+  const response = await fetch(`${import.meta.env.PUBLIC_STRAPI_API_URL}/api/live-location/latest`, setAuthHeaders())
+
+  return parseResponse(response, featureSchema(pointSchema))
 }

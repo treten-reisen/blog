@@ -25,7 +25,7 @@ export const strapiSingleSchema = <T extends ZodTypeAny>(itemSchema: T) =>
 
 export const strapiImageDataSchema = strapiEntitySchema(
   z.object({
-    url: z.string().transform(url => new URL(url, import.meta.env.STRAPI_API_URL).toString()),
+    url: z.string().transform(url => new URL(url, import.meta.env.PUBLIC_STRAPI_API_URL).toString()),
     alternativeText: z.string(),
     width: z.nullable(z.number()).transform(width => width || undefined),
     height: z.nullable(z.number()).transform(width => width || undefined),
