@@ -6,7 +6,7 @@ export type StrapiMediaRendererProps = {
 
 const StrapiEmbeddedMediaRenderer = ({ data }: StrapiMediaRendererProps) => (
   <div
-    className="flex justify-center my-8 md:my-responsive w-full max-w-prose"
+    className="my-8 flex w-full max-w-prose justify-center md:my-responsive"
     dangerouslySetInnerHTML={{ __html: data.html }}
   ></div>
 )

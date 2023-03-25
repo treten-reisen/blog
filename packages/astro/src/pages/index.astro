@@ -29,7 +29,7 @@ const center = await getLiveLocation()
   <Seo type="website" global={global.data} slot="seo" />
   <div class="w-full" slot="header">
     <Hero hero={hero.data} />
-    <div class="w-full h-20 relative shadow bg-gray-200">
+    <div class="relative h-20 w-full bg-gray-200 shadow">
       <Map
         backendUrl={strapiUrl}
         apiKey={apiKey}

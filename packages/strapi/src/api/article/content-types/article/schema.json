@@ -51,6 +51,11 @@
       "type": "boolean",
       "default": true,
       "required": true
+    },
+    "likes": {
+      "type": "biginteger",
+      "default": "0",
+      "required": true
     }
   }
 }

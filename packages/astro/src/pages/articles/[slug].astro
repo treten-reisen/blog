@@ -3,6 +3,7 @@ import * as dateFns from "date-fns"
 
 import BlocksRenderer from "../../components/blocks-renderer"
 import Comments from "../../components/comments.astro"
+import { LikeButton } from "../../components/like-button"
 import Seo from "../../components/Seo.astro"
 import { getArticle } from "../../data/get-article"
 import { getArticleList, StrapiArticleListItem } from "../../data/get-article-list"
@@ -29,44 +30,56 @@ const {
 } = Astro.props as Props
 const global = await getGlobal()
 const article = await getArticle(id)
+
+const strapiUrl = import.meta.env.STRAPI_API_URL
 ---
 
 <Layout>
   <Seo type="article" global={global.data} seo={article.data.attributes.seo} slot="seo" />
 
-  <article class="flex h-full flex-col font-serif">
-    <div class="flex w-full justify-end mb-2 max-w-prose">
-      <span class="font-sans text-gray-500">
-        {
-          article.data.attributes.publishedAt &&
-            (article.data.attributes.publishedAt.toDateString() === article.data.attributes.updatedAt.toDateString()
-              ? dateFns.intlFormat(
-                  article.data.attributes.publishedAt,
-                  { year: "numeric", month: "long", day: "numeric" },
-                  { locale: "de" }
-                )
-              : `aktualisiert am ${dateFns.intlFormat(
-                  article.data.attributes.updatedAt,
-                  { year: "numeric", month: "long", day: "numeric" },
-                  { locale: "de" }
-                )}`)
-        }
-      </span>
-    </div>
-
-    <div class="flex-1 mb-6 sm:mb-responsive">
-      <BlocksRenderer blocks={article.data.attributes.blocks} />
-    </div>
+  <div class="flex flex-col items-start gap-responsive md:flex-row">
+    <article class="flex h-full w-full max-w-prose flex-col font-serif">
+      <div class="mb-6 flex-1 sm:mb-responsive">
+        <BlocksRenderer blocks={article.data.attributes.blocks} />
+        <div class="mt-6 flex w-full max-w-prose justify-end">
+          <span class="font-sans text-gray-500">
+            {
+              article.data.attributes.publishedAt &&
+                (article.data.attributes.publishedAt.toDateString() === article.data.attributes.updatedAt.toDateString()
+                  ? dateFns.intlFormat(
+                      article.data.attributes.publishedAt,
+                      { year: "numeric", month: "long", day: "numeric" },
+                      { locale: "de" }
+                    )
+                  : `aktualisiert am ${dateFns.intlFormat(
+                      article.data.attributes.updatedAt,
+                      { year: "numeric", month: "long", day: "numeric" },
+                      { locale: "de" }
+                    )}`)
+            }
+          </span>
+        </div>
+      </div>
+    </article>
     {
       article.data.attributes.listed && (
-        <div class="mt-responsive font-sans">
+        <aside class="sticky bottom-8 right-8 mt-2 ml-6 self-end rounded-full border border-gray-200 bg-gray-50 p-3 md:top-12 md:bottom-auto md:self-start md:rounded-none md:border-none md:p-4 ">
+          <LikeButton articleId={article.data.id} backendUrl={strapiUrl} client:only="react" />
+        </aside>
+      )
+    }
+  </div>
+  {
+    article.data.attributes.listed && (
+      <div class="mt-responsive w-full max-w-prose font-serif">
+        <div class="font-sans">
           <Comments
             url={new URL(`/articles/${article.data.attributes.slug}`, global.data.attributes.siteURL).toString()}
             identifier={`treten-reisen.article.${article.data.id}`}
             title={article.data.attributes.seo.metaTitle || "treten.reisen"}
           />
         </div>
-      )
-    }
-  </article>
+      </div>
+    )
+  }
 </Layout>

@@ -61,7 +61,7 @@ export const MapProvider = ({ children, center, apiKey, hideControls = false }: 
 
   return (
     <>
-      <div className="w-full h-full" ref={elementRef} />
+      <div className="h-full w-full" ref={elementRef} />
       <mapContext.Provider
         value={{
           map: mapRef.current,

@@ -1,0 +1,39 @@
+@define-mixin explosion-particle $index, $scale, $translateX, $translateY, $rotate, $time, $opacity {
+  .explosion__particle-$(index) {
+    @apply absolute left-0 hidden;
+
+    &.explosion__enter {
+      display: block;
+      opacity: 1;
+      transform: scale($scale) translate(0, 0) rotate(0);
+    }
+
+    &.explosion__enter-active {
+      display: block;
+      transform: scale($scale) translate($translateX, $translateY) rotate($rotate);
+      opacity: $opacity;
+      transition: all calc($time / 2);
+      transition-timing-function: ease-out;
+    }
+
+    &.explosion__exit {
+      display: block;
+      transform: scale($scale) translate($translateX, $translateY) rotate($rotate);
+      opacity: $opacity;
+    }
+
+    &.explosion__exit-active {
+      display: block;
+      transform: scale($scale) translate($translateX, $translateY) rotate($rotate);
+      opacity: 0;
+      transition: all calc($time / 2);
+    }
+  }
+}
+
+.explosion {
+  @mixin explosion-particle 0, 0.7, 16px, -32px, 15deg, 600ms, 0.5;
+  @mixin explosion-particle 1, 0.8, -24px, -24px, -10deg, 400ms, 0.4;
+  @mixin explosion-particle 2, 0.5, -12px, -64px, -0deg, 700ms, 0.3;
+  @mixin explosion-particle 3, 0.6, 14px, -58px, 10deg, 500ms, 0.2;
+}

@@ -1,0 +1,85 @@
+$scale-active: 0.8;
+$active-shrink-duration: 150ms;
+
+$scale-expanded: 1.3;
+$expand-duration: 200ms;
+$condense-duration: 700ms;
+
+.like-button {
+  &__icon-solid {
+    @apply absolute left-0 hidden;
+  }
+
+  &:hover,
+  &:active {
+    & .like-button__icon-solid {
+      @apply inline-block;
+    }
+
+    & .like-button__icon {
+      @apply text-lime-500;
+    }
+  }
+
+  &:active {
+    & .like-button__icon {
+      transform: scale($scale-active);
+      transition: transform $active-shrink-duration;
+      transition-timing-function: ease-in;
+    }
+  }
+
+  &__icon {
+    @apply relative text-gray-700;
+
+    &.animation__enter {
+      @apply text-lime-500;
+      transform: scale($scale-active);
+
+      & .like-button__icon-solid {
+        @apply inline-block;
+      }
+    }
+
+    &.animation__enter-active {
+      @apply text-lime-500;
+      animation-duration: $expand-duration;
+      animation-name: animate-heart;
+      animation-timing-function: ease-in;
+
+      & .like-button__icon-solid {
+        @apply inline-block;
+      }
+    }
+
+    &.animation__exit {
+      @apply text-lime-500;
+      transform: scale($scale-expanded);
+
+      & .like-button__icon-solid {
+        @apply inline-block;
+      }
+    }
+
+    &.animation__exit-active {
+      @apply text-lime-500;
+      transition: transform $condense-duration;
+      transition-timing-function: ease-out;
+      transform: scale(1);
+
+      & .like-button__icon-solid {
+        @apply inline-block;
+      }
+    }
+  }
+
+  @keyframes animate-heart {
+    from {
+      transform: scale($scale-active);
+    }
+
+    to {
+      transform: scale($scale-expanded);
+    }
+  }
+}
