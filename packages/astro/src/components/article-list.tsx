@@ -18,7 +18,11 @@ const ArticleListItem = ({ item }: { item: StrapiArticleListItem }) => {
   return (
     <a href={`/articles/${item.attributes.slug}`} className="flex flex-col space-y-2">
       <header className="flex flex-col space-y-2">
-        <img src={item.attributes.image.src || undefined} className="h-52 object-cover lg:h-64" />
+        <img
+          src={item.attributes.image.src || undefined}
+          alt={item.attributes.image.alt || undefined}
+          className="h-52 object-cover lg:h-64"
+        />
         <h2 className="font-sans text-lg font-bold tracking-tight text-gray-700">{item.attributes.title}</h2>
       </header>
       <section className="font-sans tracking-tight text-gray-600">{item.attributes.summary}</section>
