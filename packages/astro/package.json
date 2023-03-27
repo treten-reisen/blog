@@ -21,6 +21,8 @@
     "@fortawesome/free-solid-svg-icons": "6.3.0",
     "@fortawesome/react-fontawesome": "0.2.0",
     "@turf/helpers": "^6.5.0",
+    "astro-robots-txt": "^0.4.1",
+    "astro-sitemap": "^0.5.1",
     "classnames": "^2.3.2",
     "date-fns": "^2.29.3",
     "eslint-plugin-astro": "^0.23.0",

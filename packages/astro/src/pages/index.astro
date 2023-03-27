@@ -8,6 +8,7 @@ import { getArticleList } from "../data/get-article-list"
 import { getGlobal } from "../data/get-global"
 import { getHero } from "../data/get-hero"
 import { getLiveLocation } from "../data/get-live-location"
+import { getPage } from "../data/get-page"
 import Layout from "../layouts/Layout.astro"
 
 import "./index.css"
@@ -15,6 +16,7 @@ import "./index.css"
 const list = await getArticleList()
 const hero = await getHero()
 const global = await getGlobal()
+const page = await getPage("index")
 
 const avatarUrl = global.data.attributes.avatar.src
 if (!avatarUrl) {
@@ -24,7 +26,7 @@ const center = await getLiveLocation()
 ---
 
 <Layout>
-  <Seo type="website" global={global.data} slot="seo" />
+  <Seo type="website" global={global.data} seo={page.attributes.seo} slot="seo" />
   <div class="w-full" slot="header">
     <Hero hero={hero.data} />
     <div class="relative h-20 w-full bg-gray-200 shadow">

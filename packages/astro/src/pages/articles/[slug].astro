@@ -32,7 +32,7 @@ const global = await getGlobal()
 const article = await getArticle(id)
 ---
 
-<Layout>
+<Layout disableIndexing={!article.data.attributes.listed}>
   <Seo type="article" global={global.data} seo={article.data.attributes.seo} slot="seo" />
 
   <div class="flex flex-col items-start gap-responsive md:flex-row">

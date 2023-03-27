@@ -3,9 +3,11 @@ import Map from "../components/map/map"
 import Seo from "../components/Seo.astro"
 import { getGlobal } from "../data/get-global"
 import { getLiveLocation } from "../data/get-live-location"
+import { getPage } from "../data/get-page"
 import Layout from "../layouts/Layout.astro"
 
 const global = await getGlobal()
+const page = await getPage("live-standort")
 
 const avatarUrl = global.data.attributes.avatar.src
 if (!avatarUrl) {
@@ -15,6 +17,6 @@ const center = await getLiveLocation()
 ---
 
 <Layout noPadding>
-  <Seo type="website" global={global.data} slot="seo" />
+  <Seo global={global.data} seo={page.attributes.seo} type="website" slot="seo" />
   <Map avatarUrl={avatarUrl} center={center} client:only="react" />
 </Layout>

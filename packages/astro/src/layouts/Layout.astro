@@ -12,19 +12,23 @@ config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatica
 
 export type Props = {
   noPadding?: boolean
+  disableIndexing?: boolean
 }
 
-const { noPadding = false } = Astro.props as Props
+const { noPadding = false, disableIndexing = false } = Astro.props as Props
 
 const global = await getGlobal()
 const hero = await getHero()
 ---
 
 <html class="flex h-full flex-col">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="generator" content={Astro.generator} />
-  <slot name="seo" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={disableIndexing ? "noindex, nofollow" : "index, follow"} />
+    <slot name="seo" />
+  </head>
 
   <body class="flex flex-shrink-0 flex-grow flex-col justify-between bg-gray-50 text-gray-900">
     <slot name="header">

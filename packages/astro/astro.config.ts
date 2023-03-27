@@ -2,17 +2,25 @@ import image from "@astrojs/image"
 import react from "@astrojs/react"
 import tailwind from "@astrojs/tailwind"
 import { defineConfig } from "astro/config"
+import robots from "astro-robots-txt"
+import sitemap, { EnumChangefreq } from "astro-sitemap"
 import macrosPlugin from "vite-plugin-babel-macros"
 import { VitePWA } from "vite-plugin-pwa"
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://treten.reisen/",
   integrations: [
     react(),
     tailwind(),
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
+    sitemap({
+      lastmod: new Date(),
+      changefreq: EnumChangefreq.DAILY,
+    }),
+    robots(),
   ],
   vite: {
     plugins: [
