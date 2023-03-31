@@ -22,6 +22,8 @@
     "@fortawesome/free-solid-svg-icons": "6.4.0",
     "@fortawesome/react-fontawesome": "0.2.0",
     "@turf/helpers": "^6.5.0",
+    "@types/serviceworker": "^0.0.67",
+    "@vite-pwa/astro": "^0.0.5",
     "astro-robots-txt": "^0.4.1",
     "astro-sitemap": "^0.5.1",
     "classnames": "^2.3.2",
@@ -78,7 +80,8 @@
     "vite": "^4.2.1",
     "vite-plugin-babel-macros": "^1.0.6",
     "vite-plugin-pwa": "^0.14.7",
-    "wait-on": "7.0.1"
+    "wait-on": "7.0.1",
+    "workbox-precaching": "^6.5.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,astro}": "eslint --cache --fix",

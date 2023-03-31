@@ -3931,10 +3931,12 @@ __metadata:
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
     "@types/react-helmet": ^6.1.6
+    "@types/serviceworker": ^0.0.67
     "@types/topojson-client": ^3.1.1
     "@types/topojson-specification": ^1.0.2
     "@typescript-eslint/eslint-plugin": ^5.57.0
     "@typescript-eslint/parser": ^5.57.0
+    "@vite-pwa/astro": ^0.0.5
     astro: ^2.1.7
     astro-robots-txt: ^0.4.1
     astro-sitemap: ^0.5.1
@@ -3988,6 +3990,7 @@ __metadata:
     husky: 8.0.3
     lint-staged: 13.2.0
     prettier: 2.8.7
+    workbox-precaching: ^6.5.4
   languageName: unknown
   linkType: soft
 
@@ -4870,6 +4873,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/serviceworker@npm:^0.0.67":
+  version: 0.0.67
+  resolution: "@types/serviceworker@npm:0.0.67"
+  checksum: 550283b28abde0c33269baf5ed8d66c5f9e73da86f2a4434854261e81951159de0b5655d53efbfd278a7580f6fcc6a7ded79cc019eca77490fbdc451478306c1
+  languageName: node
+  linkType: hard
+
 "@types/sockjs@npm:^0.3.33":
   version: 0.3.33
   resolution: "@types/sockjs@npm:0.3.33"
@@ -5224,6 +5234,18 @@ __metadata:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
   checksum: 5ff4c7d021b565bc578d0fce2f4b6761b8d55024fa3190288435d287028cc8770b8fe5b4b103a64c452eaf26ab88c8bfd25819782a4b4d7dcfd4361765e307ff
+  languageName: node
+  linkType: hard
+
+"@vite-pwa/astro@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@vite-pwa/astro@npm:0.0.5"
+  dependencies:
+    vite-plugin-pwa: ^0.14.4
+  peerDependencies:
+    astro: ^1.6.0 || ^2.0.0
+    vite-plugin-pwa: ^0.14.0
+  checksum: 4e25bbf32b383d86b52dd8302e320a50fe60823f1453556daf14d8bb19a67e3ebb7bd5b7e899b3b91924d1da57c721d5cb146a9838f3cc36bc7b7390bf14c3d7
   languageName: node
   linkType: hard
 
@@ -20076,7 +20098,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-pwa@npm:^0.14.7":
+"vite-plugin-pwa@npm:^0.14.4, vite-plugin-pwa@npm:^0.14.7":
   version: 0.14.7
   resolution: "vite-plugin-pwa@npm:0.14.7"
   dependencies:
@@ -20795,7 +20817,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workbox-precaching@npm:6.5.4":
+"workbox-precaching@npm:6.5.4, workbox-precaching@npm:^6.5.4":
   version: 6.5.4
   resolution: "workbox-precaching@npm:6.5.4"
   dependencies:
