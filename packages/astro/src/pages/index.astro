@@ -26,7 +26,10 @@ const center = await getLiveLocation()
 ---
 
 <Layout>
-  <Seo type="website" global={global.data} seo={page.attributes.seo} slot="seo" />
+  <Fragment slot="head">
+    <Seo type="website" global={global.data} seo={page.attributes.seo} />
+  </Fragment>
+
   <div class="w-full" slot="header">
     <Hero hero={hero.data} />
     <div class="relative h-20 w-full bg-gray-200 shadow">

@@ -27,7 +27,7 @@ const hero = await getHero()
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="robots" content={disableIndexing ? "noindex, nofollow" : "index, follow"} />
-    <slot name="seo" />
+    <slot name="head" />
   </head>
 
   <body class="flex flex-shrink-0 flex-grow flex-col justify-between bg-gray-50 text-gray-900">

@@ -7,7 +7,14 @@ const global = await getGlobal()
 ---
 
 <Layout>
-  <Seo type="website" global={global.data} seo={{ metaTitle: "404" }} slot="seo" />
+  <Fragment slot="head">
+    <Seo
+      canonicalURL={Astro.site + "404/"}
+      type="website"
+      global={global.data}
+      seo={{ metaTitle: "404", metaDescription: "Seite nicht gefunden" }}
+    />
+  </Fragment>
   <h1>404: Not Found</h1>
   <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
 </Layout>

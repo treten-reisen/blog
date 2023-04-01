@@ -17,6 +17,9 @@ const center = await getLiveLocation()
 ---
 
 <Layout noPadding>
-  <Seo global={global.data} seo={page.attributes.seo} type="website" slot="seo" />
+  <Fragment slot="head">
+    <Seo global={global.data} seo={page.attributes.seo} type="website" />
+  </Fragment>
+
   <Map avatarUrl={avatarUrl} center={center} client:only="react" />
 </Layout>

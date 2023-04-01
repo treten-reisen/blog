@@ -33,7 +33,9 @@ const article = await getArticle(id)
 ---
 
 <Layout disableIndexing={!article.data.attributes.listed}>
-  <Seo type="article" global={global.data} seo={article.data.attributes.seo} slot="seo" />
+  <Fragment slot="head">
+    <Seo type="article" global={global.data} seo={article.data.attributes.seo} />
+  </Fragment>
 
   <div class="flex flex-col items-start gap-responsive md:flex-row">
     <article class="flex h-full w-full max-w-prose flex-col font-serif">
@@ -61,7 +63,7 @@ const article = await getArticle(id)
     </article>
     {
       article.data.attributes.listed && (
-        <aside class="sticky bottom-8 right-8 mt-2 ml-6 self-end rounded-full border border-gray-200 bg-gray-50 p-3 md:top-12 md:bottom-auto md:self-start md:rounded-none md:border-none md:p-4 ">
+        <aside class="sticky bottom-8 right-8 ml-6 mt-2 self-end rounded-full border border-gray-200 bg-gray-50 p-3 md:bottom-auto md:top-12 md:self-start md:rounded-none md:border-none md:p-4 ">
           <LikeButton articleId={article.data.id} client:only="react" />
         </aside>
       )

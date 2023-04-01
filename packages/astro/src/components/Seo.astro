@@ -6,11 +6,12 @@ import type { StrapiSeo } from "../data/schema/seo.schema"
 
 export type Props = {
   seo?: Partial<StrapiSeo>
+  canonicalURL?: string
   global: StrapiGlobal
   type: "website" | "article"
 }
 
-const { type, seo, global } = Astro.props as Props
+const { type, seo, global, canonicalURL } = Astro.props as Props
 const { url } = Astro
 
 const { siteName, defaultSeo, favicon, siteURL } = global.attributes
@@ -22,11 +23,19 @@ const fullSeo = {
 }
 
 const absoluteShareImageUrl = fullSeo.shareImage?.src && new URL(fullSeo.shareImage.src, siteURL)
+
+const getCanonicalUrl = () => {
+  if (canonicalURL) return canonicalURL
+  const currentUrl = new URL(Astro.url.pathname.replace(/\/index\.html/, ""), Astro.site)
+  return currentUrl.toString().endsWith("/") ? currentUrl : new URL(currentUrl.toString() + "/")
+}
 ---
 
 <title>
   {seo?.metaTitle ? `${seo.metaTitle} · ${defaultSeo.metaTitle}` : defaultSeo.metaTitle}
 </title>
+
+<link rel="canonical" href={getCanonicalUrl()} />
 <link rel="manifest" href="/manifest.webmanifest" />
 <link rel="icon" href={favicon.data.attributes.url} />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
