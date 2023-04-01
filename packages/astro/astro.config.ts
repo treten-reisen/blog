@@ -9,7 +9,7 @@ import { VitePWA } from "vite-plugin-pwa"
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://treten.reisen/",
+  site: "https://www.treten.reisen/",
   integrations: [
     react(),
     tailwind(),
@@ -28,7 +28,7 @@ export default defineConfig({
       VitePWA({
         registerType: "autoUpdate",
         manifest: {
-          scope: "https://treten.reisen/",
+          scope: "https://www.treten.reisen/",
           name: `treten.reisen`,
           short_name: `treten.reisen`,
           start_url: `/`,

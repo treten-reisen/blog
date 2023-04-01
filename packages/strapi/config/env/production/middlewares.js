@@ -20,12 +20,7 @@ module.exports = [
     config: {
       enabled: true,
       headers: "*",
-      origin: [
-        "https://treten.reisen",
-        "https://www.treten.reisen",
-        "https://strapi.treten.reisen",
-        "https://admin.treten.reisen",
-      ],
+      origin: ["https://www.treten.reisen", "https://strapi.treten.reisen", "https://admin.treten.reisen"],
     },
   },
   "strapi::poweredBy",
