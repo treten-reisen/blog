@@ -74,7 +74,7 @@ const article = await getArticle(id)
       <div class="mt-responsive w-full max-w-prose font-serif">
         <div class="font-sans">
           <Comments
-            url={new URL(`/articles/${article.data.attributes.slug}`, global.data.attributes.siteURL).toString()}
+            url={new URL(`/articles/${article.data.attributes.slug}/`, Astro.site).toString()}
             identifier={`treten-reisen.article.${article.data.id}`}
             title={article.data.attributes.seo.metaTitle || "treten.reisen"}
           />
