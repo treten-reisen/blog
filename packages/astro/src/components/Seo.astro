@@ -27,7 +27,7 @@ const absoluteShareImageUrl = fullSeo.shareImage?.src && new URL(fullSeo.shareIm
 const getCanonicalUrl = () => {
   if (canonicalURL) return canonicalURL
   const currentUrl = new URL(Astro.url.pathname.replace(/\/index\.html/, ""), Astro.site)
-  return currentUrl.toString().endsWith("/") ? currentUrl : new URL(currentUrl.toString() + "/")
+  return currentUrl.toString().endsWith("/") ? new URL(currentUrl.toString().replace(/\/$/, "")) : currentUrl
 }
 ---
 
