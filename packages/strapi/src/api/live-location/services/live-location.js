@@ -31,8 +31,8 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
         WHERE comps.component_type='shared.location'
         ORDER BY timestamp DESC
         ) AS loc) AS l
-    WHERE l.longitude!=l.last_longitude 
-    OR l.latitude!=l.last_latitude
+    WHERE (l.longitude!=l.last_longitude OR l.latitude!=l.last_latitude)
+    AND (l.timestamp >= '2023-04-03')
     `)
 
     // this is needed because raw responses differ from the local sqlite to the production postgres db

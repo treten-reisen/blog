@@ -7,4 +7,7 @@ module.exports = ({ env }) => ({
       salt: env("API_TOKEN_SALT"),
     },
   },
+  apiToken: {
+    salt: env("API_TOKEN_SALT"),
+  },
 })
