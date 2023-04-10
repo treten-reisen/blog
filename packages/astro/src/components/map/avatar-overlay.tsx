@@ -14,14 +14,14 @@ const addAvatar = (map: Map, avatarUrl: string, position: Feature<Point>) => {
     if (error) throw error
     if (!image) throw new Error("Image is not defined!")
     map.addImage("avatar", image)
-    map.addSource("point", {
+    map.addSource("avatar", {
       type: "geojson",
       data: position,
     })
     map.addLayer({
-      id: "point",
+      id: "avatar",
       type: "symbol",
-      source: "point",
+      source: "avatar",
       layout: {
         "icon-image": "avatar",
         "icon-size": 0.5,

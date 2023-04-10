@@ -16,6 +16,15 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
   },
   async history() {
     strapi.log.info(`Trying to get history from db...`)
+
+    const latest = await strapi.entityService
+      .findMany("api::live-location.live-location", {
+        fields: ["timestamp"],
+        sort: { timestamp: "DESC" },
+        populate: { location: "*" },
+      })
+      .then(it => it[0])
+
     const resp = await strapi.db.connection.raw(`
     SELECT timestamp, longitude, latitude FROM (
       SELECT *, 
@@ -41,6 +50,6 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
     const data = resp && resp.rows ? resp.rows : resp || []
 
     strapi.log.info(`Executed history query. Count: ${data.length}`)
-    return data
+    return [latest.location, ...data]
   },
 }))

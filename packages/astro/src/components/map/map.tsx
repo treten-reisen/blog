@@ -18,8 +18,8 @@ const Map = ({ avatarUrl, center, hideControls = false }: MapProps) => {
 
   return (
     <MapProvider center={position || center.geometry.coordinates} hideControls={hideControls}>
-      {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
       {<PathLayer />}
+      {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
     </MapProvider>
   )
 }
