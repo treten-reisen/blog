@@ -1,6 +1,11 @@
+import { useCallback } from "react"
+
+import { getLocationHistory } from "../../data/get-location-history"
+import useFetch from "../../hooks/use-fetch"
+
 const useLocationHistory = () => {
-  throw new Error("Not Implemented!")
-  // return useFetch<Feature<LineString>>(`${import.meta.env.PUBLIC_STRAPI_API_URL}/api/live-location/history`)
+  const fetchFunc = useCallback(() => getLocationHistory(), [])
+  return useFetch(fetchFunc)
 }
 
 export default useLocationHistory

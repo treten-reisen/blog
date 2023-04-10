@@ -2,6 +2,7 @@ import type { Feature, Point } from "geojson"
 
 import AvatarOverlay from "./avatar-overlay"
 import { MapProvider } from "./map.context"
+import PathLayer from "./path-layer"
 import useLatestLocation from "./use-latest-location"
 
 export type MapProps = {
@@ -18,7 +19,7 @@ const Map = ({ avatarUrl, center, hideControls = false }: MapProps) => {
   return (
     <MapProvider center={position || center.geometry.coordinates} hideControls={hideControls}>
       {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
-      {/* <PathLayer backendUrl={backendUrl} /> */}
+      {<PathLayer />}
     </MapProvider>
   )
 }
