@@ -9,7 +9,7 @@ import Layout from "../layouts/Layout.astro"
 const global = await getGlobal()
 const page = await getPage("live-standort")
 
-const avatarUrl = global.data.attributes.avatar.src
+const avatarUrl = global.data.attributes.avatar.htmlImage.src
 if (!avatarUrl) {
   throw new Error("No avatar found")
 }

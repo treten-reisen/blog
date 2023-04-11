@@ -18,7 +18,7 @@ const hero = await getHero()
 const global = await getGlobal()
 const page = await getPage("index")
 
-const avatarUrl = global.data.attributes.avatar.src
+const avatarUrl = global.data.attributes.avatar.htmlImage.src
 if (!avatarUrl) {
   throw new Error("No avatar found")
 }

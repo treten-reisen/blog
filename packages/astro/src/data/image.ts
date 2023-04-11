@@ -2,8 +2,9 @@ import { getImage } from "@astrojs/image"
 
 import type { StrapiImageData } from "./schema/strapi.schema"
 
-export const transformStrapiImage = async (image: StrapiImageData, size?: { width?: number; height?: number }) => {
-  return getImage({
+export const transformStrapiImage = async (image: StrapiImageData, size?: { width?: number; height?: number }) => ({
+  ...image,
+  htmlImage: await getImage({
     src: image.attributes.url,
     alt: image.attributes.alternativeText,
     format: "webp",
@@ -17,5 +18,5 @@ export const transformStrapiImage = async (image: StrapiImageData, size?: { widt
           ? image.attributes.width / image.attributes.height
           : undefined
         : undefined,
-  })
-}
+  }),
+})

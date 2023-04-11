@@ -29,6 +29,7 @@ export const strapiImageDataSchema = strapiEntitySchema(
     alternativeText: z.string(),
     width: z.nullable(z.number()).transform(width => width || undefined),
     height: z.nullable(z.number()).transform(width => width || undefined),
+    caption: z.string().nullable(),
   })
 )
 
