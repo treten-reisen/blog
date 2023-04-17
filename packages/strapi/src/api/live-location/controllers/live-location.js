@@ -3,7 +3,7 @@
  */
 
 const { createCoreController } = require("@strapi/strapi").factories
-const { lineString, point } = require("@turf/helpers")
+const { lineString, point, featureCollection } = require("@turf/helpers")
 
 module.exports = createCoreController("api::live-location.live-location", ({ strapi }) => ({
   async latest() {
@@ -28,5 +28,15 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
       locations.map(loc => [loc.longitude, loc.latitude]),
       { times: locations.map(loc => loc.timestamp) }
     )
+  },
+  async nights(ctx) {
+    const locations = await strapi.service("api::live-location.live-location").nights()
+
+    if (locations.length < 2) {
+      ctx.status = 404
+      return "There are less than two locations"
+    }
+
+    return featureCollection(locations.map(loc => point([loc.longitude, loc.latitude], { timestamp: loc.night_time })))
   },
 }))

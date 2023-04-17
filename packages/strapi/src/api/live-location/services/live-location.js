@@ -52,4 +52,31 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
     strapi.log.info(`Executed history query. Count: ${data.length}`)
     return [latest.location, ...data]
   },
+  async nights() {
+    const resp = await strapi.db.connection.raw(`
+    SELECT night_time, comp.longitude, comp.latitude FROM (
+      SELECT 
+        distinct min(timestamp) OVER (PARTITION BY date(timestamp)) as night_time
+      FROM live_locations 
+      WHERE extract(hour from timestamp) >= 2
+    ) AS l
+    JOIN live_locations loc
+    ON loc.timestamp=l.night_time
+    JOIN live_locations_components comps 
+    ON comps.entity_id=loc.id
+    JOIN components_shared_locations comp
+    ON comp.id=comps.component_id
+    WHERE comps.component_type='shared.location'
+      AND timestamp >= '2023-04-03'
+    ORDER BY night_time DESC
+    `)
+
+    // this is needed because raw responses differ from the local sqlite to the production postgres db
+    // postgres: { rows: [..data] }
+    // sqlite: [...data]
+    const data = resp && resp.rows ? resp.rows : resp || []
+
+    strapi.log.info(`Executed nights query. Count: ${data.length}`)
+    return data
+  },
 }))

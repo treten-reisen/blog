@@ -15,5 +15,10 @@ module.exports = {
       path: "/live-location/history",
       handler: "live-location.history",
     },
+    {
+      method: "GET",
+      path: "/live-location/nights",
+      handler: "live-location.nights",
+    },
   ],
 }
