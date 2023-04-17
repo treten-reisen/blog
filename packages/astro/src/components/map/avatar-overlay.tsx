@@ -7,9 +7,10 @@ import { useMap } from "./map.context"
 export type LatestLocationOverlayProps = {
   avatarUrl: string
   position: Position
+  onAdded?: () => void
 }
 
-const addAvatar = (map: Map, avatarUrl: string, position: Feature<Point>) => {
+const addAvatar = (map: Map, avatarUrl: string, position: Feature<Point>, cb?: () => void) => {
   map.loadImage(avatarUrl, function (error, image) {
     if (error) throw error
     if (!image) throw new Error("Image is not defined!")
@@ -27,10 +28,11 @@ const addAvatar = (map: Map, avatarUrl: string, position: Feature<Point>) => {
         "icon-size": 0.5,
       },
     })
+    cb?.()
   })
 }
 
-const AvatarOverlay = ({ avatarUrl, position }: LatestLocationOverlayProps) => {
+const AvatarOverlay = ({ avatarUrl, position, onAdded }: LatestLocationOverlayProps) => {
   const map = useMap()
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const AvatarOverlay = ({ avatarUrl, position }: LatestLocationOverlayProps) => {
       geometry: { type: "Point", coordinates: position },
       properties: {},
     }
-    addAvatar(map, avatarUrl, feature)
+    addAvatar(map, avatarUrl, feature, onAdded)
   }, [map])
   return <></>
 }
