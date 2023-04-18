@@ -1,50 +1,40 @@
-import type { FeatureCollection } from "geojson"
-import type { Map } from "maplibre-gl"
-import { useEffect } from "react"
+import type { Feature, Point, Position } from "geojson"
 
-import { useMap } from "./map.context"
+import Marker from "./marker"
 import useNightsLocations from "./use-nights-locations"
 
-export type NightsMarkersProps = {
-  onAdded?: () => void
+type NightMarkerProps = {
+  timestamp: string
+  position: Position
 }
 
-const addLocations = (map: Map, nights: FeatureCollection, cb?: () => void) => {
-  map.addSource("nights", {
-    type: "geojson",
-    data: nights,
-  })
-
-  map.addLayer(
-    {
-      id: "nights",
-      type: "circle",
-      source: "nights",
-      paint: {
-        "circle-radius": 5,
-        "circle-color": "#84cc16",
-        "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": 2,
-      },
-      filter: ["==", "$type", "Point"],
-    },
-    "avatar"
+const NightMarker = ({ timestamp, position }: NightMarkerProps) => {
+  return (
+    <Marker position={position}>
+      <button
+        className="h-3 w-3 rounded-full border-2 border-gray-50 bg-lime-500"
+        onClick={() => alert("test")}
+      ></button>
+    </Marker>
   )
-
-  cb?.()
 }
 
-const NightsMarkers = ({ onAdded }: NightsMarkersProps) => {
-  const map = useMap()
+const NightsMarkers = () => {
   const { data: nightsLocations } = useNightsLocations()
 
-  useEffect(() => {
-    if (nightsLocations) {
-      console.log(nightsLocations)
-      addLocations(map, nightsLocations, onAdded)
-    }
-  }, [map, nightsLocations])
-  return <></>
+  return (
+    <>
+      {nightsLocations?.features
+        .filter((feature): feature is Feature<Point, any> => feature.geometry.type === "Point")
+        .map(feature => (
+          <NightMarker
+            key={feature.properties.timestamp}
+            timestamp={feature.properties.timestamp}
+            position={feature.geometry.coordinates}
+          ></NightMarker>
+        ))}
+    </>
+  )
 }
 
 export default NightsMarkers

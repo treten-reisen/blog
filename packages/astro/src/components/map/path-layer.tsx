@@ -24,7 +24,7 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>) =
         "line-width": 3,
       },
     },
-    "nights"
+    "avatar"
   )
 }
 

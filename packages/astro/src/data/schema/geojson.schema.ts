@@ -2,12 +2,12 @@ import z from "zod"
 
 export const pointSchema = z.object({
   type: z.literal("Point"),
-  coordinates: z.tuple([z.number(), z.number()]),
+  coordinates: z.array(z.number()),
 })
 
 export const lineStringSchema = z.object({
   type: z.literal("LineString"),
-  coordinates: z.array(z.tuple([z.number(), z.number()])),
+  coordinates: z.array(z.array(z.number())),
 })
 
 export const featureSchema = <T extends typeof pointSchema | typeof lineStringSchema>(geometrySchema: T) =>
