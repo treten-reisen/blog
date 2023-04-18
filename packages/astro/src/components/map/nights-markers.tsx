@@ -1,50 +1,96 @@
-import type { FeatureCollection } from "geojson"
-import type { Map } from "maplibre-gl"
-import { useEffect } from "react"
+import type { Position } from "geojson"
+import { useEffect, useRef, useState } from "react"
 
-import { useMap } from "./map.context"
+import Popup from "../popup"
+
+import Marker from "./marker"
 import useNightsLocations from "./use-nights-locations"
 
-export type NightsMarkersProps = {
-  onAdded?: () => void
+import "./nights-markers.css"
+
+type NightMarkerProps = {
+  timestamp: string
+  position: Position
 }
 
-const addLocations = (map: Map, nights: FeatureCollection, cb?: () => void) => {
-  map.addSource("nights", {
-    type: "geojson",
-    data: nights,
+const determineScreenPosition = (el: HTMLElement) => {
+  const rect = el.getBoundingClientRect()
+  return [rect.left + rect.width / 2, rect.top + rect.height / 2] as const
+}
+
+const NightMarker = ({ timestamp, position }: NightMarkerProps) => {
+  const markerRef = useRef<HTMLDivElement>(null)
+
+  const [screenPosition, setScreenPosition] = useState<readonly [number, number] | undefined>()
+
+  const handleMouseEnter = () => {
+    if (!markerRef.current) return
+    setScreenPosition(determineScreenPosition(markerRef.current))
+  }
+
+  const handleMouseLeave = () => {
+    setScreenPosition(undefined)
+  }
+
+  const listenerRef = useRef(() => {
+    setScreenPosition(curr => {
+      if (!markerRef.current) return
+      const screenPos = determineScreenPosition(markerRef.current)
+      if (!curr) return undefined
+      return screenPos
+    })
   })
 
-  map.addLayer(
-    {
-      id: "nights",
-      type: "circle",
-      source: "nights",
-      paint: {
-        "circle-radius": 5,
-        "circle-color": "#84cc16",
-        "circle-stroke-color": "#ffffff",
-        "circle-stroke-width": 2,
-      },
-      filter: ["==", "$type", "Point"],
-    },
-    "avatar"
-  )
+  useEffect(() => {
+    if (screenPosition) {
+      document.body.addEventListener("mousemove", listenerRef.current)
+    } else {
+      document.body.removeEventListener("mousemove", listenerRef.current)
+    }
+    return () => {
+      document.body.removeEventListener("mousemove", listenerRef.current)
+    }
+  })
 
-  cb?.()
+  return (
+    <>
+      <Marker position={position}>
+        <div
+          ref={markerRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="h-3 w-3 rounded-full border-2 border-gray-50 bg-lime-500 hover:h-5 hover:w-5"
+        ></div>
+      </Marker>
+      {screenPosition && (
+        <Popup x={screenPosition[0]} y={screenPosition[1]}>
+          <div className="relative">
+            <div className="absolute bottom-0 left-0 mb-3 -translate-x-1/2 whitespace-nowrap rounded-sm border border-lime-600 bg-gray-50 p-2 shadow">
+              {new Intl.DateTimeFormat("de-DE", { year: "numeric", month: "long", day: "numeric" }).format(
+                new Date(timestamp)
+              )}
+            </div>
+          </div>
+        </Popup>
+      )}
+    </>
+  )
 }
 
-const NightsMarkers = ({ onAdded }: NightsMarkersProps) => {
-  const map = useMap()
+const NightsMarkers = () => {
   const { data: nightsLocations } = useNightsLocations()
 
-  useEffect(() => {
-    if (nightsLocations) {
-      console.log(nightsLocations)
-      addLocations(map, nightsLocations, onAdded)
-    }
-  }, [map, nightsLocations])
-  return <></>
+  return (
+    <>
+      {nightsLocations?.features.map(feature => (
+        <NightMarker
+          key={feature.properties.timestamp}
+          timestamp={feature.properties.timestamp}
+          position={feature.geometry.coordinates}
+        ></NightMarker>
+      ))}
+    </>
+  )
 }
 
 export default NightsMarkers

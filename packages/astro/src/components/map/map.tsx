@@ -1,5 +1,4 @@
 import type { Feature, Point } from "geojson"
-import { useState } from "react"
 
 import AvatarOverlay from "./avatar-overlay"
 import { MapProvider } from "./map.context"
@@ -18,14 +17,11 @@ const Map = ({ avatarUrl, center, hideControls = false }: MapProps) => {
 
   const position = latestLocation?.geometry.coordinates
 
-  const [avatarRendered, setAvatarRendered] = useState(false)
-  const [nightsRendererd, setNightsRendered] = useState(false)
-
   return (
     <MapProvider center={position || center.geometry.coordinates} hideControls={hideControls}>
-      {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} onAdded={() => setAvatarRendered(true)} />}
-      {avatarRendered && <NightsMarkers onAdded={() => setNightsRendered(true)} />}
-      {nightsRendererd && <PathLayer />}
+      <NightsMarkers />
+      <PathLayer />
+      {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
     </MapProvider>
   )
 }

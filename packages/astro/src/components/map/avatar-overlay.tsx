@@ -1,8 +1,6 @@
-import type { Feature, Point, Position } from "geojson"
-import type { Map } from "maplibre-gl"
-import { useEffect } from "react"
+import type { Position } from "geojson"
 
-import { useMap } from "./map.context"
+import Marker from "./marker"
 
 export type LatestLocationOverlayProps = {
   avatarUrl: string
@@ -10,40 +8,15 @@ export type LatestLocationOverlayProps = {
   onAdded?: () => void
 }
 
-const addAvatar = (map: Map, avatarUrl: string, position: Feature<Point>, cb?: () => void) => {
-  map.loadImage(avatarUrl, function (error, image) {
-    if (error) throw error
-    if (!image) throw new Error("Image is not defined!")
-    map.addImage("avatar", image)
-    map.addSource("avatar", {
-      type: "geojson",
-      data: position,
-    })
-    map.addLayer({
-      id: "avatar",
-      type: "symbol",
-      source: "avatar",
-      layout: {
-        "icon-image": "avatar",
-        "icon-size": 0.5,
-      },
-    })
-    cb?.()
-  })
-}
-
 const AvatarOverlay = ({ avatarUrl, position, onAdded }: LatestLocationOverlayProps) => {
-  const map = useMap()
-
-  useEffect(() => {
-    const feature: Feature<Point> = {
-      type: "Feature",
-      geometry: { type: "Point", coordinates: position },
-      properties: {},
-    }
-    addAvatar(map, avatarUrl, feature, onAdded)
-  }, [map])
-  return <></>
+  onAdded?.()
+  return (
+    <Marker position={position} zIndex={20}>
+      <div className="z-10 h-12 w-12 overflow-hidden rounded-full border-2 border-lime-500">
+        <img className="h-full w-full" src={avatarUrl} />
+      </div>
+    </Marker>
+  )
 }
 
 export default AvatarOverlay

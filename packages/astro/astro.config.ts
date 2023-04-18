@@ -23,6 +23,15 @@ export default defineConfig({
     robots(),
   ],
   vite: {
+    server: {
+      proxy: {
+        "/api": {
+          target: "https://strapi.treten.reisen",
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
     plugins: [
       macrosPlugin(),
       VitePWA({

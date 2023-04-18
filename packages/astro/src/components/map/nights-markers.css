@@ -1,0 +1,8 @@
+.nights-marker {
+  @apply flex h-3 w-3 justify-center rounded-full border-2 border-gray-50 bg-lime-500 hover:h-5 hover:w-5;
+
+  &__popup {
+    @apply absolute bottom-4 overflow-visible rounded-sm bg-gray-50 p-2;
+    z-index: 99999999;
+  }
+}

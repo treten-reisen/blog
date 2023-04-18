@@ -10,22 +10,19 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>) =
     type: "geojson",
     data: routeData,
   })
-  map.addLayer(
-    {
-      id: "route",
-      type: "line",
-      source: "route",
-      layout: {
-        "line-join": "round",
-        "line-cap": "round",
-      },
-      paint: {
-        "line-color": "#84cc16",
-        "line-width": 3,
-      },
+  map.addLayer({
+    id: "route",
+    type: "line",
+    source: "route",
+    layout: {
+      "line-join": "round",
+      "line-cap": "round",
     },
-    "nights"
-  )
+    paint: {
+      "line-color": "#84cc16",
+      "line-width": 3,
+    },
+  })
 }
 
 const PathLayer = () => {
