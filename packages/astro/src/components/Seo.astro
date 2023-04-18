@@ -12,7 +12,6 @@ export type Props = {
 }
 
 const { type, seo, global, canonicalURL } = Astro.props as Props
-const { url } = Astro
 
 const { siteName, defaultSeo, favicon, siteURL } = global.attributes
 
@@ -22,7 +21,7 @@ const fullSeo = {
   ...seo,
 }
 
-const absoluteShareImageUrl = fullSeo.shareImage?.src && new URL(fullSeo.shareImage.src, siteURL)
+const absoluteShareImageUrl = fullSeo.shareImage?.htmlImage.src && new URL(fullSeo.shareImage.htmlImage.src, siteURL)
 
 const getCanonicalUrl = () => {
   if (canonicalURL) return canonicalURL
@@ -42,7 +41,7 @@ const getCanonicalUrl = () => {
 <meta name="msapplication-TileColor" content={colors.lime[100]} />
 <meta name="theme-color" content={colors.lime[100]} />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="og:url" content={`${siteURL}${url.pathname}`} />
+<meta property="og:url" content={getCanonicalUrl()} />
 <meta property="og:type" content={type} />
 <meta property="og:locale" content="de_DE" />
 <meta property="og:site_name" content={siteName} />
