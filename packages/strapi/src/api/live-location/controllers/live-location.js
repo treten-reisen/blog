@@ -37,6 +37,10 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
       return "There are less than two locations"
     }
 
-    return featureCollection(locations.map(loc => point([loc.longitude, loc.latitude], { timestamp: loc.night_time })))
+    return featureCollection(
+      locations.map((loc, index) =>
+        point([loc.longitude, loc.latitude], { timestamp: loc.night_time }, { id: index + 1 })
+      )
+    )
   },
 }))
