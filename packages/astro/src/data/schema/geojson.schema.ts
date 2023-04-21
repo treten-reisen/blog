@@ -21,6 +21,7 @@ export const featureSchema = <
     type: z.literal("Feature"),
     properties: propertiesSchema,
     geometry: geometrySchema,
+    id: z.union([z.string(), z.number()]).optional(),
   })
 
 export const featureCollectionSchema = <T extends ZodSchema>(featureSchema: T) =>

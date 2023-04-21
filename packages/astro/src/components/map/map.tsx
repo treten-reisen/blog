@@ -1,8 +1,7 @@
 import type { Feature, Point } from "geojson"
 
-import AvatarOverlay from "./avatar-overlay"
+import AvatarMarker from "./avatar-marker"
 import { MapProvider } from "./map.context"
-import NightsMarkers from "./nights-markers"
 import PathLayer from "./path-layer"
 import useLatestLocation from "./use-latest-location"
 
@@ -19,9 +18,8 @@ const Map = ({ avatarUrl, center, hideControls = false }: MapProps) => {
 
   return (
     <MapProvider center={position || center.geometry.coordinates} hideControls={hideControls}>
-      <NightsMarkers />
+      {position && <AvatarMarker avatarUrl={avatarUrl} position={position} />}
       <PathLayer />
-      {position && <AvatarOverlay avatarUrl={avatarUrl} position={position} />}
     </MapProvider>
   )
 }
