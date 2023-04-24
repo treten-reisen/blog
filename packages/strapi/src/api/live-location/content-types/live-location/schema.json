@@ -20,7 +20,8 @@
     },
     "timestamp": {
       "type": "datetime",
-      "required": true
+      "required": true,
+      "unique": true
     }
   }
 }

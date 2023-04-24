@@ -95,10 +95,13 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>, n
     if (clickedGeometry.type !== "Point") return
     const coordinates = clickedGeometry.coordinates
     const timestamp = clickedFeature.properties?.timestamp
-
-    const date = Intl.DateTimeFormat("de-DE", { year: "numeric", month: "long", day: "numeric" }).format(
-      new Date(timestamp)
-    )
+    const date = new Date(timestamp)
+    const dateFormatted = Intl.DateTimeFormat("de-DE", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    }).format(date)
 
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
@@ -110,7 +113,7 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>, n
     map.setFeatureState({ source: "nights", id: clickedFeature.id }, { open: true })
     new Popup({ closeButton: false })
       .setLngLat([coordinates[0], coordinates[1]])
-      .setText(date)
+      .setText(dateFormatted)
       .on("close", () => {
         map.setFeatureState({ source: "nights", id: clickedFeature.id }, { open: false })
       })

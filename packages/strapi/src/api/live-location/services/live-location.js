@@ -42,6 +42,7 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
         ) AS loc) AS l
     WHERE (l.longitude!=l.last_longitude OR l.latitude!=l.last_latitude)
     AND (l.timestamp >= '2023-04-03')
+    ORDER BY timestamp DESC
     `)
 
     // this is needed because raw responses differ from the local sqlite to the production postgres db
@@ -56,9 +57,9 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
     const resp = await strapi.db.connection.raw(`
     SELECT night_time, comp.longitude, comp.latitude FROM (
       SELECT 
-        distinct min(timestamp) OVER (PARTITION BY date(timestamp)) as night_time
-      FROM live_locations 
-      WHERE extract(hour from timestamp) >= 2
+        distinct max(timestamp) OVER (PARTITION BY date(timestamp)) as night_time
+      FROM live_locations
+	  WHERE timestamp < CURRENT_DATE
     ) AS l
     JOIN live_locations loc
     ON loc.timestamp=l.night_time
@@ -67,7 +68,7 @@ module.exports = createCoreService("api::live-location.live-location", ({ strapi
     JOIN components_shared_locations comp
     ON comp.id=comps.component_id
     WHERE comps.component_type='shared.location'
-      AND timestamp >= '2023-04-03'
+      AND timestamp >= '2023-04-02'
     ORDER BY night_time DESC
     `)
 
