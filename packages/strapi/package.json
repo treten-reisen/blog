@@ -14,25 +14,25 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.6.1",
-    "@strapi/plugin-i18n": "4.8.2",
-    "@strapi/plugin-users-permissions": "4.8.2",
-    "@strapi/strapi": "4.8.2",
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.10.1",
+    "@strapi/plugin-i18n": "4.10.1",
+    "@strapi/plugin-users-permissions": "4.10.1",
+    "@strapi/strapi": "4.10.1",
     "@turf/helpers": "6.5.0",
     "@turf/projection": "^6.5.0",
-    "better-sqlite3": "8.2.0",
+    "better-sqlite3": "8.3.0",
     "pg": "8.10.0",
-    "react-select": "5.7.2"
+    "react-select": "5.7.3"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.21.3",
+    "@babel/eslint-parser": "^7.21.8",
     "@strapi-community/eslint-config": "^0.4.3",
-    "eslint": "^8.36.0",
+    "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
-    "lint-staged": "^13.2.0",
-    "prettier": "^2.8.7"
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8"
   },
   "strapi": {
     "uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
