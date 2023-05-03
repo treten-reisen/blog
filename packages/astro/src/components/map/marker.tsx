@@ -24,7 +24,7 @@ const Marker = ({ children, position, zIndex, ...markerOptions }: MarkerProps) =
     return () => {
       marker.remove()
     }
-  }, [map])
+  }, [map, markerOptions, position])
 
   return <>{createPortal(children, ref.current)}</>
 }

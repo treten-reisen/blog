@@ -10,9 +10,10 @@ const Popup = ({ children, x, y }: PopupProps) => {
   const anchor = useRef(document.createElement("div"))
 
   useEffect(() => {
-    document.body.prepend(anchor.current)
+    const anchorElement = anchor.current
+    document.body.prepend(anchorElement)
     return () => {
-      document.body.removeChild(anchor.current)
+      document.body.removeChild(anchorElement)
     }
   }, [])
 

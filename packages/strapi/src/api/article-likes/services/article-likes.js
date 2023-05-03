@@ -1,9 +1,7 @@
-'use strict';
-
 /**
  * article-likes service
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+const { createCoreService } = require("@strapi/strapi").factories
 
-module.exports = createCoreService('api::article-likes.article-likes');
+module.exports = createCoreService("api::article-likes.article-likes")

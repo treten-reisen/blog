@@ -15,13 +15,7 @@
     },
     "platform": {
       "type": "enumeration",
-      "enum": [
-        "facebook",
-        "twitter",
-        "instagram",
-        "youtube",
-        "komoot"
-      ]
+      "enum": ["facebook", "twitter", "instagram", "youtube", "komoot"]
     }
   }
 }

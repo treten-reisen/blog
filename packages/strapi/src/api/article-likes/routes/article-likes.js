@@ -1,9 +1,7 @@
-'use strict';
-
 /**
  * article-likes router
  */
 
-const { createCoreRouter } = require('@strapi/strapi').factories;
+const { createCoreRouter } = require("@strapi/strapi").factories
 
-module.exports = createCoreRouter('api::article-likes.article-likes');
+module.exports = createCoreRouter("api::article-likes.article-likes")

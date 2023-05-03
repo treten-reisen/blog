@@ -46,7 +46,7 @@ export const MapProvider = ({ children, center, hideControls = false }: PropsWit
   useEffect(() => {
     if (!center || !mapRef.current) return
     mapRef.current.setCenter([center[0], center[1]])
-  }, [center, mapRef.current])
+  }, [center])
 
   useEffect(() => {
     if (!mapRef.current) return

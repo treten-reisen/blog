@@ -1,12 +1,15 @@
-import type { Feature, FeatureCollection, GeoJsonProperties, LineString } from "geojson"
-import { Map, Popup } from "maplibre-gl"
-import { useEffect } from "react"
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { Feature, FeatureCollection, GeoJsonProperties, LineString, Position } from "geojson"
+import { Map, Popup, PopupOptions } from "maplibre-gl"
+import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 
 import { useMap } from "./map.context"
 import useLocationHistory from "./use-location-history"
 import useNightsLocations from "./use-nights-locations"
 
-const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>, nights: FeatureCollection) => {
+const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>) => {
   map.addSource("route", {
     type: "geojson",
     data: routeData,
@@ -37,7 +40,13 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>, n
       "line-width": 3,
     },
   })
+}
 
+const addNights = (
+  map: Map,
+  nights: FeatureCollection,
+  openNightPopup: (position: Position, timestamp: string, onClose: () => void) => void
+) => {
   map.addSource("nights", {
     type: "geojson",
     data: nights,
@@ -95,13 +104,6 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>, n
     if (clickedGeometry.type !== "Point") return
     const coordinates = clickedGeometry.coordinates
     const timestamp = clickedFeature.properties?.timestamp
-    const date = new Date(timestamp)
-    const dateFormatted = Intl.DateTimeFormat("de-DE", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      timeZone: "UTC",
-    }).format(date)
 
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
@@ -111,13 +113,10 @@ const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>, n
     }
 
     map.setFeatureState({ source: "nights", id: clickedFeature.id }, { open: true })
-    new Popup({ closeButton: false })
-      .setLngLat([coordinates[0], coordinates[1]])
-      .setText(dateFormatted)
-      .on("close", () => {
-        map.setFeatureState({ source: "nights", id: clickedFeature.id }, { open: false })
-      })
-      .addTo(map)
+
+    openNightPopup([coordinates[0], coordinates[1]], timestamp, () => {
+      map.setFeatureState({ source: "nights", id: clickedFeature.id }, { open: false })
+    })
   })
 }
 
@@ -128,11 +127,58 @@ const PathLayer = () => {
 
   useEffect(() => {
     if (locationHistory && nightsLocations) {
-      addRoute(map, locationHistory, nightsLocations)
-    }
-  }, [map, locationHistory])
+      addRoute(map, locationHistory)
 
-  return <></>
+      addNights(map, nightsLocations, (position, timestamp, onClose) => {
+        const date = new Date(timestamp)
+        const dateString = Intl.DateTimeFormat("de-DE", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          timeZone: "UTC",
+        }).format(date)
+        setClickedNight({ position, dateString, onClose })
+      })
+    }
+  }, [map, locationHistory, nightsLocations])
+
+  const [clickedNight, setClickedNight] = useState<{ position: Position; dateString: string; onClose: () => void }>()
+
+  return (
+    <>
+      {clickedNight && (
+        <MapPopup closeButton={false} position={clickedNight.position} onClose={clickedNight.onClose}>
+          <div className="flex items-center font-sans text-xs text-gray-700">
+            <FontAwesomeIcon icon={solid("moon")} className="mr-2 text-sm" />
+            <span>{clickedNight.dateString}</span>
+          </div>
+        </MapPopup>
+      )}
+    </>
+  )
+}
+
+type MapPopupProps = React.PropsWithChildren<PopupOptions & { position: Position; onClose?: () => void }>
+
+const MapPopup = ({ children, position, onClose, ...popupOptions }: MapPopupProps) => {
+  const map = useMap()
+  const ref = useRef(document.createElement("div"))
+
+  useEffect(() => {
+    const popup = new Popup(popupOptions)
+    popup
+      .setLngLat([position[0], position[1]])
+      .on("close", () => {
+        onClose?.()
+      })
+      .setDOMContent(ref.current)
+      .addTo(map)
+    return () => {
+      popup.remove()
+    }
+  }, [map, onClose, popupOptions, position])
+
+  return <>{createPortal(children, ref.current)}</>
 }
 
 export default PathLayer

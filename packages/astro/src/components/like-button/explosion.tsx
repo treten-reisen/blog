@@ -8,17 +8,17 @@ import { useTransitionClass } from "./use-transition-class"
 import "./explosion.css"
 
 const HeartExplosionParticle = ({ explode, index }: { explode: boolean; index: number }) => {
-  useLayoutEffect(() => {
-    if (explode) {
-      startExplodeAnimation()
-    }
-  }, [explode])
-
   const {
     className: explodeAnimationClassName,
     start: startExplodeAnimation,
     end: endExplodeAnimation,
   } = useTransitionClass("explosion")
+
+  useLayoutEffect(() => {
+    if (explode) {
+      startExplodeAnimation()
+    }
+  }, [explode, startExplodeAnimation])
 
   return (
     <div
