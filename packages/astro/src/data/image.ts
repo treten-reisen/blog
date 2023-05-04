@@ -1,10 +1,11 @@
 import { getImage } from "@astrojs/image"
 
+import { encodeImageToBlurhashURL } from "../helpers/blurhash"
+
 import type { StrapiImageData } from "./schema/strapi.schema"
 
-export const transformStrapiImage = async (image: StrapiImageData, size?: { width?: number; height?: number }) => ({
-  ...image,
-  htmlImage: await getImage({
+export const transformStrapiImage = async (image: StrapiImageData, size?: { width?: number; height?: number }) => {
+  const htmlImage = await getImage({
     src: image.attributes.url,
     alt: image.attributes.alternativeText,
     format: "webp",
@@ -18,7 +19,18 @@ export const transformStrapiImage = async (image: StrapiImageData, size?: { widt
           ? image.attributes.width / image.attributes.height
           : undefined
         : undefined,
-  }),
-})
+  })
+
+  const url = new URL(htmlImage.src!, import.meta.env.SITE).toString()
+  console.log(url)
+
+  const blurhash = await encodeImageToBlurhashURL(url)
+
+  return {
+    ...image,
+    htmlImage,
+    blurhash,
+  }
+}
 
 export type TransformedStrapiImage = Awaited<ReturnType<typeof transformStrapiImage>>
