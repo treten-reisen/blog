@@ -20,3 +20,5 @@ export const transformStrapiImage = async (image: StrapiImageData, size?: { widt
         : undefined,
   }),
 })
+
+export type TransformedStrapiImage = Awaited<ReturnType<typeof transformStrapiImage>>

@@ -2,6 +2,7 @@ import type { StrapiBlockComponentName, StrapiBlockOfType } from "../../data/sch
 
 import StrapiEmbeddedMediaRenderer from "./embedded-media"
 import StrapiMediaRenderer from "./media"
+import StrapiMediaGalleryRenderer from "./media-gallery"
 import StrapiRichTextRenderer from "./rich-text"
 
 export const componentsMap: {
@@ -12,4 +13,5 @@ export const componentsMap: {
   "shared.media": StrapiMediaRenderer,
   "shared.rich-text": StrapiRichTextRenderer,
   "shared.embedded-media": StrapiEmbeddedMediaRenderer,
+  "shared.media-gallery": StrapiMediaGalleryRenderer,
 }

@@ -41,4 +41,7 @@ const hero = await getHero()
     <Footer socialMedia={global.data.attributes.socialMedia} />
     <script src="../index.ts"></script>
   </body>
+
+  <!-- Next line adds a buffer for scroll overflow on safari  -->
+  <div aria-hidden="true" class="fixed bottom-0 -z-10 h-1/2 w-full bg-gray-700"></div>
 </html>

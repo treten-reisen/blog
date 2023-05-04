@@ -18,7 +18,12 @@
     },
     "blocks": {
       "type": "dynamiczone",
-      "components": ["shared.media", "shared.rich-text", "shared.embedded-media"]
+      "components": [
+        "shared.media",
+        "shared.rich-text",
+        "shared.embedded-media",
+        "shared.media-gallery"
+      ]
     },
     "slug": {
       "type": "uid",
@@ -39,7 +44,9 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "listed": {
       "type": "boolean",

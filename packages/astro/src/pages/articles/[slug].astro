@@ -40,7 +40,7 @@ const article = await getArticle(id)
   <div class="flex flex-col items-start gap-responsive md:flex-row">
     <article class="flex h-full w-full max-w-prose flex-col font-serif">
       <div class="mb-6 flex-1 sm:mb-responsive">
-        <BlocksRenderer blocks={article.data.attributes.blocks} />
+        <BlocksRenderer blocks={article.data.attributes.blocks} client:load />
         <div class="mt-6 flex w-full max-w-prose justify-end">
           <span class="font-sans text-gray-500">
             {

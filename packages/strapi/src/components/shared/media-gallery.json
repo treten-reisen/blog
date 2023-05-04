@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_media_gallery",
+  "info": {
+    "displayName": "Media Gallery",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "files": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
