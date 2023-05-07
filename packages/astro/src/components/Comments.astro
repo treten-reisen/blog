@@ -1,0 +1,36 @@
+---
+export type Props = {
+  identifier: string
+  title: string
+  url: string
+}
+
+const { identifier, url } = Astro.props as Props
+---
+
+<style is:global>
+  #disqus_thread iframe:focus-visible {
+    outline: none;
+  }
+</style>
+
+<div id="disqus_thread" class="my-responsive"></div>
+<script is:inline define:vars={{ url, identifier }}>
+  // eslint-disable-next-line no-unused-vars
+  var disqus_config = function () {
+    this.page.url = url
+    this.page.identifier = identifier
+  }
+
+  ;(function () {
+    // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement("script")
+    s.src = "https://treten-reisen.disqus.com/embed.js"
+    s.setAttribute("data-timestamp", (+new Date()).toString())
+    ;(d.head || d.body).appendChild(s)
+  })()
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>

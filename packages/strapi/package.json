@@ -27,7 +27,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.8",
     "@strapi-community/eslint-config": "^0.4.3",
-    "eslint": "^8.39.0",
+    "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
