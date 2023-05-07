@@ -1,0 +1,41 @@
+---
+import * as dateFns from "date-fns"
+
+import type { StrapiArticleListItem } from "../data/get-article-list"
+
+import LazyImage from "./lazy-image"
+
+export type Props = { articles: StrapiArticleListItem[] }
+
+const { articles } = Astro.props as Props
+---
+
+<div class="grid gap-6 sm:grid-cols-fit-sm sm:gap-responsive lg:grid-cols-fit-lg">
+  {
+    articles.map(article => (
+      <a href={`/articles/${article.attributes.slug}`} class="flex flex-col space-y-2">
+        <header class="flex flex-col space-y-2">
+          <div class="h-52 lg:h-64">
+            <LazyImage
+              blurhashConfig={article.attributes.image.blurhash}
+              src={article.attributes.image.htmlImage.src || undefined}
+              alt={article.attributes.image.htmlImage.alt || undefined}
+              loading="lazy"
+              client:load
+            />
+          </div>
+
+          <h2 class="font-sans text-lg font-bold tracking-tight text-gray-700">{article.attributes.title}</h2>
+        </header>
+        <section class="font-sans tracking-tight text-gray-600">{article.attributes.summary}</section>
+        <footer class="self-end font-sans text-base tracking-tight text-gray-500">
+          {dateFns.intlFormat(
+            article.attributes.createdAt,
+            { year: "numeric", month: "long", day: "numeric" },
+            { locale: "de" }
+          )}
+        </footer>
+      </a>
+    ))
+  }
+</div>

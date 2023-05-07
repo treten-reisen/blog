@@ -3994,6 +3994,7 @@ __metadata:
     astro-sitemap: ^0.6.0
     autoprefixer: ^10.4.14
     babel-plugin-macros: ^3.1.0
+    blurhash: ^2.0.5
     classnames: ^2.3.2
     date-fns: ^2.30.0
     eslint: ^8.39.0
@@ -6578,6 +6579,13 @@ __metadata:
     inherits: ^2.0.4
     readable-stream: ^3.4.0
   checksum: a7a438ee0bc540e80b8eb68cc1ad759a9c87df06874a99411d701d01cc0b36f30cd20050512ac3e77090138890960e07bfee724f3ee6619bb39a569f5cc3b1bc
+  languageName: node
+  linkType: hard
+
+"blurhash@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "blurhash@npm:2.0.5"
+  checksum: aa4d6855bbaae116065b118a7b1e889648c15047e72048c28bab3db426a042ce1dc032a30c55a52da6140c314534841b984ab11cc68303668dde446d6ca53bc6
   languageName: node
   linkType: hard
 

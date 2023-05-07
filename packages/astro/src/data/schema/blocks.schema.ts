@@ -21,7 +21,9 @@ export type StrapiBlockRichText = z.infer<typeof strapiBlockRichTextSchema>
 const strapiBlockMediaSchema = z.object({
   id: z.number(),
   __component: z.literal("shared.media"),
-  file: strapiSingleSchema(strapiImageDataSchema).transform(async image => transformStrapiImage(image.data)),
+  file: strapiSingleSchema(strapiImageDataSchema).transform(async image =>
+    transformStrapiImage(image.data, { height: 384 * 2 })
+  ),
 })
 
 export type StrapiBlockMedia = z.infer<typeof strapiBlockMediaSchema>
