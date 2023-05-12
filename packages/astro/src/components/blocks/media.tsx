@@ -13,10 +13,10 @@ const StrapiMediaRenderer = ({ data }: StrapiMediaRendererProps) => {
   const width = Math.round((rawWidth / rawHeight) * height)
 
   return (
-    <div className="my-8 flex w-full max-w-prose justify-center md:my-responsive">
+    <div className="my-8 flex w-full justify-center md:my-responsive">
       <a aria-label="Bild öffnen" className="cursor-zoom-in" href={data.file.attributes.url || undefined}>
         <figure className="flex flex-col items-center">
-          <div style={{ width: `${width}px`, height: `${height}px` }}>
+          <div style={{ width: `min(100%, ${width}px)` }}>
             <LazyImage
               blurhashConfig={data.file.blurhash}
               src={data.file.htmlImage.src || undefined}
