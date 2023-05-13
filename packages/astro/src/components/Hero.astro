@@ -1,0 +1,42 @@
+---
+import type { StrapiHero } from "../data/schema/hero.schema"
+import { encodeImageToBlurhashURL } from "../helpers/blurhash"
+
+import "./hero.css"
+import LazyImage from "./lazy-image"
+
+export type Props = {
+  hero: StrapiHero
+}
+
+const {
+  hero: {
+    attributes: { title, logo, image },
+  },
+} = Astro.props as Props
+
+const blurhash = await encodeImageToBlurhashURL(image)
+---
+
+<header class="relative h-hero w-full bg-cover shadow-lg">
+  <div class="absolute z-0 h-full w-full">
+    <LazyImage
+      blurhashConfig={blurhash}
+      src={image.htmlImage.src || undefined}
+      alt={image.htmlImage.alt || undefined}
+      loading="eager"
+      client:load
+    />
+  </div>
+  <div class="hero-shade absolute z-10 h-full w-full"></div>
+  <div class="absolute z-20 h-full w-full">
+    <div class="flex h-full flex-col items-stretch px-responsive py-4 md:container">
+      <a href="/">
+        <img class="h-6 self-start" src={logo.data.attributes.url} alt="Logo" />
+      </a>
+      <div class="flex flex-1 items-center justify-center">
+        <h1 class="text-center font-sans text-3xl font-bold tracking-tighter text-gray-50">{title}</h1>
+      </div>
+    </div>
+  </div>
+</header>

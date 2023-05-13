@@ -1,0 +1,13 @@
+---
+import type { StrapiArticleListItem } from "../../data/get-article-list"
+
+import ArticleListItem from "./ArticleListItem.astro"
+
+export type Props = { articles: StrapiArticleListItem[] }
+
+const { articles } = Astro.props as Props
+---
+
+<div class="grid gap-6 sm:grid-cols-fit-sm sm:gap-responsive lg:grid-cols-fit-lg">
+  {articles.map(article => <ArticleListItem article={article} />)}
+</div>

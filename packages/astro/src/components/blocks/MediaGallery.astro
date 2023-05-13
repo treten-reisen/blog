@@ -1,0 +1,14 @@
+---
+import type { StrapiBlockMediaGallery } from "../../data/schema/blocks.schema"
+import MediaGallery from "../media-gallery/media-gallery"
+
+export type Props = {
+  data: StrapiBlockMediaGallery
+}
+
+const { data } = Astro.props as Props
+---
+
+<div class="my-8 h-96 w-full max-w-prose">
+  <MediaGallery files={data.files} client:visible />
+</div>

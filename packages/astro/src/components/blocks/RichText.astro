@@ -1,0 +1,11 @@
+---
+import type { StrapiBlockRichText } from "../../data/schema/blocks.schema"
+
+export type Props = {
+  data: StrapiBlockRichText
+}
+
+const { data } = Astro.props as Props
+---
+
+<div class="prose" set:html={data.html} />

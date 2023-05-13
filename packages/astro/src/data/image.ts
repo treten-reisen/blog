@@ -1,7 +1,5 @@
 import { getImage } from "@astrojs/image"
 
-import { encodeImageToBlurhashURL } from "../helpers/blurhash"
-
 import type { StrapiImageData } from "./schema/strapi.schema"
 
 export const transformStrapiImage = async (image: StrapiImageData, size?: { width?: number; height?: number }) => {
@@ -25,16 +23,9 @@ export const transformStrapiImage = async (image: StrapiImageData, size?: { widt
     aspectRatio,
   })
 
-  const blurhash = await encodeImageToBlurhashURL(
-    image.attributes.url,
-    width || Math.round((height || 0) * (aspectRatio || 1)),
-    height || Math.round((width || 0) / (aspectRatio || 1))
-  )
-
   return {
     ...image,
     htmlImage,
-    blurhash,
   }
 }
 

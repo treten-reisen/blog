@@ -1,0 +1,44 @@
+---
+import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+import type { StrapiSocialMedia } from "../../data/schema/social-media.schema"
+
+import KomootIcon from "./KomootIcon.astro"
+
+type Props = {
+  socialMedia: StrapiSocialMedia
+}
+
+const { socialMedia } = Astro.props as Props
+
+const getTitle = () => {
+  switch (socialMedia.platform) {
+    case "facebook":
+      return "Facebook"
+    case "instagram":
+      return "Instagram"
+    case "twitter":
+      return "Twtter"
+    case "youtube":
+      return "YouTube"
+  }
+}
+---
+
+<a
+  href={socialMedia.url}
+  title={getTitle()}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="flex items-center space-x-2"
+>
+  <span class="w-6">
+    {socialMedia.platform === "komoot" && <KomootIcon />}
+    {socialMedia.platform === "facebook" && <FontAwesomeIcon icon={faFacebook} />}
+    {socialMedia.platform === "instagram" && <FontAwesomeIcon icon={faInstagram} />}
+    {socialMedia.platform === "twitter" && <FontAwesomeIcon icon={faTwitter} />}
+  </span>
+  <span class="sr-only">{getTitle()}</span>
+  <span class="text-base text-gray-300">{socialMedia.username}</span>
+</a>

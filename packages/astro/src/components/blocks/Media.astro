@@ -1,0 +1,39 @@
+---
+import type { StrapiBlockMedia } from "../../data/schema/blocks.schema"
+import { encodeImageToBlurhashURL } from "../../helpers/blurhash"
+import LazyImage from "../lazy-image"
+
+export type Props = {
+  data: StrapiBlockMedia
+}
+
+const { data } = Astro.props as Props
+
+const rawHeight = typeof data.file.htmlImage.height === "number" ? data.file.htmlImage.height : 0
+const rawWidth = typeof data.file.htmlImage.width === "number" ? data.file.htmlImage.width : 0
+
+const aspectRatio = rawWidth / rawHeight
+
+const maxHeight = rawHeight >= 384 ? 384 : rawHeight
+const maxWidth = Math.round(aspectRatio * maxHeight)
+
+const blurhash = await encodeImageToBlurhashURL(data.file)
+---
+
+<div class="my-8 flex w-full justify-center md:my-responsive">
+  <a aria-label="Bild öffnen" class="cursor-zoom-in" href={data.file.attributes.url || undefined}>
+    <figure class="flex flex-col items-center">
+      <div style={{ width: `min(100%, ${maxWidth}px)`, aspectRatio: aspectRatio }}>
+        <LazyImage
+          blurhashConfig={blurhash}
+          src={data.file.htmlImage.src || undefined}
+          alt={data.file.htmlImage.alt || undefined}
+          loading="lazy"
+          aspectRatio={aspectRatio}
+          client:load
+        />
+      </div>
+      <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.attributes.caption}</figcaption>
+    </figure>
+  </a>
+</div>

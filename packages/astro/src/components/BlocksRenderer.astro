@@ -1,0 +1,31 @@
+---
+import type { StrapiBlock } from "../data/schema/blocks.schema"
+
+import EmbeddedMedia from "./blocks/EmbeddedMedia.astro"
+import Media from "./blocks/Media.astro"
+import MediaGallery from "./blocks/MediaGallery.astro"
+import RichText from "./blocks/RichText.astro"
+
+export type Props = { blocks: StrapiBlock[] }
+
+const { blocks } = Astro.props as Props
+---
+
+<div>
+  {
+    blocks.map(block => {
+      switch (block.__component) {
+        case "shared.media":
+          return <Media data={block} />
+        case "shared.rich-text":
+          return <RichText data={block} />
+        case "shared.embedded-media":
+          return <EmbeddedMedia data={block} />
+        case "shared.media-gallery":
+          return <MediaGallery data={block} />
+        default:
+          return <div>unknown component</div>
+      }
+    })
+  }
+</div>

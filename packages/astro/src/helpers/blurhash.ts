@@ -1,17 +1,12 @@
 import { decode, encode, isBlurhashValid } from "blurhash"
 import sharp from "sharp"
+import type { TransformedStrapiImage } from "../data/image"
 
-export async function encodeImageToBlurhashURL(
-  url: string,
-  width: number,
-  height: number,
-  fit?: keyof sharp.FitEnum | undefined
-) {
-  const response = await fetch(url)
-  const image = sharp(await response.arrayBuffer())
+export async function encodeImageToBlurhashURL(image: TransformedStrapiImage) {
+  const response = await fetch(image.attributes.url)
+  const sharpimage = sharp(await response.arrayBuffer())
 
-  const { data, info } = await image
-    .resize({ width, height, fit })
+  const { data, info } = await sharpimage
     .resize(32, 32, {
       fit: "inside",
     })
@@ -25,7 +20,7 @@ export async function encodeImageToBlurhashURL(
 
   if (!isBlurhashValid(blurhash)) throw new Error("Generated invalid blurhash!")
 
-  await sharp(decode(blurhash, 32, 32))
+  await sharp(decode(blurhash, info.width, info.height))
 
-  return { blurhash, width: 32, height: 32 }
+  return { blurhash, width: info.width, height: info.height }
 }

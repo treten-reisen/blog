@@ -1,7 +1,7 @@
 ---
-import ArticleList from "../components/ArticleList.astro"
-import Hero from "../components/hero"
-import HeroMapOverlay from "../components/hero-map-overlay"
+import ArticleList from "../components/article-list/ArticleList.astro"
+import Hero from "../components/Hero.astro"
+import HeroMapOverlay from "../components/HeroMapOverlay.astro"
 import Map from "../components/map/map"
 import Seo from "../components/Seo.astro"
 import { getArticleList } from "../data/get-article-list"
@@ -31,7 +31,7 @@ const center = await getLiveLocation()
   </Fragment>
 
   <div class="w-full" slot="header">
-    <Hero hero={hero.data} client:load />
+    <Hero hero={hero.data} />
     <div class="relative h-20 w-full bg-gray-200 shadow">
       <Map avatarUrl={avatarUrl} center={center} hideControls client:only="react" />
       <HeroMapOverlay />

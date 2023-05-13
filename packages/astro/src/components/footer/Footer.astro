@@ -1,0 +1,26 @@
+---
+import "./footer.css"
+import type { StrapiSocialMedia } from "../../data/schema/social-media.schema"
+
+import SocialMediaLink from "./SocialMediaLink.astro"
+
+export type Props = {
+  socialMedia: StrapiSocialMedia[]
+}
+
+const { socialMedia } = Astro.props as Props
+---
+
+<footer class="bg-gray-700 text-gray-100">
+  <div class="px-responsive py-4 md:container">
+    <div class="flex flex-wrap-reverse items-end justify-between gap-y-2">
+      <div class="flex flex-col">
+        <a href="/articles/impressum">Impressum</a>
+        <a href="/articles/datenschutzerklaerung">Datenschutz</a>
+      </div>
+      <div class="text-2xl">
+        {socialMedia.map(item => <SocialMediaLink socialMedia={item} />)}
+      </div>
+    </div>
+  </div>
+</footer>
