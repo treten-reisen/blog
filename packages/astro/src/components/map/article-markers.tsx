@@ -46,12 +46,12 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
             className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 shadow-lg"
             style={{ backgroundImage: `url(${articleFeature.properties.thumbnailUrl})` }}
             aria-label={articleFeature.properties.article.attributes.title}
-            onClick={ev => {
+            onClickCapture={ev => {
               ev.stopPropagation()
               ev.preventDefault()
-              setTimeout(() => {
-                setClickedArticle(articleFeature)
-              })
+              setClickedArticle(article =>
+                article?.properties.article.id === articleFeature.properties.article.id ? undefined : articleFeature
+              )
             }}
           />
         </Marker>
