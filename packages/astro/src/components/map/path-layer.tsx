@@ -1,10 +1,10 @@
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type { Feature, FeatureCollection, GeoJsonProperties, LineString, Position } from "geojson"
-import { Map, Popup, PopupOptions } from "maplibre-gl"
-import { useEffect, useRef, useState } from "react"
-import { createPortal } from "react-dom"
+import type { Map } from "maplibre-gl"
+import { useEffect, useState } from "react"
 
+import MapPopup from "./map-popup"
 import { useMap } from "./map.context"
 import useLocationHistory from "./use-location-history"
 import useNightsLocations from "./use-nights-locations"
@@ -60,14 +60,14 @@ const addNights = (
       "circle-radius": [
         "case",
         ["boolean", ["feature-state", "hover"], false],
-        8,
+        6,
         ["boolean", ["feature-state", "open"], false],
-        8,
-        5,
+        6,
+        4,
       ],
       "circle-color": "#84cc16",
       "circle-stroke-color": "#ffffff",
-      "circle-stroke-width": 2,
+      "circle-stroke-width": 1,
     },
     filter: ["==", "$type", "Point"],
   })
@@ -156,29 +156,6 @@ const PathLayer = () => {
       )}
     </>
   )
-}
-
-type MapPopupProps = React.PropsWithChildren<PopupOptions & { position: Position; onClose?: () => void }>
-
-const MapPopup = ({ children, position, onClose, ...popupOptions }: MapPopupProps) => {
-  const map = useMap()
-  const ref = useRef(document.createElement("div"))
-
-  useEffect(() => {
-    const popup = new Popup(popupOptions)
-    popup
-      .setLngLat([position[0], position[1]])
-      .on("close", () => {
-        onClose?.()
-      })
-      .setDOMContent(ref.current)
-      .addTo(map)
-    return () => {
-      popup.remove()
-    }
-  }, [map, onClose, popupOptions, position])
-
-  return <>{createPortal(children, ref.current)}</>
 }
 
 export default PathLayer

@@ -1,9 +1,15 @@
 ---
+import type { Position } from "geojson"
+
 import Map from "../components/map/map"
 import Seo from "../components/Seo.astro"
+import { getArticleList, StrapiArticleListItem } from "../data/get-article-list"
 import { getGlobal } from "../data/get-global"
 import { getLiveLocation } from "../data/get-live-location"
+import { getLocationHistory } from "../data/get-location-history"
 import { getPage } from "../data/get-page"
+import { transformStrapiImage } from "../data/image"
+import { encodeImageToBlurhashURL } from "../helpers/blurhash"
 import Layout from "../layouts/Layout.astro"
 
 const global = await getGlobal()
@@ -14,6 +20,54 @@ if (!avatarUrl) {
   throw new Error("No avatar found")
 }
 const center = await getLiveLocation()
+
+const articles = await getArticleList()
+
+const locationHistory = await getLocationHistory()
+
+const findLocation = (article: StrapiArticleListItem) => {
+  const publishDate = article.attributes.publishedAt
+  if (!publishDate) return null
+
+  const locationIndex = locationHistory.properties.times.findIndex((_, index) => {
+    const val = locationHistory.properties.times[index]
+    const nextVal = locationHistory.properties.times[index + 1]
+
+    if (!val || val.getTime() < publishDate.getTime()) {
+      return false
+    }
+    if (nextVal && nextVal.getTime() > publishDate.getTime()) {
+      return false
+    }
+    return true
+  })
+
+  return locationHistory.geometry.coordinates[locationIndex]
+}
+
+const getThumbnailUrl = async (article: StrapiArticleListItem) => {
+  const image = article.attributes.image
+  var transformed = await transformStrapiImage(image, { width: 64 })
+  return transformed.htmlImage.src!
+}
+
+const articleFeatures = {
+  type: "FeatureCollection" as const,
+  features: await Promise.all(
+    articles.data
+      .map(article => ({ article, location: findLocation(article) }))
+      .filter((obj): obj is { article: StrapiArticleListItem; location: Position } => Boolean(obj.location))
+      .map(async ({ article, location }) => ({
+        type: "Feature" as const,
+        properties: {
+          article,
+          thumbnailUrl: await getThumbnailUrl(article),
+          blurhash: await encodeImageToBlurhashURL(article.attributes.image),
+        },
+        geometry: { type: "Point" as const, coordinates: location },
+      }))
+  ),
+}
 ---
 
 <Layout noPadding>
@@ -21,5 +75,5 @@ const center = await getLiveLocation()
     <Seo global={global.data} seo={page.attributes.seo} type="website" />
   </Fragment>
 
-  <Map avatarUrl={avatarUrl} center={center} client:only="react" />
+  <Map avatarUrl={avatarUrl} articles={articleFeatures} center={center} client:only="react" />
 </Layout>
