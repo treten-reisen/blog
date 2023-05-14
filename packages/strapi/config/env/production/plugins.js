@@ -5,7 +5,7 @@ module.exports = ({ env }) => ({
       providerOptions: {
         bucketName: env("ASSET_BUCKET_NAME"),
         publicFiles: true,
-        uniform: false,
+        uniform: true,
         basePath: "",
       },
     },
