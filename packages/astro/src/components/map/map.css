@@ -1,0 +1,11 @@
+.map__container {
+  .maplibregl-popup-content,
+  .mapboxgl-popup-content {
+    @apply overflow-hidden bg-gray-50 p-2;
+  }
+
+  .mapboxgl-popup-close-button,
+  .maplibregl-popup-close-button {
+    @apply -right-px -top-px flex h-6 w-6 items-center justify-center rounded-b-full rounded-tl-full bg-gray-50 text-center text-sm hover:bg-gray-200;
+  }
+}

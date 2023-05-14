@@ -44,15 +44,16 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
         <Marker key={articleFeature.properties.article.id} position={articleFeature.geometry.coordinates}>
           <button
             className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 shadow-lg"
+            style={{ backgroundImage: `url(${articleFeature.properties.thumbnailUrl})` }}
+            aria-label={articleFeature.properties.article.attributes.title}
             onClick={ev => {
               ev.stopPropagation()
+              ev.preventDefault()
               setTimeout(() => {
                 setClickedArticle(articleFeature)
               })
             }}
-          >
-            <img className="h-full w-full" src={articleFeature.properties.thumbnailUrl} />
-          </button>
+          />
         </Marker>
       ))}
       {clickedArticle && (
@@ -62,7 +63,8 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
           closeOnClick={false}
           closeOnMove={false}
           onClose={() => {
-            setClickedArticle(undefined)
+            const closedId = clickedArticle.properties.article.id
+            setClickedArticle(article => (article?.properties.article.id === closedId ? undefined : article))
           }}
         >
           <a

@@ -3,6 +3,7 @@ import { AttributionControl, Map, NavigationControl } from "maplibre-gl"
 import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from "react"
 
 import "maplibre-gl/dist/maplibre-gl.css"
+import "./map.css"
 
 export type MapContext = {
   map?: Map
@@ -60,7 +61,7 @@ export const MapProvider = ({ children, center, hideControls = false }: PropsWit
 
   return (
     <>
-      <div className="h-full w-full" ref={elementRef} />
+      <div className="map__container h-full w-full" ref={elementRef} />
       <mapContext.Provider
         value={{
           map: mapRef.current,
