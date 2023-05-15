@@ -11,7 +11,7 @@ export async function get() {
     site: import.meta.env.SITE,
     items: articles.data.map(article => ({
       title: article.attributes.title,
-      link: import.meta.env.BASE_URL + article.attributes.slug,
+      link: `${import.meta.env.BASE_URL}/articles/${article.attributes.slug}/index.html`,
       pubDate: article.attributes.publishedAt || new Date(),
     })),
     customData: `<language>de-de</language>`,

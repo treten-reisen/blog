@@ -41,7 +41,7 @@ const LazyImage = ({ blurhashConfig, aspectRatio, onLoad, ...imageProps }: LazyI
       </div>
       <Image
         className={`h-full w-full object-cover`}
-        style={{ aspectRatio: aspectRatio && `auto ${aspectRatio}` }}
+        style={{ aspectRatio: aspectRatio && `${aspectRatio}` }}
         {...imageProps}
         onLoad={handleLoaded}
         ref={imgRef}

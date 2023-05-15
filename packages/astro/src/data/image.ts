@@ -14,13 +14,19 @@ export const transformStrapiImage = async (image: StrapiImageData, size?: { widt
         : undefined
       : undefined
 
+  console.log({
+    image: image.attributes.url,
+    width: width || (height && aspectRatio && height * aspectRatio),
+    height: height || (width && aspectRatio && width / aspectRatio),
+    attributes: { width: image.attributes.width, height: image.attributes.height },
+  })
+
   const htmlImage = await getImage({
     src: image.attributes.url,
     alt: image.attributes.alternativeText,
     format: "webp",
-    width,
-    height,
-    aspectRatio,
+    width: width || (height && aspectRatio && height * aspectRatio),
+    height: height || (width && aspectRatio && width / aspectRatio),
   })
 
   return {
