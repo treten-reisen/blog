@@ -2,7 +2,6 @@ import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useCallback, useRef, useState } from "react"
 
-import "./media-gallery.css"
 import type { TransformedStrapiImage } from "../../data/image"
 import { useSizeListener } from "../../hooks/use-size-listener"
 
@@ -83,11 +82,17 @@ const MediaGallery = ({ files }: MediaGalleryProps) => {
   }, [])
 
   return (
-    <div onKeyDown={handleKeyDown} tabIndex={0} role="tablist" aria-label="Bildergalerie" className="media-gallery">
+    <div
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="tablist"
+      aria-label="Bildergalerie"
+      className="relative h-full w-full"
+    >
       <button
         aria-label="Vorheriges Bild anzeigen"
         onClick={handleClickPrev}
-        className="media-gallery__nav-button media-gallery__nav-button-prev"
+        className="absolute left-0 top-1/2 z-10 mx-4 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-gray-900 bg-opacity-70 text-gray-50 hover:bg-gray-700 hover:bg-opacity-70"
       >
         <span className="media-gallery__nav-button-icon">
           <FontAwesomeIcon icon={solid("chevron-left")} />
@@ -96,13 +101,15 @@ const MediaGallery = ({ files }: MediaGalleryProps) => {
       <button
         aria-label="Nächstes Bild anzeigen"
         onClick={handleClickNext}
-        className="media-gallery__nav-button media-gallery__nav-button-next"
+        className="absolute right-0 top-1/2 z-10 mx-4 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-gray-900 bg-opacity-70 text-gray-50 hover:bg-gray-700 hover:bg-opacity-70"
       >
-        <span className="media-gallery__nav-button-icon">
-          <FontAwesomeIcon icon={solid("chevron-right")} />
-        </span>
+        <FontAwesomeIcon icon={solid("chevron-right")} />
       </button>
-      <div className="media-gallery__items-container" onScroll={handleScroll} ref={galleryItemsContainerRef}>
+      <div
+        className="flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:my-responsive"
+        onScroll={handleScroll}
+        ref={galleryItemsContainerRef}
+      >
         {files.map((file, index) => (
           <MediaGalleryItem
             key={file.id}
