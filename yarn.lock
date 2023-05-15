@@ -3814,13 +3814,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@strapi-community/strapi-provider-upload-google-cloud-storage@npm:4.10.2":
-  version: 4.10.2
-  resolution: "@strapi-community/strapi-provider-upload-google-cloud-storage@npm:4.10.2"
+"@strapi-community/strapi-provider-upload-google-cloud-storage@npm:4.10.5":
+  version: 4.10.5
+  resolution: "@strapi-community/strapi-provider-upload-google-cloud-storage@npm:4.10.5"
   dependencies:
     "@google-cloud/storage": ^6.10.0
     slugify: ^1.6.6
-  checksum: d91a4dc52c998d7b8adcfe4f3e18b7b8a825780b71aef57c852c8789f9145f490a217d9b5be7c63546ca450df4ce9391b0c6d189d29f773d42e99ac71b15cc72
+  checksum: b8f89fcb8d716ea6d095b67aa642df8c18d0c7a3e5b471d13605eae3be775571116dc8d441b3029f94f961274d3a5214c505c49542c2c8a257b1bc6afde6b90a
   languageName: node
   linkType: hard
 
@@ -4552,7 +4552,7 @@ __metadata:
   dependencies:
     "@babel/eslint-parser": ^7.21.8
     "@strapi-community/eslint-config": ^0.4.3
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": 4.10.2
+    "@strapi-community/strapi-provider-upload-google-cloud-storage": 4.10.5
     "@strapi/plugin-i18n": 4.10.5
     "@strapi/plugin-users-permissions": 4.10.5
     "@strapi/strapi": 4.10.5
