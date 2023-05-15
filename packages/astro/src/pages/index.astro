@@ -32,10 +32,10 @@ const center = await getLiveLocation()
 
   <div class="w-full" slot="header">
     <Hero hero={hero.data} />
-    <div class="relative h-20 w-full bg-gray-200 shadow">
+    <section class="relative h-20 w-full bg-gray-200 shadow">
       <Map avatarUrl={avatarUrl} center={center} hideControls client:only="react" />
       <HeroMapOverlay />
-    </div>
+    </section>
   </div>
   <ArticleList articles={list.data} />
 </Layout>

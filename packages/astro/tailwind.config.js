@@ -34,6 +34,10 @@ module.exports = {
       md: "960px",
       lg: "1440px",
     },
+    backgroundImage: {
+      "hero-shade":
+        "linear-gradient(180deg, rgba(75, 85, 99, 0.5) 0%, rgba(227, 227, 227, 0) 50.31%, rgba(227, 227, 227, 0) 100%)",
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 }

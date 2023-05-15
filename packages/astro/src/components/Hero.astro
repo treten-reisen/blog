@@ -2,7 +2,6 @@
 import type { StrapiHero } from "../data/schema/hero.schema"
 import { encodeImageToBlurhashURL } from "../helpers/blurhash"
 
-import "./hero.css"
 import LazyImage from "./lazy-image"
 
 export type Props = {
@@ -28,7 +27,7 @@ const blurhash = await encodeImageToBlurhashURL(image)
       client:load
     />
   </div>
-  <div class="hero-shade absolute z-10 h-full w-full"></div>
+  <div class="absolute z-10 h-full w-full bg-hero-shade"></div>
   <div class="absolute z-20 h-full w-full">
     <div class="flex h-full flex-col items-stretch px-responsive py-4 md:container">
       <a href="/">

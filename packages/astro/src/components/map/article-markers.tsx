@@ -1,11 +1,13 @@
 import * as dateFns from "date-fns"
 import type { Feature, FeatureCollection, Point } from "geojson"
+import type { LngLatLike } from "maplibre-gl"
 import { useState } from "react"
 
 import type { StrapiArticleListItem } from "../../data/get-article-list"
 import LazyImage from "../lazy-image"
 
 import MapPopup from "./map-popup"
+import { useMap } from "./map.context"
 import Marker from "./marker"
 
 export type ArticleMarkersProps = {
@@ -24,6 +26,7 @@ export type ArticleMarkersProps = {
 }
 
 const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
+  const map = useMap()
   const [clickedArticle, setClickedArticle] = useState<
     Feature<
       Point,
@@ -46,6 +49,15 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
             className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 shadow-lg"
             style={{ backgroundImage: `url(${articleFeature.properties.thumbnailUrl})` }}
             aria-label={articleFeature.properties.article.attributes.title}
+            onFocus={() => {
+              const coords = [
+                articleFeature.geometry.coordinates[0],
+                articleFeature.geometry.coordinates[1],
+              ] as LngLatLike
+              if (!map.getBounds().contains(coords)) {
+                map.panTo(coords)
+              }
+            }}
             onClickCapture={ev => {
               ev.stopPropagation()
               ev.preventDefault()
@@ -69,7 +81,14 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
         >
           <a
             href={`/articles/${clickedArticle.properties.article.attributes.slug}`}
+            aria-label={`Gehe zu Artikel: "${clickedArticle.properties.article.attributes.title}"`}
             className="flex flex-col space-y-2"
+            autoFocus
+            onKeyDown={ev => {
+              if (ev.key === "Escape") {
+                setClickedArticle(undefined)
+              }
+            }}
           >
             <header className="flex flex-col space-y-2">
               <div className="h-32">
@@ -89,11 +108,13 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
               {clickedArticle.properties.article.attributes.summary}
             </section>
             <footer className="self-end font-sans tracking-tight text-gray-500">
-              {dateFns.intlFormat(
-                clickedArticle.properties.article.attributes.createdAt,
-                { year: "numeric", month: "long", day: "numeric" },
-                { locale: "de" }
-              )}
+              <time dateTime={dateFns.format(clickedArticle.properties.article.attributes.createdAt, "yyyy-MM-dd")}>
+                {dateFns.intlFormat(
+                  clickedArticle.properties.article.attributes.createdAt,
+                  { year: "numeric", month: "long", day: "numeric" },
+                  { locale: "de" }
+                )}
+              </time>
             </footer>
           </a>
         </MapPopup>

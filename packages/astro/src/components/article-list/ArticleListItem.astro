@@ -27,12 +27,14 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image)
   </header>
   <section class="font-sans tracking-tight text-gray-600">{article.attributes.summary}</section>
   <footer class="self-end font-sans text-base tracking-tight text-gray-500">
-    {
-      dateFns.intlFormat(
-        article.attributes.createdAt,
-        { year: "numeric", month: "long", day: "numeric" },
-        { locale: "de" }
-      )
-    }
+    <time datetime={dateFns.format(article.attributes.createdAt, "yyyy-MM-dd")}>
+      {
+        dateFns.intlFormat(
+          article.attributes.createdAt,
+          { year: "numeric", month: "long", day: "numeric" },
+          { locale: "de" }
+        )
+      }
+    </time>
   </footer>
 </a>

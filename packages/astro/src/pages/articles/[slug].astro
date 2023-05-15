@@ -45,17 +45,27 @@ const article = await getArticle(id)
           <span class="font-sans text-gray-500">
             {
               article.data.attributes.publishedAt &&
-                (article.data.attributes.publishedAt.toDateString() === article.data.attributes.updatedAt.toDateString()
-                  ? dateFns.intlFormat(
+                (article.data.attributes.publishedAt.toDateString() ===
+                article.data.attributes.updatedAt.toDateString() ? (
+                  <time datetime={dateFns.format(article.data.attributes.publishedAt, "yyyy-MM-dd")}>
+                    {dateFns.intlFormat(
                       article.data.attributes.publishedAt,
                       { year: "numeric", month: "long", day: "numeric" },
                       { locale: "de" }
-                    )
-                  : `aktualisiert am ${dateFns.intlFormat(
-                      article.data.attributes.updatedAt,
-                      { year: "numeric", month: "long", day: "numeric" },
-                      { locale: "de" }
-                    )}`)
+                    )}
+                  </time>
+                ) : (
+                  <Fragment>
+                    aktualisiert am{" "}
+                    <time datetime={dateFns.format(article.data.attributes.updatedAt, "yyyy-MM-dd")}>
+                      {`${dateFns.intlFormat(
+                        article.data.attributes.updatedAt,
+                        { year: "numeric", month: "long", day: "numeric" },
+                        { locale: "de" }
+                      )}`}
+                    </time>
+                  </Fragment>
+                ))
             }
           </span>
         </div>

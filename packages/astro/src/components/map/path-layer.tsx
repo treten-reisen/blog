@@ -60,10 +60,10 @@ const addNights = (
       "circle-radius": [
         "case",
         ["boolean", ["feature-state", "hover"], false],
-        6,
+        5,
         ["boolean", ["feature-state", "open"], false],
-        6,
-        4,
+        5,
+        3,
       ],
       "circle-color": "#84cc16",
       "circle-stroke-color": "#ffffff",
@@ -72,9 +72,20 @@ const addNights = (
     filter: ["==", "$type", "Point"],
   })
 
+  map.addLayer({
+    id: "nights-cursor-box",
+    type: "circle",
+    source: "nights",
+    paint: {
+      "circle-radius": 15,
+      "circle-opacity": 0,
+    },
+    filter: ["==", "$type", "Point"],
+  })
+
   let hoveredStateId: string | number | null = null
 
-  map.on("mousemove", "nights", function (e) {
+  map.on("mousemove", "nights-cursor-box", function (e) {
     if (!e.features || e.features.length <= 0) return
     if (hoveredStateId) {
       map.getCanvas().style.cursor = ""
@@ -89,7 +100,7 @@ const addNights = (
     }
   })
 
-  map.on("mouseleave", "nights", function () {
+  map.on("mouseleave", "nights-cursor-box", function () {
     if (hoveredStateId) {
       map.getCanvas().style.cursor = ""
       map.setFeatureState({ source: "nights", id: hoveredStateId }, { hover: false })
@@ -97,7 +108,7 @@ const addNights = (
     hoveredStateId = null
   })
 
-  map.on("click", "nights", function (e) {
+  map.on("click", "nights-cursor-box", function (e) {
     if (!e.features || e.features.length <= 0) return
     const clickedFeature = e.features[0]
     const clickedGeometry = clickedFeature.geometry
