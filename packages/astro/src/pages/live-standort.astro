@@ -47,7 +47,7 @@ const findLocation = (article: StrapiArticleListItem) => {
 
 const getThumbnailUrl = async (article: StrapiArticleListItem) => {
   const image = article.attributes.image
-  var transformed = await transformStrapiImage(image, { width: 64 })
+  var transformed = await transformStrapiImage(image, { width: 128 })
   return transformed.htmlImage.src!
 }
 

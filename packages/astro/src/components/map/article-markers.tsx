@@ -46,7 +46,7 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
       {articles.features.map(articleFeature => (
         <Marker key={articleFeature.properties.article.id} position={articleFeature.geometry.coordinates}>
           <button
-            className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 shadow-lg"
+            className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 bg-center shadow-lg"
             style={{ backgroundImage: `url(${articleFeature.properties.thumbnailUrl})` }}
             aria-label={articleFeature.properties.article.attributes.title}
             onFocus={() => {
