@@ -75,4 +75,8 @@ jobs:
           gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/sitemap-*.xml || true
           gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/*.png || true
           gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/browserconfig.xml || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" \
+                            -h "Content-Type: application/xml; charset=utf-8" \
+                            -h "x-content-type-options: nosniff" \
+                            $WEB_BUCKET_URL/rss/styles.xsl || true
           gsutil cors set asset-cors.json $ASSET_BUCKET_URL || true
