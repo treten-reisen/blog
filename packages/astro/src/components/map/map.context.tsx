@@ -1,9 +1,9 @@
+import classnames from "classnames"
 import type { Position } from "geojson"
 import { AttributionControl, Map, NavigationControl } from "maplibre-gl"
 import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from "react"
 
 import "maplibre-gl/dist/maplibre-gl.css"
-import "./map.css"
 
 export type MapContext = {
   map?: Map
@@ -61,7 +61,14 @@ export const MapProvider = ({ children, center, hideControls = false }: PropsWit
 
   return (
     <>
-      <div className="map__container h-full w-full" ref={elementRef} />
+      <div
+        className={classnames(
+          "h-full w-full",
+          "[&_.mapboxgl-popup-content]:bg-gray-50 [&_.mapboxgl-popup-content]:p-2 [&_.maplibregl-popup-content]:overflow-hidden",
+          "[&_.mapboxgl-popup-close-button:hover]:bg-gray-200 [&_.mapboxgl-popup-close-button]:-right-px [&_.mapboxgl-popup-close-button]:-top-px [&_.mapboxgl-popup-close-button]:flex [&_.mapboxgl-popup-close-button]:h-6 [&_.mapboxgl-popup-close-button]:w-6 [&_.mapboxgl-popup-close-button]:items-center [&_.mapboxgl-popup-close-button]:justify-center [&_.mapboxgl-popup-close-button]:rounded-b-full [&_.mapboxgl-popup-close-button]:rounded-tl-full [&_.mapboxgl-popup-close-button]:bg-gray-50 [&_.mapboxgl-popup-close-button]:text-center [&_.mapboxgl-popup-close-button]:text-sm"
+        )}
+        ref={elementRef}
+      />
       <mapContext.Provider
         value={{
           map: mapRef.current,
