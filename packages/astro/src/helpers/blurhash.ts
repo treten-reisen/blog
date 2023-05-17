@@ -1,5 +1,6 @@
 import { decode, encode, isBlurhashValid } from "blurhash"
 import sharp from "sharp"
+
 import type { TransformedStrapiImage } from "../data/image"
 
 export async function encodeImageToBlurhashURL(image: TransformedStrapiImage) {

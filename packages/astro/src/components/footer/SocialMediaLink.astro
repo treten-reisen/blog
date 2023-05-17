@@ -22,6 +22,8 @@ const getTitle = () => {
       return "Twtter"
     case "youtube":
       return "YouTube"
+    case "komoot":
+      return "komoot"
   }
 }
 ---
@@ -31,15 +33,15 @@ const getTitle = () => {
   title={getTitle()}
   target="_blank"
   rel="noopener noreferrer"
-  class="flex items-center space-x-2"
+  class="flex h-7 items-center space-x-2"
 >
-  <span class="w-6">
+  <div class="flex h-full w-8 items-center justify-center" aria-hidden="true">
     {socialMedia.platform === "komoot" && <KomootIcon />}
-    {socialMedia.platform === "facebook" && <FontAwesomeIcon icon={faFacebook} />}
-    {socialMedia.platform === "instagram" && <FontAwesomeIcon icon={faInstagram} />}
-    {socialMedia.platform === "twitter" && <FontAwesomeIcon icon={faTwitter} />}
-    {socialMedia.platform === "youtube" && <FontAwesomeIcon icon={faYoutube} />}
-  </span>
-  <span class="sr-only">{getTitle()}</span>
-  <span class="text-base text-gray-300">{socialMedia.username}</span>
+    {socialMedia.platform === "facebook" && <FontAwesomeIcon size="1x" icon={faFacebook} />}
+    {socialMedia.platform === "instagram" && <FontAwesomeIcon size="1x" icon={faInstagram} />}
+    {socialMedia.platform === "twitter" && <FontAwesomeIcon size="1x" icon={faTwitter} />}
+    {socialMedia.platform === "youtube" && <FontAwesomeIcon size="1x" icon={faYoutube} />}
+  </div>
+  <div class="sr-only">{getTitle()}</div>
+  <div class="flex h-full items-center justify-center text-base text-gray-300">{socialMedia.username}</div>
 </a>
