@@ -1,5 +1,5 @@
 ---
-import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import type { StrapiSocialMedia } from "../../data/schema/social-media.schema"
@@ -38,6 +38,7 @@ const getTitle = () => {
     {socialMedia.platform === "facebook" && <FontAwesomeIcon icon={faFacebook} />}
     {socialMedia.platform === "instagram" && <FontAwesomeIcon icon={faInstagram} />}
     {socialMedia.platform === "twitter" && <FontAwesomeIcon icon={faTwitter} />}
+    {socialMedia.platform === "youtube" && <FontAwesomeIcon icon={faYoutube} />}
   </span>
   <span class="sr-only">{getTitle()}</span>
   <span class="text-base text-gray-300">{socialMedia.username}</span>
