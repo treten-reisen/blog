@@ -5,9 +5,5 @@
     "description": ""
   },
   "options": {},
-  "attributes": {
-    "content": {
-      "type": "text"
-    }
-  }
+  "attributes": {}
 }
