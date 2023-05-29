@@ -110,7 +110,7 @@ const NavMenu = ({ items, currentUrl, orientation, color }: NavMenuProps) => {
           <li key={url}>
             <a
               className={classnames({
-                "font-bold": exact ? currentUrl === url : currentUrl.startsWith(url),
+                "font-semibold": exact ? currentUrl === url : currentUrl.startsWith(url),
                 "text-gray-50": color === "bright" && (exact ? currentUrl === url : currentUrl.startsWith(url)),
                 "text-gray-900": color === "dark" && (exact ? currentUrl === url : currentUrl.startsWith(url)),
                 "hover:text-gray-50": color === "bright",
