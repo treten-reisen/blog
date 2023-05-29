@@ -4,7 +4,6 @@ import { config } from "@fortawesome/fontawesome-svg-core"
 import Footer from "../components/footer/Footer.astro"
 import Header from "../components/Header.astro"
 import { getGlobal } from "../data/get-global"
-import { getHero } from "../data/get-hero"
 import "./layout.css"
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
@@ -18,7 +17,6 @@ export type Props = {
 const { noPadding = false, disableIndexing = false } = Astro.props as Props
 
 const global = await getGlobal()
-const hero = await getHero()
 ---
 
 <html class="flex h-full flex-col">
@@ -31,9 +29,9 @@ const hero = await getHero()
     <slot name="head" />
   </head>
 
-  <body class="flex flex-shrink-0 flex-grow flex-col justify-between bg-gray-50 text-gray-900">
+  <body class="flex flex-shrink-0 flex-grow flex-col justify-between bg-gray-100 text-gray-900">
     <slot name="header">
-      <Header logoUrl={hero.data.attributes.logo.data.attributes.url} />
+      <Header logoUrl={global.data.attributes.logo.data.attributes.url} />
     </slot>
     <main class:list={["flex-grow", "relative", { "md:container p-6 sm:p-responsive": !noPadding }]}>
       <slot />

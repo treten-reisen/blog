@@ -33,9 +33,9 @@ const Map = ({ avatarUrl, center, hideControls = false, articles }: MapProps) =>
 
   return (
     <MapProvider center={position || center.geometry.coordinates} hideControls={hideControls}>
-      {position && <AvatarMarker avatarUrl={avatarUrl} position={position} />}
       <PathLayer />
       {articles && <ArticleMarkers articles={articles} />}
+      {position && <AvatarMarker avatarUrl={avatarUrl} position={position} />}
     </MapProvider>
   )
 }

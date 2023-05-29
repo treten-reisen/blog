@@ -10,12 +10,15 @@ const strapiGlobalResponseSchema = strapiSingleSchema(strapiGlobalSchema)
 export type StrapiGlobalResponse = z.infer<typeof strapiGlobalResponseSchema>
 
 export const getGlobal = async () => {
-  const response = await fetch(
-    `${
-      import.meta.env.PUBLIC_STRAPI_API_URL
-    }/api/global?populate[favicon]=%2A&populate[defaultSeo][populate]=%2A&populate[socialMedia][populate]=%2A&populate[avatar]=%2A`,
-    setAuthHeaders()
-  )
+  const params = new URLSearchParams({
+    "populate[favicon]": "*",
+    "populate[defaultSeo][populate]": "*",
+    "populate[socialMedia][populate]": "*",
+    "populate[avatar]": "*",
+    "populate[logo]": "*",
+  })
+
+  const response = await fetch(`${import.meta.env.PUBLIC_STRAPI_API_URL}/api/global?${params}`, setAuthHeaders())
 
   return parseResponse(response, strapiGlobalResponseSchema)
 }

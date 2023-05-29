@@ -1,0 +1,19 @@
+---
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+import { getArticleList } from "../data/get-article-list"
+
+import ArticleListItem from "./article-list/ArticleListItem.astro"
+
+const articles = await getArticleList({ pagination: { page: 1, pageSize: 1 } })
+const latestArticle = articles.data[0]
+---
+
+<section class="flex flex-col gap-5 bg-gray-50 p-4 shadow-sm md:p-responsive-1/2">
+  <h2 class="font-sans text-xl font-semibold tracking-tight">Aktuellster Blogeintrag</h2>
+  <ArticleListItem article={latestArticle} />
+  <a class="self-end" href="/articles">
+    <span class="underline">Alle Blogeinträge</span><FontAwesomeIcon className="ml-1" icon={faChevronRight} />
+  </a>
+</section>

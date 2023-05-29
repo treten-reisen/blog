@@ -23,7 +23,15 @@ export type StrapiArticleListResponse = z.infer<typeof strapiArticleListResponse
 
 export type StrapiArticleListItem = StrapiArticleListResponse["data"][number]
 
-export const getArticleList = async ({ includeUnlisted = false }: { includeUnlisted?: boolean } = {}) => {
+export type GetArticleListOptions = {
+  includeUnlisted?: boolean
+  pagination?: {
+    page: number
+    pageSize: number
+  }
+}
+
+export const getArticleList = async ({ includeUnlisted = false, pagination }: GetArticleListOptions = {}) => {
   const publicationState = import.meta.env.STRAPI_PUBLICATION_STATE === "preview" ? "preview" : "live"
 
   const params = new URLSearchParams({
@@ -34,6 +42,11 @@ export const getArticleList = async ({ includeUnlisted = false }: { includeUnlis
 
   if (!includeUnlisted) {
     params.append("filters[listed][$eq]", "true")
+  }
+
+  if (pagination) {
+    params.append("pagination[page]", pagination.page.toString())
+    params.append("pagination[pageSize]", pagination.pageSize.toString())
   }
 
   const url = new URL(`${import.meta.env.PUBLIC_STRAPI_API_URL}/api/articles?${params}`)

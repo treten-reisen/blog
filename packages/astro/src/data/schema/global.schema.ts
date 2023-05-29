@@ -14,6 +14,7 @@ export const strapiGlobalSchema = strapiEntitySchema(
     socialMedia: z.array(strapiSocialMediaSchema),
     defaultSeo: strapiSeoSchema,
     avatar: strapiSingleSchema(strapiImageDataSchema).transform(async image => transformStrapiImage(image.data)),
+    logo: strapiSingleSchema(strapiImageDataSchema),
   })
 ).transform(async global => ({
   ...global,

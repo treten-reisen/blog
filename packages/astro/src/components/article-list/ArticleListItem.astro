@@ -11,9 +11,9 @@ const { article } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(article.attributes.image)
 ---
 
-<a href={`/articles/${article.attributes.slug}`} class="flex flex-col space-y-2">
-  <header class="flex flex-col space-y-2">
-    <div class="h-52 lg:h-64">
+<a href={`/articles/${article.attributes.slug}`} class="flex flex-col gap-2">
+  <header class="flex flex-col">
+    <div class="mb-3 h-52 lg:h-64">
       <LazyImage
         blurhashConfig={blurhash}
         src={article.attributes.image.htmlImage.src || undefined}
@@ -22,12 +22,7 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image)
         client:load
       />
     </div>
-
-    <h2 class="font-sans text-lg font-bold tracking-tight text-gray-700">{article.attributes.title}</h2>
-  </header>
-  <section class="font-sans tracking-tight text-gray-600">{article.attributes.summary}</section>
-  <footer class="self-end font-sans text-base tracking-tight text-gray-500">
-    <time datetime={dateFns.format(article.attributes.createdAt, "yyyy-MM-dd")}>
+    <time class="font-sans text-sm text-gray-500" datetime={dateFns.format(article.attributes.createdAt, "yyyy-MM-dd")}>
       {
         dateFns.intlFormat(
           article.attributes.createdAt,
@@ -36,5 +31,7 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image)
         )
       }
     </time>
-  </footer>
+    <h3 class="font-sans text-lg font-bold tracking-tight text-gray-700">{article.attributes.title}</h3>
+  </header>
+  <div class="font-sans tracking-tight text-gray-600">{article.attributes.summary}</div>
 </a>

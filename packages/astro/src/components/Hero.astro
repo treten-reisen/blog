@@ -1,19 +1,17 @@
 ---
-import type { StrapiHero } from "../data/schema/hero.schema"
+import type { TransformedStrapiImage } from "../data/image"
+import type { StrapiImageData } from "../data/schema/strapi.schema"
 import { encodeImageToBlurhashURL } from "../helpers/blurhash"
 
 import LazyImage from "./lazy-image"
 import Navigation from "./navigation/navigation"
 
 export type Props = {
-  hero: StrapiHero
+  logo: StrapiImageData
+  image: TransformedStrapiImage
 }
 
-const {
-  hero: {
-    attributes: { title, logo, image },
-  },
-} = Astro.props as Props
+const { logo, image } = Astro.props as Props
 
 const blurhash = await encodeImageToBlurhashURL(image)
 ---
@@ -31,7 +29,7 @@ const blurhash = await encodeImageToBlurhashURL(image)
   <div class="absolute z-10 h-full w-full bg-hero-shade"></div>
   <Navigation
     hideBackgroundOnTop
-    logoUrl={logo.data.attributes.url}
+    logoUrl={logo.attributes.url}
     currentUrl={Astro.url.pathname}
     items={[
       {
