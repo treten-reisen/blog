@@ -42,11 +42,11 @@ const strapiBlockEmbeddedMediaSchema = z
   .object({
     id: z.number(),
     __component: z.literal("shared.embedded-media"),
-    content: z.string(),
+    media: z.string(),
   })
   .transform(async rt => ({
     ...rt,
-    html: String(await markdownToHtml(rt.content)),
+    html: String(await markdownToHtml(rt.media)),
   }))
 
 export type StrapiBlockEmbeddedMedia = z.infer<typeof strapiBlockEmbeddedMediaSchema>

@@ -6,8 +6,9 @@
   },
   "options": {},
   "attributes": {
-    "content": {
-      "type": "text"
+    "media": {
+      "type": "text",
+      "required": true
     }
   }
 }
