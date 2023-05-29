@@ -32,13 +32,6 @@ const LazyImage = ({ blurhashConfig, aspectRatio, onLoad, ...imageProps }: LazyI
 
   return (
     <div className="relative h-full w-full overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute left-0 top-0 z-10 h-full w-full"
-        style={{ display: imageLoaded ? "none" : "block" }}
-      >
-        <BlurhashCanvas blurhashConfig={blurhashConfig} aspectRatio={aspectRatio} />
-      </div>
       <Image
         className={`h-full w-full object-cover`}
         style={{ aspectRatio: aspectRatio && `${aspectRatio}` }}
@@ -46,6 +39,13 @@ const LazyImage = ({ blurhashConfig, aspectRatio, onLoad, ...imageProps }: LazyI
         onLoad={handleLoaded}
         ref={imgRef}
       />
+      <div
+        aria-hidden="true"
+        className="absolute left-0 top-0 h-full w-full"
+        style={{ display: imageLoaded ? "none" : "block" }}
+      >
+        <BlurhashCanvas blurhashConfig={blurhashConfig} aspectRatio={aspectRatio} />
+      </div>
     </div>
   )
 }

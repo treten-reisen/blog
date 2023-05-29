@@ -12,6 +12,9 @@ module.exports = {
       },
       spacing: {
         responsive: "4vw",
+        "responsive-1/2": "2vw",
+        "responsive-3/4": "3vw",
+        "responsive-1/4": "1vw",
       },
       height: {
         hero: "clamp(15rem, 50vw, 30rem)",
@@ -36,7 +39,7 @@ module.exports = {
     },
     backgroundImage: {
       "hero-shade":
-        "linear-gradient(180deg, rgba(75, 85, 99, 0.5) 0%, rgba(227, 227, 227, 0) 50.31%, rgba(227, 227, 227, 0) 100%)",
+        "linear-gradient(180deg, rgba(75, 85, 99, 0.85) 0%, rgba(227, 227, 227, 0) 4rem, rgba(227, 227, 227, 0) 100%)",
     },
   },
   plugins: [require("@tailwindcss/typography")],
