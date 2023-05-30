@@ -1,5 +1,6 @@
 ---
 import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons"
+import { faRss } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import type { StrapiSocialMedia } from "../../data/schema/social-media.schema"
@@ -24,6 +25,8 @@ const getTitle = () => {
       return "YouTube"
     case "komoot":
       return "komoot"
+    case "rss":
+      return "Feed"
   }
 }
 ---
@@ -41,6 +44,7 @@ const getTitle = () => {
     {socialMedia.platform === "instagram" && <FontAwesomeIcon size="1x" icon={faInstagram} />}
     {socialMedia.platform === "twitter" && <FontAwesomeIcon size="1x" icon={faTwitter} />}
     {socialMedia.platform === "youtube" && <FontAwesomeIcon size="1x" icon={faYoutube} />}
+    {socialMedia.platform === "rss" && <FontAwesomeIcon size="1x" icon={faRss} />}
   </div>
   <div class="sr-only">{getTitle()}</div>
   <div class="flex h-full items-center justify-center text-base text-gray-300">{socialMedia.username}</div>
