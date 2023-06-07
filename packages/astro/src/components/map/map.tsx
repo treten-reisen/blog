@@ -8,6 +8,8 @@ import { MapProvider } from "./map.context"
 import PathLayer from "./path-layer"
 import useLatestLocation from "./use-latest-location"
 
+import "./map.css"
+
 export type MapProps = {
   avatarUrl: string
   center: Feature<Point>
