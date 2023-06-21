@@ -15,6 +15,6 @@ const page = await getPage("articles")
   <Fragment slot="head">
     <Seo type="website" global={global.data} seo={page.attributes.seo} />
   </Fragment>
-  <h1 class="mb-6 font-sans text-2xl font-bold tracking-tight md:mb-responsive-3/4">Blog</h1>
+  <h1 class="mb-6 font-sans text-2xl font-bold tracking-tight md:mb-responsive-3/4">Alle meine Blogartikel</h1>
   <ArticleList articles={list.data} />
 </Layout>

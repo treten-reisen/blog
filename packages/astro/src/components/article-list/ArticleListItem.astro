@@ -2,6 +2,7 @@
 import * as dateFns from "date-fns"
 
 import type { StrapiArticleListItem } from "../../data/get-article-list"
+import { dateFnsLocale } from "../../date-format"
 import { encodeImageToBlurhashURL } from "../../helpers/blurhash"
 import LazyImage from "../lazy-image"
 
@@ -11,9 +12,9 @@ const { article } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
 ---
 
-<a href={`/articles/${article.attributes.slug}`} class="flex flex-col gap-2">
+<a href={`/articles/${article.attributes.slug}`} class="flex flex-col gap-2 bg-gray-50 shadow-sm">
   <header class="flex flex-col">
-    <div class="mb-3 h-52 lg:h-64">
+    <div class="h-52 lg:h-64">
       <LazyImage
         blurhashConfig={blurhash}
         src={article.attributes.image.lg.htmlImage.src || undefined}
@@ -22,16 +23,18 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
         client:load
       />
     </div>
-    <time class="font-sans text-sm text-gray-500" datetime={dateFns.format(article.attributes.createdAt, "yyyy-MM-dd")}>
-      {
-        dateFns.intlFormat(
-          article.attributes.createdAt,
-          { year: "numeric", month: "long", day: "numeric" },
-          { locale: "de" }
-        )
-      }
-    </time>
-    <h3 class="font-sans text-lg font-bold tracking-tight">{article.attributes.title}</h3>
+
+    <h3 class="px-4 pt-4 font-sans text-lg font-bold tracking-tight md:px-6 md:pt-6">{article.attributes.title}</h3>
+    {
+      article.attributes.publishedAt && (
+        <time
+          class="px-4 font-sans text-sm text-gray-500 md:px-6"
+          datetime={dateFns.format(article.attributes.publishedAt, "yyyy-MM-dd")}
+        >
+          {dateFns.formatRelative(article.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
+        </time>
+      )
+    }
   </header>
-  <div class="font-sans tracking-tight">{article.attributes.summary}</div>
+  <div class="p-4 pt-2 font-sans tracking-tight md:p-6 md:pt-2">{article.attributes.summary}</div>
 </a>

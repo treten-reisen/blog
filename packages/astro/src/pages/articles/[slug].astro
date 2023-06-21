@@ -10,6 +10,7 @@ import Seo from "../../components/Seo.astro"
 import { getArticle } from "../../data/get-article"
 import { getArticleList, StrapiArticleListItem } from "../../data/get-article-list"
 import { getGlobal } from "../../data/get-global"
+import { dateFnsLocale } from "../../date-format"
 import { encodeImageToBlurhashURL } from "../../helpers/blurhash"
 import Layout from "../../layouts/Layout.astro"
 
@@ -76,7 +77,12 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
               client:load
             />
           </div>
-          <div class="sm:p-responsive z-10 p-6 md:container">
+          <div class="sm:p-responsive z-10 p-6  md:container">
+            {article.data.attributes.publishedAt && (
+              <time class="text-gray-200" datetime={dateFns.format(article.data.attributes.publishedAt, "yyyy-MM-dd")}>
+                {dateFns.formatRelative(article.data.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
+              </time>
+            )}
             <h1 class="text-4xl font-extrabold text-gray-50 md:text-5xl">{article.data.attributes.title}</h1>
           </div>
         </header>
