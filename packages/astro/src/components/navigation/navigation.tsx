@@ -40,42 +40,40 @@ const Navigation = ({ logoUrl, currentUrl, items, hideBackgroundOnTop }: Navigat
   }, [handleScroll])
 
   return (
-    <>
-      <div ref={elRef} className={classnames("flex w-full flex-col", { "h-full": isOpen })}>
-        <div
-          className={classnames("h-14", {
-            "bg-gray-600": isOpen || !hideBackgroundOnTop || !isTop,
-            "transition-colors duration-500": !isOpen,
-          })}
-        >
-          <div className="flex h-full items-center justify-between px-responsive md:container">
-            <a href="/" tabIndex={0} title="Zur Startseite">
-              <img className="h-6 self-start" src={logoUrl} alt="Logo" />
-            </a>
-            <button
-              className="text-xl text-gray-200 hover:text-gray-50 md:hidden"
-              title="Menü"
-              onClick={() => {
-                setOpen(open => !open)
-              }}
-            >
-              <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
-            </button>
-            <div className="hidden md:block">
-              <NavMenu orientation="horizontal" items={items} currentUrl={currentUrl} color="bright" />
-            </div>
+    <div ref={elRef} className={classnames("fixed top-0 z-20 flex w-full flex-col", { "h-full": isOpen })}>
+      <div
+        className={classnames("h-14", {
+          "bg-gray-600": isOpen || !hideBackgroundOnTop || !isTop,
+          "transition-colors duration-500": !isOpen,
+        })}
+      >
+        <div className="flex h-full items-center justify-between px-responsive md:container">
+          <a href="/" tabIndex={0} title="Zur Startseite">
+            <img className="h-6 self-start" src={logoUrl} alt="Logo" />
+          </a>
+          <button
+            className="text-xl text-gray-200 hover:text-gray-50 md:hidden"
+            title="Menü"
+            onClick={() => {
+              setOpen(open => !open)
+            }}
+          >
+            <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
+          </button>
+          <div className="hidden md:block">
+            <NavMenu orientation="horizontal" items={items} currentUrl={currentUrl} color="bright" />
           </div>
         </div>
-        {isOpen && (
-          <>
-            <div className="flex justify-end bg-gray-50 px-responsive py-6 text-right shadow-2xl md:container">
-              <NavMenu orientation="vertical" items={items} currentUrl={currentUrl} color="dark" />
-            </div>
-            <div className="z-50 flex-1 bg-gray-900 bg-opacity-20 backdrop-blur-lg"></div>
-          </>
-        )}
       </div>
-    </>
+      {isOpen && (
+        <>
+          <div className="flex justify-end bg-gray-50 px-responsive py-6 text-right shadow-2xl md:container">
+            <NavMenu orientation="vertical" items={items} currentUrl={currentUrl} color="dark" />
+          </div>
+          <div className="z-50 flex-1 bg-gray-900 bg-opacity-20 backdrop-blur-lg"></div>
+        </>
+      )}
+    </div>
   )
 }
 

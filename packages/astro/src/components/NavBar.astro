@@ -1,0 +1,34 @@
+---
+import Navigation from "./navigation/navigation"
+
+export type Props = {
+  logoUrl: string
+  hideBackgroundOnTop?: boolean
+  reserveSpace?: boolean
+}
+
+const { logoUrl, hideBackgroundOnTop, reserveSpace = false } = Astro.props as Props
+---
+
+<Navigation
+  hideBackgroundOnTop={hideBackgroundOnTop}
+  logoUrl={logoUrl}
+  currentUrl={Astro.url.pathname}
+  items={[
+    {
+      url: "/",
+      label: "Home",
+      exact: true,
+    },
+    {
+      url: "/articles",
+      label: "Blog",
+    },
+    {
+      url: "/live-standort",
+      label: "Karte",
+    },
+  ]}
+  client:load
+/>
+{reserveSpace && <div class="h-14" aria-hidden="true" />}

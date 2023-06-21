@@ -5,7 +5,7 @@ import BlocksRenderer from "../../components/BlocksRenderer.astro"
 import Comments from "../../components/Comments.astro"
 import LazyImage from "../../components/lazy-image"
 import { LikeButton } from "../../components/like-button"
-import Navigation from "../../components/navigation/navigation"
+import NavBar from "../../components/NavBar.astro"
 import Seo from "../../components/Seo.astro"
 import { getArticle } from "../../data/get-article"
 import { getArticleList, StrapiArticleListItem } from "../../data/get-article-list"
@@ -43,29 +43,7 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
   {
     article.data.attributes.image && (
       <Fragment slot="header">
-        <div class="fixed top-0 z-20 w-full">
-          <Navigation
-            hideBackgroundOnTop
-            logoUrl={global.data.attributes.logo.data.attributes.url}
-            currentUrl={Astro.url.pathname}
-            items={[
-              {
-                url: "/",
-                label: "Home",
-                exact: true,
-              },
-              {
-                url: "/articles",
-                label: "Blog",
-              },
-              {
-                url: "/live-standort",
-                label: "Karte",
-              },
-            ]}
-            client:load
-          />
-        </div>
+        <NavBar hideBackgroundOnTop logoUrl={global.data.attributes.logo.data.attributes.url} />
         <header class="h-hero relative flex w-full items-end">
           <div class="absolute h-full w-full">
             <LazyImage

@@ -1,5 +1,5 @@
 ---
-import Navigation from "./navigation/navigation"
+import NavBar from "./NavBar.astro"
 
 export type Props = {
   logoUrl: string
@@ -9,24 +9,5 @@ const { logoUrl } = Astro.props as Props
 ---
 
 <header>
-  <Navigation
-    logoUrl={logoUrl}
-    currentUrl={Astro.url.pathname}
-    items={[
-      {
-        url: "/",
-        label: "Home",
-        exact: true,
-      },
-      {
-        url: "/articles",
-        label: "Blog",
-      },
-      {
-        url: "/live-standort",
-        label: "Karte",
-      },
-    ]}
-    client:load
-  />
+  <NavBar reserveSpace logoUrl={logoUrl} />
 </header>

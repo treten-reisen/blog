@@ -4,7 +4,7 @@ import type { StrapiImageData } from "../data/schema/strapi.schema"
 import { encodeImageToBlurhashURL } from "../helpers/blurhash"
 
 import LazyImage from "./lazy-image"
-import Navigation from "./navigation/navigation"
+import NavBar from "./NavBar.astro"
 
 export type Props = {
   logo: StrapiImageData
@@ -16,29 +16,7 @@ const { logo, image } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(image)
 ---
 
-<div class="fixed top-0 z-20 w-full">
-  <Navigation
-    hideBackgroundOnTop
-    logoUrl={logo.attributes.url}
-    currentUrl={Astro.url.pathname}
-    items={[
-      {
-        url: "/",
-        label: "Home",
-        exact: true,
-      },
-      {
-        url: "/articles",
-        label: "Blog",
-      },
-      {
-        url: "/live-standort",
-        label: "Karte",
-      },
-    ]}
-    client:load
-  />
-</div>
+<NavBar hideBackgroundOnTop logoUrl={logo.attributes.url} />
 <header class="relative h-hero w-full bg-cover shadow-lg">
   <div class="absolute z-0 h-full w-full">
     <LazyImage
