@@ -94,8 +94,8 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
               <div className="h-32">
                 <LazyImage
                   blurhashConfig={clickedArticle.properties.blurhash}
-                  src={clickedArticle.properties.article.attributes.image.htmlImage.src || undefined}
-                  alt={clickedArticle.properties.article.attributes.image.htmlImage.alt || undefined}
+                  src={clickedArticle.properties.article.attributes.image.lg.htmlImage.src || undefined}
+                  alt={clickedArticle.properties.article.attributes.image.lg.htmlImage.alt || undefined}
                   loading="lazy"
                 />
               </div>
