@@ -1,5 +1,5 @@
 import type { Locale } from "date-fns"
-import { de } from "date-fns/locale"
+import de from "date-fns/locale/de/index.js"
 
 const formatRelativeLocale = {
   lastWeek: "'letzten' dddd",
