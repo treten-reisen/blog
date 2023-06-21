@@ -41,8 +41,7 @@ const Navigation = ({ logoUrl, currentUrl, items, hideBackgroundOnTop }: Navigat
 
   return (
     <>
-      <div className="h-14" aria-hidden="true"></div>
-      <div ref={elRef} className={classnames("fixed top-0 z-20 flex w-full flex-col", { "h-full": isOpen })}>
+      <div ref={elRef} className={classnames("flex w-full flex-col", { "h-full": isOpen })}>
         <div
           className={classnames("h-14", {
             "bg-gray-600": isOpen || !hideBackgroundOnTop || !isTop,

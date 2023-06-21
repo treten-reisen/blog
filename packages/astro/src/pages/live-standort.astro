@@ -47,7 +47,7 @@ const findLocation = (article: StrapiArticleListItem) => {
 
 const getThumbnailUrl = async (article: StrapiArticleListItem) => {
   const image = article.attributes.image
-  var transformed = await transformStrapiImage(image, { width: 128 })
+  var transformed = await transformStrapiImage(image.lg, { width: 128 })
   return transformed.htmlImage.src!
 }
 
@@ -62,7 +62,7 @@ const articleFeatures = {
         properties: {
           article,
           thumbnailUrl: await getThumbnailUrl(article),
-          blurhash: await encodeImageToBlurhashURL(article.attributes.image),
+          blurhash: await encodeImageToBlurhashURL(article.attributes.image.lg),
         },
         geometry: { type: "Point" as const, coordinates: location },
       }))

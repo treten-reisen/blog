@@ -8,7 +8,7 @@ import LazyImage from "../lazy-image"
 export type Props = { article: StrapiArticleListItem }
 
 const { article } = Astro.props as Props
-const blurhash = await encodeImageToBlurhashURL(article.attributes.image)
+const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
 ---
 
 <a href={`/articles/${article.attributes.slug}`} class="flex flex-col gap-2">
@@ -16,8 +16,8 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image)
     <div class="mb-3 h-52 lg:h-64">
       <LazyImage
         blurhashConfig={blurhash}
-        src={article.attributes.image.htmlImage.src || undefined}
-        alt={article.attributes.image.htmlImage.alt || undefined}
+        src={article.attributes.image.lg.htmlImage.src || undefined}
+        alt={article.attributes.image.lg.htmlImage.alt || undefined}
         loading="lazy"
         client:load
       />

@@ -13,7 +13,10 @@ export const strapiArticleSchema = strapiEntitySchema(
     slug: z.string(),
     summary: z.string(),
     image: strapiSingleSchema(strapiImageDataSchema).transform(async image =>
-      transformStrapiImage(image.data, { width: 1200 })
+      Promise.all([
+        transformStrapiImage(image.data, { width: 1200 }),
+        transformStrapiImage(image.data, { width: 2400 }),
+      ]).then(([lg, xl]) => ({ lg, xl }))
     ),
     publishedAt: z.nullable(dateStringSchema),
     blocks: z.array(strapiBlockSchema),

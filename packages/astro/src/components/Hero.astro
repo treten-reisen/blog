@@ -16,17 +16,7 @@ const { logo, image } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(image)
 ---
 
-<header class="relative h-hero w-full bg-cover shadow-lg">
-  <div class="absolute z-0 h-full w-full">
-    <LazyImage
-      blurhashConfig={blurhash}
-      src={image.htmlImage.src || undefined}
-      alt={image.htmlImage.alt || undefined}
-      loading="eager"
-      client:load
-    />
-  </div>
-  <div class="absolute z-10 h-full w-full bg-hero-shade"></div>
+<div class="fixed top-0 z-20 w-full">
   <Navigation
     hideBackgroundOnTop
     logoUrl={logo.attributes.url}
@@ -48,4 +38,17 @@ const blurhash = await encodeImageToBlurhashURL(image)
     ]}
     client:load
   />
+</div>
+<header class="relative h-hero w-full bg-cover shadow-lg">
+  <div class="absolute z-0 h-full w-full">
+    <LazyImage
+      blurhashConfig={blurhash}
+      src={image.htmlImage.src || undefined}
+      alt={image.htmlImage.alt || undefined}
+      loading="eager"
+      client:load
+      style={{ filter: "brightness(70%)" }}
+    />
+  </div>
+  <div class="absolute z-10 h-full w-full"></div>
 </header>
