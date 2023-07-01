@@ -16,7 +16,7 @@ const { logo, image } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(image)
 ---
 
-<NavBar hideBackgroundOnTop logoUrl={logo.attributes.url} />
+<NavBar logoUrl={logo.attributes.url} />
 <header class="relative h-hero w-full bg-cover shadow-lg">
   <div class="absolute z-0 h-full w-full">
     <LazyImage
@@ -25,7 +25,6 @@ const blurhash = await encodeImageToBlurhashURL(image)
       alt={image.htmlImage.alt || undefined}
       loading="eager"
       client:load
-      style={{ filter: "brightness(70%)" }}
     />
   </div>
   <div class="absolute z-10 h-full w-full"></div>

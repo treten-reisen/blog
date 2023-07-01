@@ -43,7 +43,7 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
   {
     article.data.attributes.image && (
       <Fragment slot="header">
-        <NavBar hideBackgroundOnTop logoUrl={global.data.attributes.logo.data.attributes.url} />
+        <NavBar logoUrl={global.data.attributes.logo.data.attributes.url} />
         <header class="h-hero relative flex w-full items-end">
           <div class="absolute h-full w-full">
             <LazyImage
@@ -51,10 +51,10 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
               src={article.data.attributes.image.xl.htmlImage.src || undefined}
               alt={article.data.attributes.image.xl.htmlImage.src || undefined}
               loading="eager"
-              style={{ filter: "brightness(60%)" }}
               client:load
             />
           </div>
+          <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 md:to-60%" />
           <div class="sm:p-responsive z-10 p-6  md:container">
             {article.data.attributes.publishedAt && (
               <time class="text-gray-200" datetime={dateFns.format(article.data.attributes.publishedAt, "yyyy-MM-dd")}>

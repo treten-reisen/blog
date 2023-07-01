@@ -32,9 +32,11 @@ const center = await getLiveLocation()
 
   <Fragment slot="header">
     <Hero image={home.data.attributes.heroimage} logo={global.data.attributes.logo.data} />
-    <section class="relative h-20 w-full bg-gray-200 shadow">
-      <Map avatarUrl={avatarUrl} center={center} hideControls client:only="react" />
-      <HeroMapOverlay />
+    <section class="relative z-10 h-20 w-full md:container md:mx-auto md:-mb-10 md:-translate-y-1/2 md:px-responsive">
+      <div class="h-full w-full overflow-hidden border-gray-700 border-opacity-20 shadow-md md:rounded-lg md:border">
+        <Map avatarUrl={avatarUrl} center={center} hideControls client:only="react" />
+        <a class="absolute left-0 top-0 h-full w-full md:px-responsive" href="/live-standort"><HeroMapOverlay /></a>
+      </div>
     </section>
   </Fragment>
 

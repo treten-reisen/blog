@@ -1,7 +1,7 @@
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import classnames from "classnames"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 
 import { useSizeListener } from "../../hooks/use-size-listener"
 
@@ -9,12 +9,10 @@ export type NavigationProps = {
   logoUrl: string
   currentUrl: string
   items: NavMenuItem[]
-  hideBackgroundOnTop?: boolean
 }
 
-const Navigation = ({ logoUrl, currentUrl, items, hideBackgroundOnTop }: NavigationProps) => {
+const Navigation = ({ logoUrl, currentUrl, items }: NavigationProps) => {
   const [isOpen, setOpen] = useState(false)
-  const [isTop, setIsTop] = useState(true)
 
   const elRef = useRef<HTMLDivElement>(null)
 
@@ -27,23 +25,10 @@ const Navigation = ({ logoUrl, currentUrl, items, hideBackgroundOnTop }: Navigat
     }
   })
 
-  const handleScroll = useCallback(() => {
-    const el = document.scrollingElement
-    if (!el) return
-    setIsTop(el.scrollTop === 0)
-  }, [])
-
-  useEffect(() => {
-    const listener = handleScroll
-    document.addEventListener("scroll", listener)
-    return () => document.removeEventListener("scroll", listener)
-  }, [handleScroll])
-
   return (
     <div ref={elRef} className={classnames("fixed top-0 z-20 flex w-full flex-col", { "h-full": isOpen })}>
       <div
-        className={classnames("h-14", {
-          "bg-gray-600": isOpen || !hideBackgroundOnTop || !isTop,
+        className={classnames("h-14 bg-gray-700 bg-opacity-80 shadow-lg backdrop-blur-md", {
           "transition-colors duration-500": !isOpen,
         })}
       >
@@ -67,7 +52,11 @@ const Navigation = ({ logoUrl, currentUrl, items, hideBackgroundOnTop }: Navigat
       </div>
       {isOpen && (
         <>
-          <div className="flex justify-end bg-gray-50 px-responsive py-6 text-right shadow-2xl md:container">
+          <div
+            className={classnames("flex justify-end bg-gray-50 px-responsive py-6 text-right shadow-2xl md:container", {
+              "text-lg": isOpen,
+            })}
+          >
             <NavMenu orientation="vertical" items={items} currentUrl={currentUrl} color="dark" />
           </div>
           <div className="z-50 flex-1 bg-gray-900 bg-opacity-20 backdrop-blur-lg"></div>
@@ -93,7 +82,7 @@ type NavMenuProps = {
 const NavMenu = ({ items, currentUrl, orientation, color }: NavMenuProps) => {
   return (
     <nav
-      className={classnames("font-sans text-lg tracking-tight", {
+      className={classnames("font-sans tracking-tight", {
         "text-gray-200": color === "bright",
         "text-gray-600": color === "dark",
       })}

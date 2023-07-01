@@ -3,15 +3,12 @@ import Navigation from "./navigation/navigation"
 
 export type Props = {
   logoUrl: string
-  hideBackgroundOnTop?: boolean
-  reserveSpace?: boolean
 }
 
-const { logoUrl, hideBackgroundOnTop, reserveSpace = false } = Astro.props as Props
+const { logoUrl } = Astro.props as Props
 ---
 
 <Navigation
-  hideBackgroundOnTop={hideBackgroundOnTop}
   logoUrl={logoUrl}
   currentUrl={Astro.url.pathname}
   items={[
@@ -31,4 +28,3 @@ const { logoUrl, hideBackgroundOnTop, reserveSpace = false } = Astro.props as Pr
   ]}
   client:load
 />
-{reserveSpace && <div class="h-14" aria-hidden="true" />}
