@@ -76,6 +76,7 @@ const articleFeatures = {
   <Fragment slot="head">
     <Seo global={global.data} seo={page.attributes.seo} type="website" />
   </Fragment>
-
-  <Map avatarUrl={avatarUrl} articles={articleFeatures} center={center} client:only="react" />
+  <div class="h-full min-h-[90svh]">
+    <Map avatarUrl={avatarUrl} articles={articleFeatures} center={center} client:only="react" />
+  </div>
 </Layout>

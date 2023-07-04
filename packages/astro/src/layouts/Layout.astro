@@ -33,7 +33,7 @@ const global = await getGlobal()
     <slot name="header">
       <Header logoUrl={global.data.attributes.logo.data.attributes.url} />
     </slot>
-    <main class:list={["flex-grow", "relative", { "md:container p-6 sm:p-responsive": !noPadding }]}>
+    <main class:list={["flex-grow", "relative", { "md:container p-6 md:p-responsive": !noPadding }]}>
       <slot />
     </main>
     <Footer socialMedia={global.data.attributes.socialMedia} />

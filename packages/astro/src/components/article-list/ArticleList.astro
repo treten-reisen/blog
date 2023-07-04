@@ -8,6 +8,6 @@ export type Props = { articles: StrapiArticleListItem[] }
 const { articles } = Astro.props as Props
 ---
 
-<div class="grid gap-6 sm:grid-cols-fit-sm sm:gap-responsive lg:grid-cols-fit-lg">
+<div class="grid gap-responsive sm:grid-cols-fit-sm lg:grid-cols-fit-lg">
   {articles.map(article => <ArticleListItem article={article} />)}
 </div>

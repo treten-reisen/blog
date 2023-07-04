@@ -12,8 +12,11 @@ const { article } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
 ---
 
-<a href={`/articles/${article.attributes.slug}`} class="flex flex-col gap-2 bg-gray-50 shadow-sm">
-  <header class="flex flex-col">
+<a
+  href={`/articles/${article.attributes.slug}`}
+  class="flex flex-col gap-2 overflow-hidden rounded-xl bg-gray-50 shadow-md"
+>
+  <header class="relative flex flex-col">
     <div class="h-52 lg:h-64">
       <LazyImage
         blurhashConfig={blurhash}
@@ -23,18 +26,22 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
         client:load
       />
     </div>
-
-    <h3 class="px-4 pt-4 font-sans text-lg font-bold tracking-tight md:px-6 md:pt-6">{article.attributes.title}</h3>
-    {
-      article.attributes.publishedAt && (
-        <time
-          class="px-4 font-sans text-sm text-gray-500 md:px-6"
-          datetime={dateFns.format(article.attributes.publishedAt, "yyyy-MM-dd")}
-        >
-          {dateFns.formatRelative(article.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
-        </time>
-      )
-    }
+    <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 md:to-60%"></div>
+    <div class="absolute bottom-0 p-4 md:p-6">
+      <h3 class="font-sans text-lg font-bold tracking-tight text-gray-100">
+        {article.attributes.title}
+      </h3>
+      {
+        article.attributes.publishedAt && (
+          <time
+            class="font-sans text-sm text-gray-100"
+            datetime={dateFns.format(article.attributes.publishedAt, "yyyy-MM-dd")}
+          >
+            {dateFns.formatRelative(article.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
+          </time>
+        )
+      }
+    </div>
   </header>
   <div class="p-4 pt-2 font-sans tracking-tight md:p-6 md:pt-2">{article.attributes.summary}</div>
 </a>

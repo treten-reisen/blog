@@ -20,7 +20,7 @@ const maxWidth = Math.round(aspectRatio * maxHeight)
 const blurhash = await encodeImageToBlurhashURL(data.file)
 ---
 
-<div class="my-8 flex w-full justify-center md:my-responsive">
+<div class="my-responsive flex w-full justify-center">
   <a aria-label="Bild öffnen" class="cursor-zoom-in" href={data.file.attributes.url || undefined}>
     <figure class="flex flex-col items-center">
       <div style={{ width: `min(100%, ${maxWidth}px)`, aspectRatio: aspectRatio }}>

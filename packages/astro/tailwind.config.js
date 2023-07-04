@@ -11,13 +11,13 @@ module.exports = {
         "fit-lg": "repeat(auto-fit, minmax(24rem, 1fr))",
       },
       spacing: {
-        responsive: "4vw",
-        "responsive-1/2": "2vw",
-        "responsive-3/4": "3vw",
-        "responsive-1/4": "1vw",
+        responsive: "max(2rem, 4vw)",
+        "responsive-1/2": "max(1rem, 2vw)",
+        "responsive-3/4": "max(1.5rem, 3vw)",
+        "responsive-1/4": "max(0.5rem, 1vw)",
       },
       height: {
-        hero: "clamp(15rem, 50vw, 30rem)",
+        hero: "clamp(18rem, 50vw, 32rem)",
       },
     },
     colors: {

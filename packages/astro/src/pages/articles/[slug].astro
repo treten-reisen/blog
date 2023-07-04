@@ -55,7 +55,7 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
             />
           </div>
           <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 md:to-60%" />
-          <div class="sm:p-responsive z-10 p-6  md:container">
+          <div class="p-responsive z-10 md:container">
             {article.data.attributes.publishedAt && (
               <time class="text-gray-200" datetime={dateFns.format(article.data.attributes.publishedAt, "yyyy-MM-dd")}>
                 {dateFns.formatRelative(article.data.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
@@ -69,7 +69,7 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
   }
   <div class="flex flex-col items-start gap-responsive md:flex-row">
     <article class="flex h-full w-full max-w-prose flex-col font-serif">
-      <div class="mb-6 flex-1 sm:mb-responsive">
+      <div class="mb-responsive flex-1">
         <BlocksRenderer blocks={article.data.attributes.blocks} />
         <div class="mt-6 flex w-full max-w-prose justify-end">
           <span class="font-sans text-gray-500">

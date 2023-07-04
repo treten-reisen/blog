@@ -36,16 +36,18 @@ const getTitle = () => {
   title={getTitle()}
   target="_blank"
   rel="noopener noreferrer"
-  class="flex h-7 items-center space-x-2"
+  class="flex h-10 items-center space-x-2"
 >
-  <div class="flex h-full w-8 items-center justify-center" aria-hidden="true">
+  <div
+    class="box-border flex h-10 w-10 items-center justify-center rounded-full border border-gray-500"
+    aria-hidden="true"
+  >
     {socialMedia.platform === "komoot" && <KomootIcon />}
-    {socialMedia.platform === "facebook" && <FontAwesomeIcon size="1x" icon={faFacebook} />}
-    {socialMedia.platform === "instagram" && <FontAwesomeIcon size="1x" icon={faInstagram} />}
-    {socialMedia.platform === "twitter" && <FontAwesomeIcon size="1x" icon={faTwitter} />}
-    {socialMedia.platform === "youtube" && <FontAwesomeIcon size="1x" icon={faYoutube} />}
-    {socialMedia.platform === "rss" && <FontAwesomeIcon size="1x" icon={faRss} />}
+    {socialMedia.platform === "facebook" && <FontAwesomeIcon size="2xl" icon={faFacebook} />}
+    {socialMedia.platform === "instagram" && <FontAwesomeIcon size="lg" icon={faInstagram} />}
+    {socialMedia.platform === "twitter" && <FontAwesomeIcon size="lg" icon={faTwitter} />}
+    {socialMedia.platform === "youtube" && <FontAwesomeIcon size="lg" icon={faYoutube} />}
+    {socialMedia.platform === "rss" && <FontAwesomeIcon size="lg" icon={faRss} />}
   </div>
   <div class="sr-only">{getTitle()}</div>
-  <div class="flex h-full items-center justify-center text-base text-gray-300">{socialMedia.username}</div>
 </a>

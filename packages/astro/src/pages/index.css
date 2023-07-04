@@ -10,9 +10,9 @@
   .maplibregl-ctrl-attrib.maplibregl-compact {
     @apply mx-0;
   }
-  @apply px-6 sm:px-responsive;
+  @apply px-responsive;
 }
 
 .maplibregl-control-container {
-  @apply w-full h-full relative md:container box-border;
+  @apply relative box-border h-full w-full md:container;
 }

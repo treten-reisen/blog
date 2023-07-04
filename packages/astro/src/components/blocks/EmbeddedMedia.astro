@@ -8,4 +8,4 @@ export type Props = {
 const { data } = Astro.props as Props
 ---
 
-<div class="my-8 flex w-full max-w-prose justify-center md:my-responsive" set:html={data.html} />
+<div class="my-responsive flex w-full max-w-prose justify-center" set:html={data.html} />
