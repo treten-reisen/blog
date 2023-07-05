@@ -10,6 +10,7 @@ const richTextProcessor = unified()
   .use(rehypeSlug)
   .use(rehypeStringify, { allowDangerousHtml: true })
 
-export const markdownToHtml = (markdown: string) => {
-  return richTextProcessor.process(markdown)
+export const markdownToHtml = async (markdown: string) => {
+  const vfile = await richTextProcessor.process(markdown)
+  return vfile.toString()
 }

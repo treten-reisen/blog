@@ -15,6 +15,7 @@ const strapiArticleListResponseSchema = strapiCollectionSchema(
       slug: true,
       title: true,
       summary: true,
+      seo: true,
     })
   )
 )
@@ -37,6 +38,7 @@ export const getArticleList = async ({ includeUnlisted = false, pagination }: Ge
   const params = new URLSearchParams({
     publicationState,
     "populate[image]": "*",
+    "populate[seo][populate]": "*",
     sort: "publishedAt:desc",
   })
 

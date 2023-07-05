@@ -4447,6 +4447,8 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
     react-helmet: ^6.1.0
+    rehype-parse: ^8.0.4
+    rehype-sanitize: ^5.0.1
     rehype-slug: ^5.1.0
     rehype-stringify: ^9.0.3
     remark: ^14.0.3
@@ -11439,6 +11441,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-sanitize@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "hast-util-sanitize@npm:4.1.0"
+  dependencies:
+    "@types/hast": ^2.0.0
+  checksum: 4f1786d6556bae6485a657a3e77e7e71b573fd20e4e2d70678e0f445eb8fe3dc6c4441cda6d18b89a79b53e2c03b6232eb6c470ecd478737050724ea09398603
+  languageName: node
+  linkType: hard
+
 "hast-util-to-html@npm:^8.0.0":
   version: 8.0.4
   resolution: "hast-util-to-html@npm:8.0.4"
@@ -17514,7 +17525,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rehype-parse@npm:^8.0.0":
+"rehype-parse@npm:^8.0.0, rehype-parse@npm:^8.0.4":
   version: 8.0.4
   resolution: "rehype-parse@npm:8.0.4"
   dependencies:
@@ -17534,6 +17545,17 @@ __metadata:
     hast-util-raw: ^7.2.0
     unified: ^10.0.0
   checksum: a1f9d309e609f49fb1f1e06e722705f4dd2e569653a89f756eaccb33b612cf1bb511216a81d10a619d11d047afc161e4b3cb99b957df05a8ba8fdbd5843f949a
+  languageName: node
+  linkType: hard
+
+"rehype-sanitize@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "rehype-sanitize@npm:5.0.1"
+  dependencies:
+    "@types/hast": ^2.0.0
+    hast-util-sanitize: ^4.0.0
+    unified: ^10.0.0
+  checksum: aa5f3627a767124d21c155b79bab8d5c2bc02e7b14164a5d22fe35b114f331d3bdb81afc150d1378d5cdb39107bd868b28814b1501a1954fdd1183b16dcdd5be
   languageName: node
   linkType: hard
 

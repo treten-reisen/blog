@@ -55,13 +55,13 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
             />
           </div>
           <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 md:to-60%" />
-          <div class="p-responsive z-10 md:container">
-            {article.data.attributes.publishedAt && (
+          <div class="sm:py-responsive md:p-responsive z-10 p-6 md:container">
+            {article.data.attributes.listed && article.data.attributes.publishedAt && (
               <time class="text-gray-200" datetime={dateFns.format(article.data.attributes.publishedAt, "yyyy-MM-dd")}>
                 {dateFns.formatRelative(article.data.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
               </time>
             )}
-            <h1 class="text-4xl font-extrabold text-gray-50 md:text-5xl">{article.data.attributes.title}</h1>
+            <h1 class="text-4xl font-extrabold text-gray-50 sm:text-5xl" set:html={article.data.attributes.title} />
           </div>
         </header>
       </Fragment>

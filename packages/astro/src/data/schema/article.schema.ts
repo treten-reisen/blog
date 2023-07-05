@@ -1,3 +1,7 @@
+import rehypeParse from "rehype-parse"
+import rehypeSanitize from "rehype-sanitize"
+import rehypeStringify from "rehype-stringify"
+import { unified } from "unified"
 import { z } from "zod"
 
 import { transformStrapiImage } from "../image"
@@ -9,7 +13,14 @@ import { strapiEntitySchema, strapiImageDataSchema, strapiSingleSchema } from ".
 
 export const strapiArticleSchema = strapiEntitySchema(
   z.object({
-    title: z.string(),
+    title: z.string().transform(async title => {
+      const file = await unified()
+        .use(rehypeParse, { fragment: true })
+        .use(rehypeSanitize)
+        .use(rehypeStringify)
+        .process(title)
+      return file.toString()
+    }),
     slug: z.string(),
     summary: z.string(),
     image: strapiSingleSchema(strapiImageDataSchema).transform(async image =>

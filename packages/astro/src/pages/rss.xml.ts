@@ -10,7 +10,7 @@ export async function get() {
     description: "Meine Fahrradreise 8000 km um die Ostsee",
     site: import.meta.env.SITE,
     items: articles.data.map(article => ({
-      title: article.attributes.title,
+      title: article.attributes.seo.metaTitle || article.attributes.title,
       link: `${import.meta.env.BASE_URL}/articles/${article.attributes.slug}/index.html`,
       pubDate: article.attributes.publishedAt || new Date(),
     })),
