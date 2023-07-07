@@ -14,20 +14,13 @@
   "attributes": {
     "blocks": {
       "type": "dynamiczone",
-      "components": [
-        "shared.embedded-media",
-        "shared.media-gallery",
-        "shared.media",
-        "shared.rich-text"
-      ]
+      "components": ["shared.embedded-media", "shared.media-gallery", "shared.media", "shared.rich-text"]
     },
     "heroimage": {
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     }
   }
 }
