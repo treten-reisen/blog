@@ -11,10 +11,14 @@ module.exports = {
         "fit-lg": "repeat(auto-fit, minmax(24rem, 1fr))",
       },
       spacing: {
-        responsive: "max(2rem, 4vw)",
-        "responsive-1/2": "max(1rem, 2vw)",
-        "responsive-3/4": "max(1.5rem, 3vw)",
-        "responsive-1/4": "max(0.5rem, 1vw)",
+        responsive: "clamp(2rem, 4vw, 6rem)",
+        "responsive-1/2": "clamp(1rem, 2vw, 3rem)",
+        "responsive-3/4": "clamp(1.5rem, 3vw, 4.5rem)",
+        "responsive-1/4": "clamp(0.5rem, 1vw, 1.5rem)",
+        "cq-responsive": "clamp(2rem, 8cqw, 6rem)",
+        "cq-responsive-1/4": "clamp(0.5rem, 2cqw, 1.5rem)",
+        "cq-responsive-1/2": "clamp(1rem, 4cqw, 3rem)",
+        "cq-responsive-3/4": "clamp(1.5rem, 6cqw, 4.5rem)",
       },
       height: {
         hero: "clamp(18rem, 50vw, 32rem)",
@@ -38,5 +42,5 @@ module.exports = {
       lg: "1440px",
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/container-queries")],
 }

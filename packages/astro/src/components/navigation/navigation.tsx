@@ -32,7 +32,7 @@ const Navigation = ({ logoUrl, currentUrl, items }: NavigationProps) => {
           "transition-colors duration-500": !isOpen,
         })}
       >
-        <div className="flex h-full items-center justify-between px-6 md:container md:px-responsive">
+        <div className="flex h-full items-center justify-between px-6 md:container md:px-8">
           <a href="/" tabIndex={0} title="Zur Startseite">
             <img className="h-6 self-start" src={logoUrl} alt="Logo" />
           </a>
@@ -88,7 +88,7 @@ const NavMenu = ({ items, currentUrl, orientation, color }: NavMenuProps) => {
       })}
     >
       <ul
-        className={classnames("flex gap-3", {
+        className={classnames("flex gap-responsive-1/2", {
           "flex-col": orientation === "vertical",
           "flex-row": orientation === "horizontal",
         })}

@@ -14,10 +14,10 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
 
 <a
   href={`/articles/${article.attributes.slug}`}
-  class="flex flex-col gap-2 overflow-hidden rounded-xl bg-gray-50 shadow-md"
+  class="flex flex-col overflow-hidden rounded-xl bg-gray-50 shadow-xl @container/article-card"
 >
   <header class="relative flex flex-col">
-    <div class="h-52 lg:h-64">
+    <div class="h-52 @lg/article-card:h-64">
       <LazyImage
         blurhashConfig={blurhash}
         src={article.attributes.image.lg.htmlImage.src || undefined}
@@ -26,8 +26,8 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
         client:load
       />
     </div>
-    <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 md:to-60%"></div>
-    <div class="absolute bottom-0 p-4 md:p-6">
+    <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 @md/article-card:to-60%"></div>
+    <div class="absolute bottom-0 p-4 @sm/article-card:p-cq-responsive-1/2">
       <h3 class="font-sans text-lg font-bold tracking-tight text-gray-100">
         {article.attributes.title}
       </h3>
@@ -43,5 +43,7 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
       }
     </div>
   </header>
-  <div class="p-4 pt-2 font-sans tracking-tight md:p-6 md:pt-2">{article.attributes.summary}</div>
+  <div class="p-4 font-sans tracking-tight @sm/article-card:p-cq-responsive-1/2">
+    {article.attributes.summary}
+  </div>
 </a>
