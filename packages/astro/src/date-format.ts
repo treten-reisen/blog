@@ -2,11 +2,11 @@ import type { Locale } from "date-fns"
 import de from "date-fns/locale/de/index.js"
 
 const formatRelativeLocale = {
-  lastWeek: "'letzten' EEEE",
+  lastWeek: "EEEE",
   yesterday: "'gestern'",
   today: "'heute'",
   tomorrow: "'morgen'",
-  nextWeek: "EEEE",
+  nextWeek: "'nächsten' EEEE",
   other: "dd'.' LLLL y",
 }
 
