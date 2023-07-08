@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.10.5",
-    "@strapi/plugin-i18n": "4.11.4",
-    "@strapi/plugin-users-permissions": "4.11.4",
-    "@strapi/strapi": "4.11.4",
+    "@strapi/plugin-i18n": "4.10.5",
+    "@strapi/plugin-users-permissions": "4.10.5",
+    "@strapi/strapi": "4.10.5",
     "@turf/helpers": "6.5.0",
     "@turf/projection": "^6.5.0",
     "better-sqlite3": "8.4.0",
