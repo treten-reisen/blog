@@ -11,10 +11,11 @@ config.autoAddCss = false // Tell Font Awesome to skip adding the CSS automatica
 
 export type Props = {
   noPadding?: boolean
+  fullWidth?: boolean
   disableIndexing?: boolean
 }
 
-const { noPadding = false, disableIndexing = false } = Astro.props as Props
+const { noPadding = false, fullWidth = false, disableIndexing = false } = Astro.props as Props
 
 const global = await getGlobal()
 ---
@@ -29,14 +30,20 @@ const global = await getGlobal()
     <slot name="head" />
   </head>
 
-  <body class="flex flex-shrink-0 flex-grow flex-col justify-between bg-gray-100 text-gray-900">
+  <body class="flex flex-shrink-0 flex-grow flex-col justify-between bg-gray-200 text-gray-900">
     <slot name="header">
       <Header logoUrl={global.data.attributes.logo.data.attributes.url} />
     </slot>
-    <main
-      class:list={["flex-grow relative @container/main", { "md:container p-6 md:px-8 md:py-responsive": !noPadding }]}
-    >
-      <slot />
+    <main class:list={["flex-grow relative @container/main", { "md:container": !noPadding }]}>
+      <div
+        class:list={[
+          "mx-auto bg-gray-100 h-full",
+          { "p-6 md:px-8 md:py-responsive w-full": !noPadding },
+          { "md:w-fit": !fullWidth },
+        ]}
+      >
+        <slot />
+      </div>
     </main>
     <Footer socialMedia={global.data.attributes.socialMedia} />
     <script src="../index.ts"></script>

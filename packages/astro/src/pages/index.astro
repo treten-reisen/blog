@@ -32,20 +32,22 @@ const center = await getLiveLocation()
 
   <Fragment slot="header">
     <Hero image={home.data.attributes.heroimage} logo={global.data.attributes.logo.data} />
-    <section class="relative z-10 h-20 w-full md:container md:mx-auto md:-mb-10 md:-translate-y-1/2 md:px-8">
-      <div class="h-full w-full overflow-hidden border-gray-700 border-opacity-20 shadow-xl md:rounded-lg md:border">
+    <section class="relative z-10 md:container md:mx-auto md:-mb-20 md:px-8">
+      <div
+        class="h-20 overflow-hidden border-gray-700 border-opacity-20 shadow-xl md:-translate-y-10 md:rounded-lg md:border"
+      >
         <Map avatarUrl={avatarUrl} center={center} hideControls client:only="react" />
-        <a class="absolute left-0 top-0 h-full w-full md:px-8" href="/live-standort"><HeroMapOverlay /></a>
+        <a class="absolute left-0 top-0 h-full w-full" href="/live-standort"><HeroMapOverlay /></a>
       </div>
     </section>
   </Fragment>
 
-  <div class="flex flex-col-reverse @sm/main:gap-cq-responsive-1/2 md:flex-row lg:gap-responsive">
+  <div class="flex flex-col-reverse @sm/main:gap-cq-responsive-1/2 md:mt-10 md:flex-row lg:gap-responsive">
     <div class="max-w-prose font-serif">
       <BlocksRenderer blocks={home.data.attributes.blocks} />
     </div>
     <aside
-      class="flex shrink-0 flex-grow basis-80 flex-col gap-6 @xs/main:gap-cq-responsive @xs/main:py-cq-responsive-1/2 md:bg-gray-50 md:p-responsive-1/2 md:shadow md:@xs/main:gap-cq-responsive-1/2 md:@xs/main:px-cq-responsive-1/4"
+      class="flex shrink-0 flex-grow basis-80 flex-col gap-6 @xs/main:gap-cq-responsive @xs/main:py-cq-responsive-1/2 md:max-w-sm md:bg-gray-50 md:p-responsive-1/2 md:shadow md:@xs/main:gap-cq-responsive-1/2 md:@xs/main:px-cq-responsive-1/4"
     >
       <LatestArticle />
       <LostItems />

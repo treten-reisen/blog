@@ -11,7 +11,7 @@ const global = await getGlobal()
 const page = await getPage("articles")
 ---
 
-<Layout>
+<Layout fullWidth>
   <Fragment slot="head">
     <Seo type="website" global={global.data} seo={page.attributes.seo} />
   </Fragment>

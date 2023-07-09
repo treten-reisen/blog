@@ -67,11 +67,11 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
       </Fragment>
     )
   }
-  <div class="flex flex-col items-start gap-responsive md:flex-row">
-    <article class="flex h-full w-full max-w-prose flex-col font-serif">
+  <div class="flex min-w-0 flex-col items-start gap-responsive md:flex-row">
+    <article class="flex h-full max-w-prose flex-col font-serif">
       <div class="mb-responsive flex-1">
         <BlocksRenderer blocks={article.data.attributes.blocks} />
-        <div class="mt-6 flex w-full max-w-prose justify-end">
+        <div class="mt-6 flex max-w-prose justify-end">
           <span class="font-sans text-gray-500">
             {
               article.data.attributes.publishedAt &&
@@ -111,7 +111,7 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
   </div>
   {
     article.data.attributes.listed && (
-      <div class="mt-responsive w-full max-w-prose font-serif">
+      <div class="mt-responsive font-serif">
         <div class="font-sans">
           <Comments
             url={new URL(`/articles/${article.data.attributes.slug}`, Astro.site).toString()}
