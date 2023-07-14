@@ -42,12 +42,14 @@ const center = await getLiveLocation()
     </section>
   </Fragment>
 
-  <div class="flex flex-col-reverse @sm/main:gap-cq-responsive-1/2 md:mt-10 md:flex-row lg:gap-responsive">
+  <div
+    class="flex flex-col-reverse items-start @sm/main:gap-cq-responsive md:mt-10 md:flex-row md:@sm/main:gap-cq-responsive-1/2"
+  >
     <div class="max-w-prose font-serif">
       <BlocksRenderer blocks={home.data.attributes.blocks} />
     </div>
     <aside
-      class="flex shrink-0 flex-grow basis-80 flex-col gap-6 @xs/main:gap-cq-responsive @xs/main:py-cq-responsive-1/2 md:max-w-sm md:bg-gray-50 md:p-responsive-1/2 md:shadow md:@xs/main:gap-cq-responsive-1/2 md:@xs/main:px-cq-responsive-1/4"
+      class="flex shrink-0 flex-grow basis-80 flex-col gap-6 @xs/main:gap-cq-responsive md:max-w-sm md:bg-gray-50 md:shadow md:@xs/main:mb-0 md:@xs/main:gap-cq-responsive-1/2 md:@xs/main:p-cq-responsive-1/4"
     >
       <LatestArticle />
       <LostItems />
