@@ -34,7 +34,7 @@ const center = await getLiveLocation()
     <Hero image={home.data.attributes.heroimage} logo={global.data.attributes.logo.data} />
     <section class="relative z-10 md:container md:mx-auto md:-mb-20 md:px-8">
       <div
-        class="h-20 overflow-hidden border-gray-700 border-opacity-20 shadow-xl md:-translate-y-10 md:rounded-lg md:border"
+        class="h-20 overflow-hidden border-gray-700 border-opacity-20 bg-[#EDEDED] shadow-xl md:-translate-y-10 md:rounded-lg md:border"
       >
         <Map avatarUrl={avatarUrl} center={center} hideControls client:only="react" />
         <a class="absolute left-0 top-0 h-full w-full" href="/live-standort"><HeroMapOverlay /></a>
