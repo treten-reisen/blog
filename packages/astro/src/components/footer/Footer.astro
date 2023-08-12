@@ -15,14 +15,14 @@ const { socialMedia } = Astro.props as Props
   <div class="px-6 py-responsive md:container md:px-8">
     <div class="flex flex-wrap-reverse items-end justify-between gap-responsive">
       <div>
-        <h5 class="mb-responsive-1/2 text-sm font-semibold uppercase leading-5 tracking-wider">Info</h5>
+        <h2 class="mb-responsive-1/2 text-sm font-semibold uppercase leading-5 tracking-wider">Info</h2>
         <div class="flex flex-col">
           <a href="/articles/impressum">Impressum</a>
           <a href="/articles/datenschutzerklaerung">Datenschutz</a>
         </div>
       </div>
       <div>
-        <h5 class="mb-responsive-1/2 text-sm font-semibold uppercase leading-5 tracking-wider">Folge mir auf</h5>
+        <h2 class="mb-responsive-1/2 text-sm font-semibold uppercase leading-5 tracking-wider">Folge mir auf</h2>
         <div class="flex flex-row gap-responsive-1/4">
           {socialMedia.map(item => <SocialMediaLink socialMedia={item} />)}
         </div>
