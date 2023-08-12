@@ -36,7 +36,7 @@ const blurhash = await encodeImageToBlurhashURL(data.file)
           alt={data.file.htmlImage.alt || undefined}
           loading="lazy"
           aspectRatio={aspectRatio}
-          client:load
+          client:visible
         />
       </div>
       <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.attributes.caption}</figcaption>

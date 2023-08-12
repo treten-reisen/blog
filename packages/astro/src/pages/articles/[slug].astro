@@ -51,7 +51,7 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
               src={article.data.attributes.image.xl.htmlImage.src || undefined}
               alt={article.data.attributes.image.xl.htmlImage.src || undefined}
               loading="eager"
-              client:load
+              client:idle
             />
           </div>
           <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 md:to-60%" />

@@ -23,7 +23,7 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
         src={article.attributes.image.lg.htmlImage.src || undefined}
         alt={article.attributes.image.lg.htmlImage.alt || undefined}
         loading="lazy"
-        client:load
+        client:visible
       />
     </div>
     <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 @md/article-card:to-60%"></div>
