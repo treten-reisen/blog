@@ -9,3 +9,5 @@ export const getLiveLocation = async () => {
 
   return parseResponse(response, featureSchema(pointSchema, z.record(z.string(), z.any())))
 }
+
+export type GetLiveLocationResponse = Awaited<ReturnType<typeof getLiveLocation>>

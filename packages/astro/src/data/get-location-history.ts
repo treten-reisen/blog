@@ -13,3 +13,5 @@ export const getLocationHistory = async () => {
     featureSchema(lineStringSchema, z.object({ times: z.array(dateStringSchema.nullable()) }))
   )
 }
+
+export type GetLocationHistoryResponse = Awaited<ReturnType<typeof getLocationHistory>>

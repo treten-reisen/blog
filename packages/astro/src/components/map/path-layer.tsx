@@ -4,10 +4,11 @@ import type { Feature, FeatureCollection, GeoJsonProperties, LineString, Positio
 import type { Map } from "maplibre-gl"
 import { useEffect, useState } from "react"
 
+import type { GetLocationHistoryResponse } from "../../data/get-location-history"
+import type { GetNightsLocationsResponse } from "../../data/get-nights-locations"
+
 import MapPopup from "./map-popup"
 import { useMap } from "./map.context"
-import useLocationHistory from "./use-location-history"
-import useNightsLocations from "./use-nights-locations"
 
 const addRoute = (map: Map, routeData: Feature<LineString, GeoJsonProperties>) => {
   map.addSource("route", {
@@ -131,10 +132,13 @@ const addNights = (
   })
 }
 
-const PathLayer = () => {
+export type PathLayerProps = {
+  locationHistory: GetLocationHistoryResponse
+  nightsLocations: GetNightsLocationsResponse
+}
+
+const PathLayer = ({ locationHistory, nightsLocations }: PathLayerProps) => {
   const map = useMap()
-  const { data: locationHistory } = useLocationHistory()
-  const { data: nightsLocations } = useNightsLocations()
 
   useEffect(() => {
     if (locationHistory && nightsLocations) {

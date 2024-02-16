@@ -7,6 +7,7 @@ import { getArticleList, StrapiArticleListItem } from "../data/get-article-list"
 import { getGlobal } from "../data/get-global"
 import { getLiveLocation } from "../data/get-live-location"
 import { getLocationHistory } from "../data/get-location-history"
+import { getNightsLocations } from "../data/get-nights-locations"
 import { getPage } from "../data/get-page"
 import { transformStrapiImage } from "../data/image"
 import { encodeImageToBlurhashURL } from "../helpers/blurhash"
@@ -21,11 +22,12 @@ const avatarUrl = global.data.attributes.avatar.htmlImage.src
 if (!avatarUrl) {
   throw new Error("No avatar found")
 }
-const center = await getLiveLocation()
+
+const liveLocation = await getLiveLocation()
+const nightLocations = await getNightsLocations()
+const locationHistory = await getLocationHistory()
 
 const articles = await getArticleList()
-
-const locationHistory = await getLocationHistory()
 
 const findLocation = (article: StrapiArticleListItem) => {
   const publishDate = article.attributes.publishedAt
@@ -78,6 +80,13 @@ const articleFeatures = {
     <Seo global={global.data} seo={page.attributes.seo} type="website" />
   </Fragment>
   <div class="h-full min-h-[90svh]">
-    <Map avatarUrl={avatarUrl} articles={articleFeatures} center={center} client:only="react" />
+    <Map
+      avatarUrl={avatarUrl}
+      articles={articleFeatures}
+      locationHistory={locationHistory}
+      latestLocation={liveLocation}
+      nightLocations={nightLocations}
+      client:only="react"
+    />
   </div>
 </Layout>

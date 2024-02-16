@@ -13,6 +13,9 @@ export type LikeButtonProps = {
   articleId: number
 }
 
+/**
+ * @deprecated like doesn't work since I want to run serverless
+ */
 export const LikeButton = ({ articleId }: LikeButtonProps) => {
   const [explode, setExplode] = useState(false)
   const { data, error, performLike, initialFetchState } = useLike(articleId)

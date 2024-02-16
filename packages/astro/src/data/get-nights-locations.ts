@@ -12,3 +12,5 @@ export const getNightsLocations = async () => {
     featureCollectionSchema(featureSchema(pointSchema, z.object({ timestamp: z.string() })))
   )
 }
+
+export type GetNightsLocationsResponse = Awaited<ReturnType<typeof getNightsLocations>>
