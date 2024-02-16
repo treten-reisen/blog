@@ -1,8 +1,6 @@
 name: astro
 concurrency: astro_prod
 on:
-  schedule:
-    - cron: "0 */4 * * *"
   push:
     branches:
       - main
@@ -13,7 +11,7 @@ on:
       - ".gcloundignore"
   workflow_dispatch:
 jobs:
-  deploy-astro:
+  build-astro:
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
@@ -37,46 +35,23 @@ jobs:
           STRAPI_PUBLICATION_STATE: "live"
         run: yarn workspace @treten-reisen/astro build
 
-      - id: "auth"
-        uses: "google-github-actions/auth@v1"
+      - uses: actions/upload-artifact@v4
         with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          name: astro-build
+          path: packages/astro/dist
 
-      - name: "Set up Cloud SDK"
-        uses: "google-github-actions/setup-gcloud@v1"
-
-      - name: "Remove current files"
-        env:
-          ASSET_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASSETS }}
-          WEB_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASTRO }}
-        run: |
-          gsutil -m rm -a $WEB_BUCKET_URL/** || true
-
-      - id: "upload-files"
-        uses: "google-github-actions/upload-cloud-storage@v1"
+  deploy-gcloud:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    needs: build-astro
+    steps:
+      - uses: actions/download-artifact@v4
         with:
-          path: "packages/astro/dist"
-          destination: ${{ secrets.GCP_BUCKET_ASTRO }}
-          parent: false
+          name: astro-build
+          path: packages/astro/dist
+          merge-multiple: true
 
-      - name: "Set Bucket Cache and CORS"
-        env:
-          ASSET_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASSETS }}
-          WEB_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASTRO }}
-        run: |
-          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/**/*.html || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.webp || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.js || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.css || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.ttf || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/sw.js || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/robots.txt || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/sitemap-*.xml || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/*.png || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/browserconfig.xml || true
-          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" \
-                            -h "Content-Type: application/xml; charset=utf-8" \
-                            -h "x-content-type-options: nosniff" \
-                            $WEB_BUCKET_URL/rss/styles.xsl || true
-          gsutil cors set asset-cors.json $ASSET_BUCKET_URL || true
+      - name: Display structure of downloaded files
+        run: ls -R packages/astro/dist
