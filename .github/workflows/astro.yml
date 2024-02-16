@@ -55,3 +55,90 @@ jobs:
 
       - name: Display structure of downloaded files
         run: ls -R packages/astro/dist
+
+      - id: "auth"
+        uses: "google-github-actions/auth@v1"
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v1"
+
+      - name: "Remove current files"
+        env:
+          ASSET_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASSETS }}
+          WEB_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASTRO }}
+        run: |
+          gsutil -m rm -a $WEB_BUCKET_URL/** || true
+
+      - id: "upload-files"
+        uses: "google-github-actions/upload-cloud-storage@v1"
+        with:
+          path: "packages/astro/dist"
+          destination: ${{ secrets.GCP_BUCKET_ASTRO }}
+          parent: false
+
+      - name: "Set Bucket Cache and CORS"
+        env:
+          ASSET_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASSETS }}
+          WEB_BUCKET_URL: gs://${{ secrets.GCP_BUCKET_ASTRO }}
+        run: |
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/**/*.html || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.webp || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.js || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.css || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" $WEB_BUCKET_URL/**/*.ttf || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/sw.js || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/robots.txt || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/sitemap-*.xml || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/*.png || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" $WEB_BUCKET_URL/browserconfig.xml || true
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" \
+                            -h "Content-Type: application/xml; charset=utf-8" \
+                            -h "x-content-type-options: nosniff" \
+                            $WEB_BUCKET_URL/rss/styles.xsl || true
+          gsutil cors set asset-cors.json $ASSET_BUCKET_URL || true
+
+  prepare-ghpages:
+    needs: build-astro
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: astro-build
+          path: packages/astro/dist
+          merge-multiple: true
+
+      - name: Display structure of downloaded files
+        run: ls -R packages/astro/dist
+
+      - name: Fix permissions
+        run: |
+          chmod -v -R +rX "packages/astro/dist/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: packages/astro/dist
+
+  deploy-ghpages:
+    needs: prepare-ghpages
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
+
