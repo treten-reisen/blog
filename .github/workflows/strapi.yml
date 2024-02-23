@@ -82,4 +82,5 @@ jobs:
             --update-env-vars STRAPI_URL=$STRAPI_URL,ASSET_BUCKET_NAME=$ASSET_BUCKET_NAME,INSTANCE_CONNECTION_NAME=$INSTANCE_CONNECTION_NAME,DATABASE_USER=$DATABASE_USER,HOST=$HOST,DATABASE_NAME=$DATABASE_NAME \
             --update-secrets=DATABASE_PASSWORD=DATABASE_PASSWORD:latest,APP_KEYS=APP_KEYS:latest,API_TOKEN_SALT=API_TOKEN_SALT:latest,ADMIN_JWT_SECRET=ADMIN_JWT_SECRET:latest,JWT_SECRET=JWT_SECRET:latest \
             --add-cloudsql-instances=$INSTANCE_CONNECTION_NAME \
-            --cpu-boost
+            --cpu-boost \
+            --min-instances 0
