@@ -49,7 +49,11 @@ const locationHistory = await getLocationHistory()
           locationHistory={locationHistory}
           client:only="react"
         />
-        <a class="absolute left-0 top-0 h-full w-full" href="/live-standort" aria-labelledby="map-overlay-button-text"
+        <a
+          class="absolute left-0 top-0 h-full w-full"
+          href="/live-standort"
+          aria-labelledby="map-overlay-button-text"
+          tabindex="-1"
           ><HeroMapOverlay />
         </a>
       </div>

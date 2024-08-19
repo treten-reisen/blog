@@ -39,6 +39,7 @@ export const MapProvider = ({ children, center, hideControls = false }: PropsWit
     createdMap.on("load", () => {
       setIsLoaded(true)
       hideControls && attributionControlRef.current._container.querySelector("summary")?.click()
+      createdMap.getCanvas().tabIndex = -1
     })
     createdMap.addControl(attributionControlRef.current, "bottom-left")
     mapRef.current = createdMap
