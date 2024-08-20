@@ -46,3 +46,18 @@ const global = await getGlobal()
   <!-- Next line adds a buffer for scroll overflow on safari  -->
   <div aria-hidden="true" class="fixed bottom-0 -z-10 h-1/2 w-full bg-gray-700"></div>
 </html>
+
+<script>
+  const articleLinks = document.querySelectorAll("[data-href]")
+
+  articleLinks.forEach(articleLink => {
+    if (!(articleLink instanceof HTMLElement)) return
+    const href = articleLink.getAttribute("data-href")
+    if (href == null) return
+    articleLink.style.cursor = "pointer"
+    articleLink.onclick = () => {
+      window.location.href = href
+    }
+  })
+  console.log(articleLinks)
+</script>

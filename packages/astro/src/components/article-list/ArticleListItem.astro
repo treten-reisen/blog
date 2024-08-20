@@ -12,12 +12,12 @@ const { article } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
 ---
 
-<a
-  href={`/articles/${article.attributes.slug}`}
-  class="flex flex-col overflow-hidden rounded-xl bg-gray-50 shadow-xl @container/article-card"
+<div
+  data-href={`/articles/${article.attributes.slug}`}
+  class="flex cursor-pointer flex-col overflow-hidden rounded-xl bg-gray-900 shadow-xl @container/article-card"
 >
   <header class="relative flex flex-col">
-    <div class="h-52 @lg/article-card:h-64">
+    <div role="img" aria-label="Bild für Blogeintrag" class="h-52 @lg/article-card:h-64">
       <LazyImage
         blurhashConfig={blurhash}
         src={article.attributes.image.lg.htmlImage.src || undefined}
@@ -29,7 +29,13 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
     <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 @md/article-card:to-60%"></div>
     <div class="absolute bottom-0 p-4 @sm/article-card:p-cq-responsive-1/2">
       <h3 class="font-sans text-lg font-bold tracking-tight text-gray-100">
-        {article.attributes.title}
+        <a
+          aria-label={`${
+            article.attributes.publishedAt &&
+            `${dateFns.formatRelative(article.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}.`
+          } ${article.attributes.title}`}
+          href={`/articles/${article.attributes.slug}`}>{article.attributes.title}</a
+        >
       </h3>
       {
         article.attributes.publishedAt && (
@@ -43,7 +49,7 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
       }
     </div>
   </header>
-  <div class="p-4 font-sans tracking-tight @sm/article-card:p-cq-responsive-1/2">
+  <div class="bg-gray-50 p-4 font-sans tracking-tight @sm/article-card:p-cq-responsive-1/2">
     {article.attributes.summary}
   </div>
-</a>
+</div>

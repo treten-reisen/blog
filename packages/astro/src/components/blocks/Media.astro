@@ -21,25 +21,23 @@ const blurhash = await encodeImageToBlurhashURL(data.file)
 ---
 
 <div class="my-responsive flex w-full justify-center">
-  <a
-    aria-label="Bild öffnen"
-    class="cursor-zoom-in"
-    href={data.file.attributes.url || undefined}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <figure class="flex flex-col items-center">
-      <div style={{ width: `min(100%, ${maxWidth}px)`, aspectRatio: aspectRatio }}>
-        <LazyImage
-          blurhashConfig={blurhash}
-          src={data.file.htmlImage.src || undefined}
-          alt={data.file.htmlImage.alt || undefined}
-          loading="lazy"
-          aspectRatio={aspectRatio}
-          client:visible
-        />
-      </div>
-      <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.attributes.caption}</figcaption>
-    </figure>
-  </a>
+  <figure aria-label={data.file.attributes.caption} class="flex flex-col items-center">
+    <a
+      class="cursor-zoom-in"
+      href={data.file.attributes.url || undefined}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ width: `min(100%, ${maxWidth}px)`, aspectRatio: aspectRatio }}
+    >
+      <LazyImage
+        blurhashConfig={blurhash}
+        src={data.file.htmlImage.src || undefined}
+        alt={data.file.htmlImage.alt || undefined}
+        loading="lazy"
+        aspectRatio={aspectRatio}
+        client:visible
+      />
+    </a>
+    <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.attributes.caption}</figcaption>
+  </figure>
 </div>

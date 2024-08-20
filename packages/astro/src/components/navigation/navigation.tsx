@@ -32,9 +32,13 @@ const Navigation = ({ logoUrl, currentUrl, items }: NavigationProps) => {
           "transition-colors duration-500": !isOpen,
         })}
       >
-        <div className="flex h-full items-center justify-between px-6 md:container md:px-8">
+        <div
+          role="banner"
+          aria-label="treten.reisen Logo"
+          className="flex h-full items-center justify-between px-6 md:container md:px-8"
+        >
           <a href="/" tabIndex={0} title="Zur Startseite">
-            <img className="h-6 self-start" src={logoUrl} alt="Logo" />
+            <img aria-label="treten.reisen Logo" className="h-6 self-start" src={logoUrl} alt="treten.reisen Logo" />
           </a>
           <button
             className="text-xl text-gray-200 hover:text-gray-50 md:hidden"
@@ -82,6 +86,7 @@ type NavMenuProps = {
 const NavMenu = ({ items, currentUrl, orientation, color }: NavMenuProps) => {
   return (
     <nav
+      aria-label="Seitennavigation"
       className={classnames("font-sans tracking-tight", {
         "text-gray-200": color === "bright",
         "text-gray-600": color === "dark",
