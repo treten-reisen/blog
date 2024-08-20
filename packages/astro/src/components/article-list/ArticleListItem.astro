@@ -14,9 +14,9 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
 
 <div
   data-href={`/articles/${article.attributes.slug}`}
-  class="flex cursor-pointer flex-col overflow-hidden rounded-xl bg-gray-900 shadow-xl @container/article-card"
+  class="flex cursor-pointer flex-col overflow-hidden rounded-xl bg-gray-50 shadow-xl @container/article-card"
 >
-  <header class="relative flex flex-col">
+  <header class="relative flex flex-col bg-gray-900">
     <div role="img" aria-label="Bild für Blogeintrag" class="h-52 @lg/article-card:h-64">
       <LazyImage
         blurhashConfig={blurhash}
@@ -49,7 +49,7 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
       }
     </div>
   </header>
-  <div class="bg-gray-50 p-4 font-sans tracking-tight @sm/article-card:p-cq-responsive-1/2">
+  <div class="p-4 font-sans tracking-tight @sm/article-card:p-cq-responsive-1/2">
     {article.attributes.summary}
   </div>
 </div>

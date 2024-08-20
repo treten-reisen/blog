@@ -16,16 +16,18 @@ const { logo, image } = Astro.props as Props
 const blurhash = await encodeImageToBlurhashURL(image)
 ---
 
-<NavBar logoUrl={logo.attributes.url} />
-<header aria-label="Seitenhero" class="relative h-hero w-full bg-cover shadow-lg">
-  <div role="img" aria-label="Hero Bild" class="absolute z-0 h-full w-full">
-    <LazyImage
-      blurhashConfig={blurhash}
-      src={image.htmlImage.src || undefined}
-      alt={image.htmlImage.alt || undefined}
-      loading="eager"
-      client:load
-    />
+<header aria-label="Seitenhero">
+  <div class="relative h-hero w-full bg-cover shadow-lg">
+    <NavBar logoUrl={logo.attributes.url} />
+    <div role="img" aria-label="Hero Bild" class="absolute z-0 h-full w-full">
+      <LazyImage
+        blurhashConfig={blurhash}
+        src={image.htmlImage.src || undefined}
+        alt={image.htmlImage.alt || undefined}
+        loading="eager"
+        client:load
+      />
+    </div>
+    <div class="absolute z-10 h-full w-full"></div>
   </div>
-  <div class="absolute z-10 h-full w-full"></div>
 </header>

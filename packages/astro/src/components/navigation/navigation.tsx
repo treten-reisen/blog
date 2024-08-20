@@ -33,7 +33,7 @@ const Navigation = ({ logoUrl, currentUrl, items }: NavigationProps) => {
         })}
       >
         <div
-          role="banner"
+          role="img"
           aria-label="treten.reisen Logo"
           className="flex h-full items-center justify-between px-6 md:container md:px-8"
         >
