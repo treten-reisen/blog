@@ -17,13 +17,6 @@ const blurhash = await encodeImageToBlurhashURL(image)
 ---
 
 <header aria-label="Seitenhero">
-  <div class="sr-only top-2 z-30 focus-within:not-sr-only focus-within:fixed focus-within:w-screen">
-    <div class="flex justify-center">
-      <a href="#main-content" class="mx-auto rounded-md border-2 border-gray-200 bg-gray-900 p-2 px-4 text-gray-200">
-        Zum Haupt-Inhalt springen
-      </a>
-    </div>
-  </div>
   <div class="relative h-hero w-full bg-cover shadow-lg">
     <NavBar logoUrl={logo.attributes.url} />
     <div role="img" aria-label="Hero Bild" class="absolute z-0 h-full w-full">

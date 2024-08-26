@@ -1,4 +1,6 @@
 ---
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import * as dateFns from "date-fns"
 
 import BlocksRenderer from "../../components/BlocksRenderer.astro"
@@ -42,9 +44,10 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
   {
     article.data.attributes.image && (
       <Fragment slot="header">
-        <header class="h-hero relative flex w-full items-end bg-gray-900" id="main-content">
+        <header class="h-hero relative flex w-full items-end bg-gray-900">
           <NavBar logoUrl={global.data.attributes.logo.data.attributes.url} />
           <div
+            id="main-content"
             role="img"
             aria-label={`Bild für Blogeintrag "${article.data.attributes.title}"`}
             class="absolute h-full w-full"
@@ -102,7 +105,10 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
             }
           </span>
         </div>
-        <a class="font-sans underline" href={"/articles#" + article.data.attributes.slug}>Zu allen Blogeinträgen</a>
+        <a class="font-sans underline" href={"/articles#" + article.data.attributes.slug}
+          >Zu allen Blogeinträgen
+          <FontAwesomeIcon className="ml-1" icon={faChevronRight} />
+        </a>
       </div>
     </article>
     <!-- {
