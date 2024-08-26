@@ -32,20 +32,19 @@ const Navigation = ({ logoUrl, currentUrl, items }: NavigationProps) => {
           "transition-colors duration-500": !isOpen,
         })}
       >
-        <div
-          role="img"
-          aria-label="treten.reisen Logo"
-          className="flex h-full items-center justify-between px-6 md:container md:px-8"
-        >
+        <div className="flex h-full items-center justify-between px-6 md:container md:px-8">
           <a href="/" tabIndex={0} title="Zur Startseite">
             <img aria-label="treten.reisen Logo" className="h-6 self-start" src={logoUrl} alt="treten.reisen Logo" />
           </a>
           <button
             className="text-xl text-gray-200 hover:text-gray-50 md:hidden"
-            title="Menü"
+            title="Seitennavigation umschalten"
             onClick={() => {
               setOpen(open => !open)
             }}
+            aria-haspopup="menu"
+            aria-expanded={isOpen}
+            aria-controls="navigation-menu"
           >
             <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
           </button>
@@ -60,6 +59,11 @@ const Navigation = ({ logoUrl, currentUrl, items }: NavigationProps) => {
             className={classnames("flex justify-end bg-gray-50 px-responsive py-6 text-right shadow-2xl md:container", {
               "text-lg": isOpen,
             })}
+            id="navigation-menu"
+            role="menu"
+            aria-label="Navigation"
+            aria-modal="true"
+            ref={el => el?.focus()}
           >
             <NavMenu orientation="vertical" items={items} currentUrl={currentUrl} color="dark" />
           </div>

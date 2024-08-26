@@ -17,7 +17,11 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
   class="flex cursor-pointer flex-col overflow-hidden rounded-xl bg-gray-50 shadow-xl @container/article-card"
 >
   <header class="relative flex flex-col bg-gray-900">
-    <div role="img" aria-label="Bild für Blogeintrag" class="h-52 @lg/article-card:h-64">
+    <div
+      role="img"
+      aria-label={`Bild für Blogeintrag "${article.attributes.title}"`}
+      class="h-52 @lg/article-card:h-64"
+    >
       <LazyImage
         blurhashConfig={blurhash}
         src={article.attributes.image.lg.htmlImage.src || undefined}
@@ -28,7 +32,7 @@ const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
     </div>
     <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 @md/article-card:to-60%"></div>
     <div class="absolute bottom-0 p-4 @sm/article-card:p-cq-responsive-1/2">
-      <h3 class="font-sans text-lg font-bold tracking-tight text-gray-100">
+      <h3 id={`${article.attributes.slug}`} class="font-sans text-lg font-bold tracking-tight text-gray-100">
         <a
           aria-label={`${
             article.attributes.publishedAt &&
