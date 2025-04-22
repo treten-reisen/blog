@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
+    "build": "strapi ts:generate-types && strapi build",
     "strapi": "strapi",
     "prepare": "husky install",
     "lint": "eslint .",
@@ -14,15 +14,19 @@
   },
   "dependencies": {
     "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.10.5",
-    "@strapi/plugin-i18n": "4.11.4",
-    "@strapi/plugin-users-permissions": "4.11.4",
-    "@strapi/strapi": "4.11.4",
+    "@strapi/plugin-i18n": "4.15.5",
+    "@strapi/plugin-users-permissions": "4.15.5",
+    "@strapi/strapi": "4.15.5",
     "@turf/helpers": "6.5.0",
     "@turf/projection": "^6.5.0",
     "better-sqlite3": "8.7.0",
     "pg": "8.11.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^5.2.0",
     "react-select": "5.7.3",
-    "strapi-plugin-import-export-entries": "^1.23.1"
+    "strapi-plugin-import-export-entries": "^1.23.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.27.0",
