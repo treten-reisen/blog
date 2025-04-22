@@ -26,7 +26,7 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
 
     return lineString(
       locations.map(loc => [loc.longitude, loc.latitude]),
-      { times: locations.map(loc => loc.timestamp) }
+      { times: locations.map(loc => loc.timestamp) },
     )
   },
   async nights(ctx) {
@@ -39,8 +39,8 @@ module.exports = createCoreController("api::live-location.live-location", ({ str
 
     return featureCollection(
       locations.map((loc, index) =>
-        point([loc.longitude, loc.latitude], { timestamp: loc.night_time }, { id: index + 1 })
-      )
+        point([loc.longitude, loc.latitude], { timestamp: loc.night_time }, { id: index + 1 }),
+      ),
     )
   },
 }))

@@ -8,32 +8,31 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "gcp-build": "strapi build",
     "prepare": "husky install",
     "lint": "eslint .",
     "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.10.5",
-    "@strapi/plugin-i18n": "4.10.5",
-    "@strapi/plugin-users-permissions": "4.10.5",
-    "@strapi/strapi": "4.10.5",
+    "@strapi/plugin-i18n": "4.11.4",
+    "@strapi/plugin-users-permissions": "4.11.4",
+    "@strapi/strapi": "4.11.4",
     "@turf/helpers": "6.5.0",
     "@turf/projection": "^6.5.0",
-    "better-sqlite3": "8.4.0",
+    "better-sqlite3": "8.7.0",
     "pg": "8.11.1",
     "react-select": "5.7.3",
     "strapi-plugin-import-export-entries": "^1.23.1"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.22.7",
+    "@babel/eslint-parser": "^7.27.0",
     "@strapi-community/eslint-config": "^0.4.3",
-    "eslint": "^8.44.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
-    "lint-staged": "^13.2.3",
-    "prettier": "^2.8.8"
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3"
   },
   "strapi": {
     "uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
