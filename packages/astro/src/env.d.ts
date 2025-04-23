@@ -1,4 +1,6 @@
-/// <reference types="@astrojs/image/client" />
+/// <reference path="../.astro/types.d.ts" />
+/// <reference types="vite/client" />
+/// <reference types="vite-plugin-pwa/client" />
 
 interface ImportMetaEnv {
   readonly STRAPI_TOKEN: string

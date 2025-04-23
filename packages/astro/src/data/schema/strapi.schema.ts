@@ -1,4 +1,4 @@
-import { AnyZodObject, z, ZodTypeAny } from "zod"
+import { type AnyZodObject, z, type ZodTypeAny } from "zod"
 
 import { dateStringSchema } from "./date.schema"
 

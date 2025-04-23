@@ -1,13 +1,12 @@
-import z, { ZodError, ZodTypeAny } from "zod"
+import z, {ZodError, ZodSchema} from "zod"
 
-export const parseResponse = async <T extends ZodTypeAny>(response: Response, schema: T): Promise<z.infer<T>> => {
+export const parseResponse = async <T extends ZodSchema>(response: Response, schema: T): Promise<z.infer<T>> => {
   const data = await response.json().catch(() => {
     console.log(`Error parsing response from ${response.url}`)
   })
 
   try {
-    const parsedSchema = await schema.parseAsync(data)
-    return parsedSchema
+    return await schema.parseAsync(data)
   } catch (error) {
     console.log(`Error parsing response from ${response.url}:`)
     console.log(JSON.stringify(data, undefined, 2))

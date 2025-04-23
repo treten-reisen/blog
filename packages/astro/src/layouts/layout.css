@@ -1,3 +1,5 @@
+@reference "../styles/global.css";
+
 @font-face {
   font-family: "Inconsolata";
   src: url("../assets/fonts/Inconsolata-Regular.ttf") format("truetype");

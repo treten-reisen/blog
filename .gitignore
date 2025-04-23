@@ -122,6 +122,7 @@ packages/strapi/dist
 
 packages/astro/dist
 packages/astro/.output
+packages/astro/.astro
 
 ############################
 # Env files

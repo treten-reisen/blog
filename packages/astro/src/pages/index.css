@@ -1,3 +1,5 @@
+@reference "../styles/global.css";
+
 .maplibregl-ctrl-top-left,
 .mapboxgl-ctrl-top-left,
 .maplibregl-ctrl-top-right,

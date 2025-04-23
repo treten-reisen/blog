@@ -23,7 +23,7 @@ const blurhash = await encodeImageToBlurhashURL(image)
       <LazyImage
         blurhashConfig={blurhash}
         src={image.htmlImage.src || undefined}
-        alt={image.htmlImage.alt || undefined}
+        {...image.htmlImage.attributes}
         loading="eager"
         client:load
       />

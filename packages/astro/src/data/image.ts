@@ -1,18 +1,23 @@
-import { getImage } from "@astrojs/image"
+import { getImage } from "astro:assets"
 
 import type { StrapiImageData } from "./schema/strapi.schema"
 
 export const transformStrapiImage = async (image: StrapiImageData, size?: { width?: number; height?: number }) => {
-  const width = size?.width || size?.height ? size.width : image.width
-  const height = size?.width || size?.height ? size.height : image.height
-  const aspectRatio =
-    size?.width || size?.height
-      ? size?.width && size?.height
+  const width = size?.width === undefined && size?.height === undefined
+    ? undefined
+    : size.width !== undefined
+      ? size.width
+      : !image.width || !image.height || !size?.height
         ? undefined
-        : image.width && image.height
-        ? image.width / image.height
-        : undefined
-      : undefined
+        : image.width / image.height * size.height;
+
+  const height = size?.width === undefined && size?.height === undefined
+    ? undefined
+    : size.height !== undefined
+      ? size.height
+      : !image.width || !image.height || !size?.width
+        ? undefined
+        : image.height / image.width * size.width;
 
   const htmlImage = await getImage({
     src: image.url,
@@ -20,7 +25,7 @@ export const transformStrapiImage = async (image: StrapiImageData, size?: { widt
     format: "webp",
     width,
     height,
-    aspectRatio,
+    inferSize: width == undefined || height == undefined,
   })
 
   return {

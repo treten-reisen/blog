@@ -1,3 +1,5 @@
+@reference "../styles/global.css";
+
 .maplibregl-control-container .maplibregl-ctrl-top-left,
 .maplibregl-control-container .maplibregl-ctrl-top-right {
   @apply top-14;

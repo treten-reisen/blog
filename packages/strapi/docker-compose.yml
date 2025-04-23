@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: 'dclOpAjyAXmk9DUizhmj'
+      POSTGRES_DB: strapi
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./database/pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432

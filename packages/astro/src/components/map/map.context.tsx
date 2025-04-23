@@ -1,7 +1,7 @@
 import classnames from "classnames"
 import type { Position } from "geojson"
 import { AttributionControl, Map, NavigationControl } from "maplibre-gl"
-import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from "react"
+import { createContext, type PropsWithChildren, useContext, useEffect, useRef, useState } from "react"
 
 import "maplibre-gl/dist/maplibre-gl.css"
 

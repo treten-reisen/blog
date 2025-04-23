@@ -1,3 +1,5 @@
+@reference '../../styles/global.css';
+
 .maplibregl-popup-close-button {
   @apply h-6 w-6 rounded-b-full rounded-tl-full bg-gray-50 hover:bg-gray-200;
 }

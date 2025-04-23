@@ -15,12 +15,20 @@ export const useSizeListener = <T extends HTMLElement>(
     cb(size)
   }, [cb, ref])
 
-  const observer = useMemo(() => new ResizeObserver(updateSize), [updateSize])
+  const observer = useMemo(() => {
+    if (import.meta.env.SSR) {
+      return {
+        observe: () => {},
+        unobserve: () => {},
+      }
+    }
+    return new ResizeObserver(updateSize)
+  }, [updateSize])
 
   useEffect(() => {
     if (!ref.current) return
     const el = ref.current
-    observer.observe(el)
-    return () => observer.unobserve(el)
+    observer?.observe(el)
+    return () => observer?.unobserve(el)
   })
 }

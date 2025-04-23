@@ -1,3 +1,5 @@
+@reference '../../styles/global.css';
+
 @define-mixin explosion-particle $index, $scale, $translateX, $translateY, $rotate, $time, $opacity {
   .explosion__particle-$(index) {
     @apply absolute left-0 hidden;

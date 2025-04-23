@@ -21,12 +21,12 @@ const MediaGalleryItem = ({ file, label, objectFit, selected }: MediaGalleryItem
         >
           <img
             src={file.htmlImage.src || undefined}
-            alt={file.htmlImage.alt || undefined}
             className={classnames("absolute left-0 top-0 h-full w-full object-contain backdrop-blur", {
               "object-cover": objectFit === "cover",
               "object-contain": objectFit === "contain",
             })}
             loading="lazy"
+            {...file.htmlImage.attributes}
           />
           <figcaption className="absolute bottom-0 left-0 w-full bg-gray-900 bg-opacity-70 p-2 text-center font-sans italic text-gray-50">
             {file.caption}

@@ -10,7 +10,7 @@ import { useTransitionClass } from "./use-transition-class"
 import "./like-button.css"
 
 export type LikeButtonProps = {
-  articleId: number
+  articleId: string
 }
 
 /**

@@ -1,4 +1,4 @@
-import z, { ZodSchema } from "zod"
+import z, {ZodSchema} from "zod"
 
 export const pointSchema = z.object({
   type: z.literal("Point"),

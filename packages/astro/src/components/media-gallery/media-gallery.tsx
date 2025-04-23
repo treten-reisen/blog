@@ -50,7 +50,7 @@ const MediaGallery = ({ files }: MediaGalleryProps) => {
     const elementRatio = width / height
     setRatioDifference(
       files.map(file => {
-        const fileRatio = (file.attributes.width || 0) / (file.attributes.height || 1)
+        const fileRatio = (file.width || 0) / (file.height || 1)
         const diff = elementRatio - fileRatio
         return Math.abs(diff)
       })

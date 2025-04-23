@@ -9,8 +9,8 @@ export type Props = {
 
 const { data } = Astro.props as Props
 
-const rawHeight = typeof data.file.htmlImage.height === "number" ? data.file.htmlImage.height : 0
-const rawWidth = typeof data.file.htmlImage.width === "number" ? data.file.htmlImage.width : 0
+const rawHeight = typeof data.file.htmlImage.attributes.height === "number" ? data.file.htmlImage.attributes.height : 0
+const rawWidth = typeof data.file.htmlImage.attributes.width === "number" ? data.file.htmlImage.attributes.width : 0
 
 const aspectRatio = rawWidth / rawHeight
 
@@ -32,10 +32,10 @@ const blurhash = await encodeImageToBlurhashURL(data.file)
       <LazyImage
         blurhashConfig={blurhash}
         src={data.file.htmlImage.src || undefined}
-        alt={data.file.htmlImage.alt || undefined}
         loading="lazy"
         aspectRatio={aspectRatio}
         client:visible
+        {...data.file.htmlImage.attributes}
       />
     </a>
     <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.caption}</figcaption>
