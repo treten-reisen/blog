@@ -13,7 +13,6 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@strapi-community/strapi-provider-upload-google-cloud-storage": "4.10.5",
     "@strapi/plugin-i18n": "4.15.5",
     "@strapi/plugin-users-permissions": "4.15.5",
     "@strapi/strapi": "4.15.5",
