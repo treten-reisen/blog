@@ -27,7 +27,7 @@ const getArticleLikes = async (strapi, id) => {
     })
   }
 
-  return { count: Number.parseInt(entry?.count || 0, 10), id: entry.id }
+  return { count: Number.parseInt(entry?.count || 0, 10), documentId: entry.documentId }
 }
 
 module.exports = createCoreController("api::article.article", ({ strapi }) => ({
