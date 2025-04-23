@@ -26,6 +26,7 @@ const MediaGalleryItem = ({ file, label, objectFit, selected }: MediaGalleryItem
               "object-contain": objectFit === "contain",
             })}
             loading="lazy"
+            alt={file.alternativeText}
             {...file.htmlImage.attributes}
           />
           <figcaption className="absolute bottom-0 left-0 w-full bg-gray-900 bg-opacity-70 p-2 text-center font-sans italic text-gray-50">

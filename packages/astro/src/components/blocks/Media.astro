@@ -31,8 +31,9 @@ const blurhash = await encodeImageToBlurhashURL(data.file)
     >
       <LazyImage
         blurhashConfig={blurhash}
-        {...data.file.htmlImage.attributes}
         src={data.file.htmlImage.src || undefined}
+        alt={data.file.alternativeText}
+        {...data.file.htmlImage.attributes}
         loading="lazy"
         aspectRatio={aspectRatio}
         client:visible

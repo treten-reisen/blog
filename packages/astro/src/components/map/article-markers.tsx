@@ -93,11 +93,11 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
             <header className="flex flex-col space-y-2">
               <div className="h-32">
                 <LazyImage
-                  {...clickedArticle.properties.article.image.sm.htmlImage.attributes}
                   blurhashConfig={clickedArticle.properties.blurhash}
                   src={clickedArticle.properties.article.image.sm.htmlImage.src || undefined}
+                  alt={clickedArticle.properties.article.image.sm.alternativeText}
+                  {...clickedArticle.properties.article.image.sm.htmlImage.attributes}
                   loading="lazy"
-
                 />
               </div>
 

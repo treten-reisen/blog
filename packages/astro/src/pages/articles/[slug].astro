@@ -56,6 +56,7 @@ const blurhash = await encodeImageToBlurhashURL(article.data.image.xl)
             <LazyImage
               blurhashConfig={blurhash}
               src={article.data.image.xl.htmlImage.src || undefined}
+              alt={article.data.image.xl.alternativeText}
               {...article.data.image.xl.htmlImage.attributes}
               loading="eager"
               client:idle
