@@ -16,14 +16,13 @@ module.exports = [
       },
     },
   },
-  "strapi::poweredBy",
   {
     name: "strapi::cors",
     config: {
-      headers: "*",
       origin: ["https://treten.reisen", "https://www.treten.reisen", "https://strapi.treten.reisen", "http://localhost:4321"],
     },
   },
+  "strapi::poweredBy",
   "strapi::query",
   "strapi::body",
   "strapi::session",
