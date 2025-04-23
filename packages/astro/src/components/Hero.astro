@@ -18,7 +18,7 @@ const blurhash = await encodeImageToBlurhashURL(image)
 
 <header aria-label="Seitenhero">
   <div class="relative h-hero w-full bg-cover shadow-lg">
-    <NavBar logoUrl={logo.attributes.url} />
+    <NavBar logoUrl={logo.url} />
     <div role="img" aria-label="Hero Bild" class="absolute z-0 h-full w-full">
       <LazyImage
         blurhashConfig={blurhash}

@@ -3,7 +3,7 @@ import { z } from "zod"
 import { transformStrapiImage } from "../image"
 import { markdownToHtml } from "../parse-markdown"
 
-import { strapiImageDataSchema, strapiSingleSchema, strapiCollectionSchema } from "./strapi.schema"
+import { strapiImageDataSchema } from "./strapi.schema"
 
 const strapiBlockRichTextSchema = z
   .object({
@@ -21,8 +21,8 @@ export type StrapiBlockRichText = z.infer<typeof strapiBlockRichTextSchema>
 const strapiBlockMediaSchema = z.object({
   id: z.number(),
   __component: z.literal("shared.media"),
-  file: strapiSingleSchema(strapiImageDataSchema).transform(async image =>
-    transformStrapiImage(image.data, { height: 384 * 2 })
+  file: strapiImageDataSchema.transform(async image =>
+    transformStrapiImage(image, { height: 384 * 2 })
   ),
 })
 
@@ -31,7 +31,7 @@ export type StrapiBlockMedia = z.infer<typeof strapiBlockMediaSchema>
 const strapiBlockMediaGallerySchema = z.object({
   id: z.number(),
   __component: z.literal("shared.media-gallery"),
-  files: strapiCollectionSchema(strapiImageDataSchema).transform(async ({ data }) =>
+  files: z.array(strapiImageDataSchema).transform(async (data) =>
     Promise.all(data.map(image => transformStrapiImage(image)))
   ),
 })

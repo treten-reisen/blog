@@ -37,7 +37,7 @@ export const getArticleList = async ({ includeUnlisted = false, pagination }: Ge
 
   const params = new URLSearchParams({
     publicationState,
-    "populate[image]": "*",
+    "populate[image][populate]": "*",
     "populate[seo][populate]": "*",
     sort: "publishedAt:desc",
   })

@@ -10,9 +10,9 @@ export async function get() {
     description: "Meine Fahrradreise 8000 km um die Ostsee",
     site: import.meta.env.SITE,
     items: articles.data.map(article => ({
-      title: article.attributes.seo.metaTitle || article.attributes.title,
-      link: `${import.meta.env.BASE_URL}/articles/${article.attributes.slug}/index.html`,
-      pubDate: article.attributes.publishedAt || new Date(),
+      title: article.seo.metaTitle || article.title,
+      link: `${import.meta.env.BASE_URL}/articles/${article.slug}/index.html`,
+      pubDate: article.publishedAt || new Date(),
     })),
     customData: `<language>de-de</language>`,
     stylesheet: "/rss/styles.xsl",

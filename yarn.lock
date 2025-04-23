@@ -5935,7 +5935,7 @@ __metadata:
     vite-plugin-pwa: "npm:^0.16.4"
     wait-on: "npm:7.0.1"
     world-atlas: "npm:^2.0.2"
-    zod: "npm:^3.21.4"
+    zod: "npm:3.22.3"
   languageName: unknown
   linkType: soft
 
@@ -24252,6 +24252,13 @@ __metadata:
     property-expr: "npm:^2.0.4"
     toposort: "npm:^2.0.2"
   checksum: 10/1d197db109381bcd2633bf4f960ed78db02edf58800648c1a693c5a463fb6b66837a57426f1700fc935c8525380eba7398fa406d71d88f99876a562d6cc020d8
+  languageName: node
+  linkType: hard
+
+"zod@npm:3.22.3":
+  version: 3.22.3
+  resolution: "zod@npm:3.22.3"
+  checksum: 10/3aad6e6b61ddceaeb887dccc5f747903e619b09dfd208f6dc30eef15edf3942b8e6cd97a08e080c9c8723575446941edb823a8881c512e00e8dd3085f20659cc
   languageName: node
   linkType: hard
 

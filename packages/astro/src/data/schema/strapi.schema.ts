@@ -5,6 +5,7 @@ import { dateStringSchema } from "./date.schema"
 export const strapiEntitySchema = <T extends AnyZodObject>(attributesShape: T) =>
   z.object({
     id: z.number(),
+    documentId: z.string(),
     createdAt: dateStringSchema,
     updatedAt: dateStringSchema,
   }).merge(attributesShape)

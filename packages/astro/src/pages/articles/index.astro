@@ -13,7 +13,7 @@ const page = await getPage("articles")
 
 <Layout fullWidth>
   <Fragment slot="head">
-    <Seo type="website" global={global.data} seo={page.attributes.seo} />
+    <Seo type="website" global={global.data} seo={page.seo} />
   </Fragment>
   <h1 class="mb-responsive-1/2 mt-12 font-sans text-2xl font-bold tracking-tight" id="main-content">
     Alle meine Blogartikel

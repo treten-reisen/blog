@@ -9,51 +9,51 @@ import LazyImage from "../lazy-image"
 export type Props = { article: StrapiArticleListItem }
 
 const { article } = Astro.props as Props
-const blurhash = await encodeImageToBlurhashURL(article.attributes.image.lg)
+const blurhash = await encodeImageToBlurhashURL(article.image.lg)
 ---
 
 <div
-  data-href={`/articles/${article.attributes.slug}`}
+  data-href={`/articles/${article.slug}`}
   class="flex cursor-pointer flex-col overflow-hidden rounded-xl bg-gray-50 shadow-xl @container/article-card"
 >
   <header class="relative flex flex-col bg-gray-900">
     <div
       role="img"
-      aria-label={`Bild für Blogeintrag "${article.attributes.title}"`}
+      aria-label={`Bild für Blogeintrag "${article.title}"`}
       class="h-52 @lg/article-card:h-64"
     >
       <LazyImage
         blurhashConfig={blurhash}
-        src={article.attributes.image.lg.htmlImage.src || undefined}
-        alt={article.attributes.image.lg.htmlImage.alt || undefined}
+        src={article.image.lg.htmlImage.src || undefined}
+        alt={article.image.lg.htmlImage.alt || undefined}
         loading="lazy"
         client:visible
       />
     </div>
     <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 @md/article-card:to-60%"></div>
     <div class="absolute bottom-0 p-4 @sm/article-card:p-cq-responsive-1/2">
-      <h3 id={`${article.attributes.slug}`} class="font-sans text-lg font-bold tracking-tight text-gray-100">
+      <h3 id={`${article.slug}`} class="font-sans text-lg font-bold tracking-tight text-gray-100">
         <a
           aria-label={`${
-            article.attributes.publishedAt &&
-            `${dateFns.formatRelative(article.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}.`
-          } ${article.attributes.title}`}
-          href={`/articles/${article.attributes.slug}`}>{article.attributes.title}</a
+            article.publishedAt &&
+            `${dateFns.formatRelative(article.publishedAt, new Date(), { locale: dateFnsLocale })}.`
+          } ${article.title}`}
+          href={`/articles/${article.slug}`}>{article.title}</a
         >
       </h3>
       {
-        article.attributes.publishedAt && (
+        article.publishedAt && (
           <time
             class="font-sans text-sm text-gray-100"
-            datetime={dateFns.format(article.attributes.publishedAt, "yyyy-MM-dd")}
+            datetime={dateFns.format(article.publishedAt, "yyyy-MM-dd")}
           >
-            {dateFns.formatRelative(article.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
+            {dateFns.formatRelative(article.publishedAt, new Date(), { locale: dateFnsLocale })}
           </time>
         )
       }
     </div>
   </header>
   <div class="p-4 font-sans tracking-tight @sm/article-card:p-cq-responsive-1/2">
-    {article.attributes.summary}
+    {article.summary}
   </div>
 </div>

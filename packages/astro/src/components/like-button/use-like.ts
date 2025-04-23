@@ -5,7 +5,7 @@ import { likeArticle } from "../../data/like-article"
 import useFetch from "../../hooks/use-fetch"
 import useLazyFetch from "../../hooks/use-lazy-fetch"
 
-const useLike = (articleId: number) => {
+const useLike = (articleId: string) => {
   const getLikesFunc = useCallback(() => getArticleLikes(articleId), [articleId])
   const likeArticleFunc = useCallback(() => likeArticle(articleId), [articleId])
 

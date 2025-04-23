@@ -19,7 +19,7 @@ export async function getStaticPaths() {
   const articles = await getArticleList({ includeUnlisted: true })
 
   return articles.data.map(article => ({
-    params: { slug: article.attributes.slug },
+    params: { slug: article.slug },
     props: { article },
   }))
 }
@@ -29,45 +29,45 @@ export type Props = {
 }
 
 const {
-  article: { id },
+  article: { id, documentId },
 } = Astro.props as Props
 const global = await getGlobal()
-const article = await getArticle(id)
+const article = await getArticle(documentId)
 
-const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl)
+const blurhash = await encodeImageToBlurhashURL(article.data.image.xl)
 ---
 
-<Layout disableIndexing={!article.data.attributes.listed}>
+<Layout disableIndexing={!article.data.listed}>
   <Fragment slot="head">
-    <Seo type="article" global={global.data} seo={article.data.attributes.seo} />
+    <Seo type="article" global={global.data} seo={article.data.seo} />
   </Fragment>
   {
-    article.data.attributes.image && (
+    article.data.image && (
       <Fragment slot="header">
         <header class="h-hero relative flex w-full items-end bg-gray-900">
-          <NavBar logoUrl={global.data.attributes.logo.data.attributes.url} />
+          <NavBar logoUrl={global.data.logo.url} />
           <div
             id="main-content"
             role="img"
-            aria-label={`Bild für Blogeintrag "${article.data.attributes.title}"`}
+            aria-label={`Bild für Blogeintrag "${article.data.title}"`}
             class="absolute h-full w-full"
           >
             <LazyImage
               blurhashConfig={blurhash}
-              src={article.data.attributes.image.xl.htmlImage.src || undefined}
-              alt={article.data.attributes.image.xl.htmlImage.alt || undefined}
+              src={article.data.image.xl.htmlImage.src || undefined}
+              alt={article.data.image.xl.htmlImage.alt || undefined}
               loading="eager"
               client:idle
             />
           </div>
           <div class="absolute bottom-0 h-full w-full bg-gradient-to-t from-gray-900 md:to-60%" />
           <div class="sm:py-responsive md:py-responsive z-10 p-6 md:container md:px-8">
-            {article.data.attributes.listed && article.data.attributes.publishedAt && (
-              <time class="text-gray-200" datetime={dateFns.format(article.data.attributes.publishedAt, "yyyy-MM-dd")}>
-                {dateFns.formatRelative(article.data.attributes.publishedAt, new Date(), { locale: dateFnsLocale })}
+            {article.data.listed && article.data.publishedAt && (
+              <time class="text-gray-200" datetime={dateFns.format(article.data.publishedAt, "yyyy-MM-dd")}>
+                {dateFns.formatRelative(article.data.publishedAt, new Date(), { locale: dateFnsLocale })}
               </time>
             )}
-            <h1 class="text-4xl font-extrabold text-gray-50 sm:text-5xl" set:html={article.data.attributes.title} />
+            <h1 class="text-4xl font-extrabold text-gray-50 sm:text-5xl" set:html={article.data.title} />
           </div>
         </header>
       </Fragment>
@@ -76,16 +76,16 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
   <div class="flex min-w-0 flex-col items-start gap-responsive md:flex-row">
     <article class="flex h-full max-w-prose flex-col font-serif">
       <div class="mb-responsive flex-1">
-        <BlocksRenderer blocks={article.data.attributes.blocks} />
+        <BlocksRenderer blocks={article.data.blocks} />
         <div class="mt-6 flex max-w-prose justify-end">
           <span class="font-sans text-gray-500">
             {
-              article.data.attributes.publishedAt &&
-                (article.data.attributes.publishedAt.toDateString() ===
-                article.data.attributes.updatedAt.toDateString() ? (
-                  <time datetime={dateFns.format(article.data.attributes.publishedAt, "yyyy-MM-dd")}>
+              article.data.publishedAt &&
+                (article.data.publishedAt.toDateString() ===
+                article.data.updatedAt.toDateString() ? (
+                  <time datetime={dateFns.format(article.data.publishedAt, "yyyy-MM-dd")}>
                     {dateFns.intlFormat(
-                      article.data.attributes.publishedAt,
+                      article.data.publishedAt,
                       { year: "numeric", month: "long", day: "numeric" },
                       { locale: "de" }
                     )}
@@ -93,9 +93,9 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
                 ) : (
                   <Fragment>
                     aktualisiert am{" "}
-                    <time datetime={dateFns.format(article.data.attributes.updatedAt, "yyyy-MM-dd")}>
+                    <time datetime={dateFns.format(article.data.updatedAt, "yyyy-MM-dd")}>
                       {`${dateFns.intlFormat(
-                        article.data.attributes.updatedAt,
+                        article.data.updatedAt,
                         { year: "numeric", month: "long", day: "numeric" },
                         { locale: "de" }
                       )}`}
@@ -105,14 +105,14 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
             }
           </span>
         </div>
-        <a class="font-sans underline" href={"/articles#" + article.data.attributes.slug}
+        <a class="font-sans underline" href={"/articles#" + article.data.slug}
           >Zu allen Blogeinträgen
           <FontAwesomeIcon className="ml-1" icon={faChevronRight} />
         </a>
       </div>
     </article>
     <!-- {
-      article.data.attributes.listed && (
+      article.data.listed && (
         <aside class="sticky bottom-8 right-8 ml-6 mt-2 self-end rounded-full border border-gray-200 bg-gray-50 p-3 md:bottom-auto md:top-24 md:self-start md:rounded-none md:border-none md:bg-gray-100 md:p-4 ">
           <LikeButton articleId={article.data.id} client:only="react" />
         </aside>
@@ -120,13 +120,13 @@ const blurhash = await encodeImageToBlurhashURL(article.data.attributes.image.xl
     } -->
   </div>
   {
-    article.data.attributes.listed && (
+    article.data.listed && (
       <div class="mt-responsive font-serif">
         <div class="font-sans">
           <Comments
-            url={new URL(`/articles/${article.data.attributes.slug}`, Astro.site).toString()}
+            url={new URL(`/articles/${article.data.slug}`, Astro.site).toString()}
             identifier={`treten-reisen.article.${article.data.id}`}
-            title={article.data.attributes.seo.metaTitle || "treten.reisen"}
+            title={article.data.seo.metaTitle || "treten.reisen"}
           />
         </div>
       </div>

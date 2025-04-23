@@ -12,7 +12,7 @@ export type MediaGalleryItemProps = {
 const MediaGalleryItem = ({ file, label, objectFit, selected }: MediaGalleryItemProps) => {
   return (
     <div role="tab" aria-selected={selected} aria-label={label} className="relative h-full w-full flex-none snap-start">
-      <a className="cursor-zoom-in" aria-label="Bild öffnen" href={file.attributes.url || undefined}>
+      <a className="cursor-zoom-in" aria-label="Bild öffnen" href={file.url || undefined}>
         <figure
           className="flex h-full flex-col items-center overflow-hidden bg-cover"
           style={{
@@ -29,7 +29,7 @@ const MediaGalleryItem = ({ file, label, objectFit, selected }: MediaGalleryItem
             loading="lazy"
           />
           <figcaption className="absolute bottom-0 left-0 w-full bg-gray-900 bg-opacity-70 p-2 text-center font-sans italic text-gray-50">
-            {file.attributes.caption}
+            {file.caption}
           </figcaption>
         </figure>
       </a>

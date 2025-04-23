@@ -4,7 +4,7 @@ import sharp from "sharp"
 import type { TransformedStrapiImage } from "../data/image"
 
 export async function encodeImageToBlurhashURL(image: TransformedStrapiImage) {
-  const response = await fetch(image.attributes.url)
+  const response = await fetch(image.url)
   const sharpimage = sharp(await response.arrayBuffer())
 
   const { data, info } = await sharpimage

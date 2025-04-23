@@ -21,10 +21,10 @@ const blurhash = await encodeImageToBlurhashURL(data.file)
 ---
 
 <div class="my-responsive flex w-full justify-center">
-  <figure aria-label={data.file.attributes.caption} class="flex flex-col items-center">
+  <figure aria-label={data.file.caption} class="flex flex-col items-center">
     <a
       class="cursor-zoom-in"
-      href={data.file.attributes.url || undefined}
+      href={data.file.url || undefined}
       target="_blank"
       rel="noopener noreferrer"
       style={{ width: `min(100%, ${maxWidth}px)`, aspectRatio: aspectRatio }}
@@ -38,6 +38,6 @@ const blurhash = await encodeImageToBlurhashURL(data.file)
         client:visible
       />
     </a>
-    <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.attributes.caption}</figcaption>
+    <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.caption}</figcaption>
   </figure>
 </div>

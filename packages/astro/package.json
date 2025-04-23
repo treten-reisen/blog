@@ -47,7 +47,7 @@
     "typescript": "^5.1.6",
     "unified": "^10.1.2",
     "world-atlas": "^2.0.2",
-    "zod": "^3.21.4"
+    "zod": "3.22.3"
   },
   "devDependencies": {
     "@astrojs/react": "^2.2.1",

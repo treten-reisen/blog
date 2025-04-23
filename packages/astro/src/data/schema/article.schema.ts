@@ -9,7 +9,7 @@ import { transformStrapiImage } from "../image"
 import { strapiBlockSchema } from "./blocks.schema"
 import { dateStringSchema } from "./date.schema"
 import { strapiSeoSchema } from "./seo.schema"
-import { strapiEntitySchema, strapiImageDataSchema, strapiSingleSchema } from "./strapi.schema"
+import { strapiEntitySchema, strapiImageDataSchema } from "./strapi.schema"
 
 export const strapiArticleSchema = strapiEntitySchema(
   z.object({
@@ -23,10 +23,10 @@ export const strapiArticleSchema = strapiEntitySchema(
     }),
     slug: z.string(),
     summary: z.string(),
-    image: strapiSingleSchema(strapiImageDataSchema).transform(async image =>
+    image: strapiImageDataSchema.transform(async image =>
       Promise.all([
-        transformStrapiImage(image.data, { width: 1200 }),
-        transformStrapiImage(image.data, { width: 2400 }),
+        transformStrapiImage(image, { width: 1200 }),
+        transformStrapiImage(image, { width: 2400 }),
       ]).then(([lg, xl]) => ({ lg, xl }))
     ),
     publishedAt: z.nullable(dateStringSchema),
