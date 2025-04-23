@@ -21,11 +21,10 @@ export const transformStrapiImage = async (image: StrapiImageData, size?: { widt
 
   const htmlImage = await getImage({
     src: image.url,
-    alt: image.alternativeText,
     format: "webp",
     width,
     height,
-    inferSize: width == undefined || height == undefined,
+    inferSize: width === undefined && height === undefined,
   })
 
   return {

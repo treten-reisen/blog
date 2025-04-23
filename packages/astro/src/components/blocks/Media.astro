@@ -31,11 +31,11 @@ const blurhash = await encodeImageToBlurhashURL(data.file)
     >
       <LazyImage
         blurhashConfig={blurhash}
+        {...data.file.htmlImage.attributes}
         src={data.file.htmlImage.src || undefined}
         loading="lazy"
         aspectRatio={aspectRatio}
         client:visible
-        {...data.file.htmlImage.attributes}
       />
     </a>
     <figcaption class="mx-2 pt-2 font-sans italic text-gray-700">{data.file.caption}</figcaption>

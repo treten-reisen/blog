@@ -46,8 +46,8 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
       {articles.features.map(articleFeature => (
         <Marker key={articleFeature.properties.article.id} position={articleFeature.geometry.coordinates}>
           <button
-            className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 bg-center shadow-lg"
-            style={{ backgroundImage: `url(${articleFeature.properties.thumbnailUrl})` }}
+            className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 bg-cover shadow-lg"
+            style={{ backgroundImage: `url(${articleFeature.properties.article.image.xs.htmlImage.src})` }}
             aria-label={articleFeature.properties.article.title}
             onFocus={() => {
               const coords = [
@@ -93,10 +93,11 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
             <header className="flex flex-col space-y-2">
               <div className="h-32">
                 <LazyImage
+                  {...clickedArticle.properties.article.image.sm.htmlImage.attributes}
                   blurhashConfig={clickedArticle.properties.blurhash}
-                  src={clickedArticle.properties.article.image.lg.htmlImage.src || undefined}
+                  src={clickedArticle.properties.article.image.sm.htmlImage.src || undefined}
                   loading="lazy"
-                  {...clickedArticle.properties.article.image.lg.htmlImage.attributes}
+
                 />
               </div>
 

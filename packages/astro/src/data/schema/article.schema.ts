@@ -25,9 +25,11 @@ export const strapiArticleSchema = strapiEntitySchema(
     summary: z.string(),
     image: strapiImageDataSchema.transform(async image =>
       Promise.all([
+        transformStrapiImage(image, { width: 96 }),
+        transformStrapiImage(image, { width: 480 }),
         transformStrapiImage(image, { width: 1200 }),
         transformStrapiImage(image, { width: 2400 }),
-      ]).then(([lg, xl]) => ({ lg, xl }))
+      ]).then(([xs, sm, lg, xl]) => ({ xs, sm, lg, xl }))
     ),
     publishedAt: z.nullable(dateStringSchema),
     blocks: z.array(strapiBlockSchema),

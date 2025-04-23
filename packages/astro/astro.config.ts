@@ -17,6 +17,9 @@ export default defineConfig({
     }),
     robots(),
   ],
+  image: {
+    domains: ["strapi.treten.reisen"],
+  },
   vite: {
     server: {
       proxy: {
