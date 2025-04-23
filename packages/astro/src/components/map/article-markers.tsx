@@ -48,7 +48,7 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
           <button
             className="h-12 w-12 overflow-hidden rounded-full border-2 border-gray-50 bg-center shadow-lg"
             style={{ backgroundImage: `url(${articleFeature.properties.thumbnailUrl})` }}
-            aria-label={articleFeature.properties.article.attributes.title}
+            aria-label={articleFeature.properties.article.title}
             onFocus={() => {
               const coords = [
                 articleFeature.geometry.coordinates[0],
@@ -80,8 +80,8 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
           }}
         >
           <a
-            href={`/articles/${clickedArticle.properties.article.attributes.slug}`}
-            aria-label={`Gehe zu Artikel: "${clickedArticle.properties.article.attributes.title}"`}
+            href={`/articles/${clickedArticle.properties.article.slug}`}
+            aria-label={`Gehe zu Artikel: "${clickedArticle.properties.article.title}"`}
             className="flex flex-col space-y-2"
             autoFocus
             onKeyDown={ev => {
@@ -94,23 +94,23 @@ const ArticleMarkers = ({ articles }: ArticleMarkersProps) => {
               <div className="h-32">
                 <LazyImage
                   blurhashConfig={clickedArticle.properties.blurhash}
-                  src={clickedArticle.properties.article.attributes.image.lg.htmlImage.src || undefined}
-                  alt={clickedArticle.properties.article.attributes.image.lg.htmlImage.alt || undefined}
+                  src={clickedArticle.properties.article.image.lg.htmlImage.src || undefined}
+                  alt={clickedArticle.properties.article.image.lg.htmlImage.alt || undefined}
                   loading="lazy"
                 />
               </div>
 
               <h2 className="font-sans text-base font-bold tracking-tight text-gray-700">
-                {clickedArticle.properties.article.attributes.title}
+                {clickedArticle.properties.article.title}
               </h2>
             </header>
             <section className="font-sans tracking-tight text-gray-600">
-              {clickedArticle.properties.article.attributes.summary}
+              {clickedArticle.properties.article.summary}
             </section>
             <footer className="self-end font-sans tracking-tight text-gray-500">
-              <time dateTime={dateFns.format(clickedArticle.properties.article.attributes.createdAt, "yyyy-MM-dd")}>
+              <time dateTime={dateFns.format(clickedArticle.properties.article.createdAt, "yyyy-MM-dd")}>
                 {dateFns.intlFormat(
-                  clickedArticle.properties.article.attributes.createdAt,
+                  clickedArticle.properties.article.createdAt,
                   { year: "numeric", month: "long", day: "numeric" },
                   { locale: "de" }
                 )}
