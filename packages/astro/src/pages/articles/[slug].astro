@@ -112,13 +112,13 @@ const blurhash = await encodeImageToBlurhashURL(article.data.image.xl)
         </a>
       </div>
     </article>
-    {
+    <!-- {
       article.data.listed && (
         <aside class="sticky bottom-8 right-8 ml-6 mt-2 self-end rounded-full border border-gray-200 bg-gray-50 p-3 md:bottom-auto md:top-24 md:self-start md:rounded-none md:border-none md:bg-gray-100 md:p-4 ">
-          <LikeButton articleId={article.data.id} client:only="react" />
+          <LikeButton articleId={article.data.documentId} client:only="react" />
         </aside>
       )
-    }
+    } -->
   </div>
   {
     article.data.listed && (

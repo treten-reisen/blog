@@ -9,7 +9,7 @@ const getArticleLikes = async (strapi, id) => {
     await strapi.documents("api::article-likes.article-likes").findMany({
       filters: {
         article: {
-          id: {
+          documentId: {
             $eq: id,
           },
         },
@@ -34,15 +34,13 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
   async like(ctx) {
     const { id } = ctx.request.params
 
-    const { count, id: likesId } = await getArticleLikes(strapi, id)
+    const { count, documentId: likesId } = await getArticleLikes(strapi, id)
 
     const updatedEntry = await strapi.documents("api::article-likes.article-likes").update({
-      documentId: "__TODO__",
-
+      documentId: likesId,
       data: {
         count: count + 1,
       },
-
       fields: ["count"],
     })
 
