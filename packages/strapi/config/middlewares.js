@@ -20,7 +20,6 @@ module.exports = [
   {
     name: "strapi::cors",
     config: {
-      enabled: true,
       headers: "*",
       origin: ["https://treten.reisen", "https://www.treten.reisen", "https://strapi.treten.reisen", "http://localhost:4321"],
     },
