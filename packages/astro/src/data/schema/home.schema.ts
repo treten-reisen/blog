@@ -8,7 +8,7 @@ import { strapiEntitySchema, strapiImageDataSchema, strapiSingleSchema } from ".
 export const strapiHomeSchema = strapiEntitySchema(
   z.object({
     blocks: z.array(strapiBlockSchema),
-    heroimage: strapiSingleSchema(strapiImageDataSchema).transform(async image => transformStrapiImage(image.data)),
+    heroimage: strapiImageDataSchema.transform(async image => transformStrapiImage(image)),
   })
 )
 

@@ -32,14 +32,14 @@ const global = await getGlobal()
 
   <body class="flex flex-shrink-0 flex-grow flex-col justify-between bg-gray-200 text-gray-900">
     <slot name="header">
-      <Header logoUrl={global.data.attributes.logo.data.attributes.url} />
+      <Header logoUrl={global.data.logo.url} />
     </slot>
     <main class:list={["flex-grow relative @container/main", { "md:container": !noPadding }]}>
       <div class:list={["mx-auto bg-gray-100 h-full", { "p-6 md:p-8 w-full": !noPadding }, { "md:w-fit": !fullWidth }]}>
         <slot />
       </div>
     </main>
-    <Footer socialMedia={global.data.attributes.socialMedia} />
+    <Footer socialMedia={global.data.socialMedia} />
     <script src="../index.ts"></script>
   </body>
 

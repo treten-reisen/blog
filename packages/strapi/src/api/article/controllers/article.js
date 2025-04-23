@@ -6,7 +6,7 @@ const { createCoreController } = require("@strapi/strapi").factories
 
 const getArticleLikes = async (strapi, id) => {
   let entry = (
-    await strapi.entityService.findMany("api::article-likes.article-likes", {
+    await strapi.documents("api::article-likes.article-likes").findMany({
       filters: {
         article: {
           id: {
@@ -19,7 +19,7 @@ const getArticleLikes = async (strapi, id) => {
   )[0]
 
   if (!entry) {
-    entry = await strapi.entityService.create("api::article-likes.article-likes", {
+    entry = await strapi.documents("api::article-likes.article-likes").create({
       data: {
         article: id,
         count: 0,
@@ -36,10 +36,13 @@ module.exports = createCoreController("api::article.article", ({ strapi }) => ({
 
     const { count, id: likesId } = await getArticleLikes(strapi, id)
 
-    const updatedEntry = await strapi.entityService.update("api::article-likes.article-likes", likesId, {
+    const updatedEntry = await strapi.documents("api::article-likes.article-likes").update({
+      documentId: "__TODO__",
+
       data: {
         count: count + 1,
       },
+
       fields: ["count"],
     })
 

@@ -10,17 +10,14 @@ export const strapiGlobalSchema = strapiEntitySchema(
   z.object({
     siteName: z.string(),
     siteURL: z.string().url(),
-    favicon: strapiSingleSchema(strapiImageDataSchema),
+    favicon: strapiImageDataSchema,
     socialMedia: z.array(strapiSocialMediaSchema),
     defaultSeo: strapiSeoSchema,
-    avatar: strapiSingleSchema(strapiImageDataSchema).transform(async image => transformStrapiImage(image.data)),
-    logo: strapiSingleSchema(strapiImageDataSchema),
+    avatar: strapiImageDataSchema.transform(async image => transformStrapiImage(image)),
+    logo: strapiImageDataSchema,
   })
 ).transform(async global => ({
-  ...global,
-  attributes: {
-    ...global.attributes,
-  },
+  ...global
 }))
 
 export type StrapiGlobal = z.infer<typeof strapiGlobalSchema>

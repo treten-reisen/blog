@@ -8,8 +8,8 @@ export const strapiSeoSchema = z.object({
   id: z.number(),
   metaTitle: z.string().nullable(),
   metaDescription: z.string().nullable(),
-  shareImage: strapiSingleSchema(strapiImageDataSchema.nullable()).transform(async image =>
-    image.data ? transformStrapiImage(image.data, { width: 1200, height: 630 }) : image.data
+  shareImage: strapiImageDataSchema.nullable().transform(async image =>
+    image ? transformStrapiImage(image, { width: 1200, height: 630 }) : image
   ),
   article: z
     .boolean()

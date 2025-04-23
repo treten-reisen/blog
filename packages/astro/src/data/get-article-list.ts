@@ -7,7 +7,7 @@ import { strapiCollectionSchema, strapiEntitySchema } from "./schema/strapi.sche
 
 const strapiArticleListResponseSchema = strapiCollectionSchema(
   strapiEntitySchema(
-    strapiArticleSchema.shape.attributes.pick({
+    strapiArticleSchema.pick({
       createdAt: true,
       updatedAt: true,
       publishedAt: true,

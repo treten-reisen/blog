@@ -11,7 +11,7 @@ export type StrapiHeroResponse = z.infer<typeof strapiHomeResponseSchema>
 
 export const getHome = async () => {
   const params = new URLSearchParams({
-    "populate[heroimage]": "*",
+    "populate[heroimage][populate]": "*",
     "populate[blocks][populate]": "*",
   })
 

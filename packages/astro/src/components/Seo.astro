@@ -13,7 +13,7 @@ export type Props = {
 
 const { type, seo, global, canonicalURL } = Astro.props as Props
 
-const { siteName, defaultSeo, favicon, siteURL } = global.attributes
+const { siteName, defaultSeo, favicon, siteURL } = global
 
 // Merge default and page-specific SEO values
 const fullSeo = {
@@ -36,7 +36,7 @@ const getCanonicalUrl = () => {
 
 <link rel="canonical" href={getCanonicalUrl()} />
 <link rel="manifest" href="/manifest.webmanifest" />
-<link rel="icon" href={favicon.data.attributes.url} />
+<link rel="icon" href={favicon.url} />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <meta name="msapplication-TileColor" content={colors.lime[100]} />
 <meta name="theme-color" content={colors.lime[100]} />
