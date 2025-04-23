@@ -19,7 +19,7 @@
     "@strapi/strapi": "4.15.5",
     "@turf/helpers": "6.5.0",
     "@turf/projection": "^6.5.0",
-    "better-sqlite3": "8.7.0",
+    "better-sqlite3": "11.9.1",
     "pg": "8.11.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -42,7 +42,7 @@
     "uuid": "a6ecff37-515c-4b66-be29-b9215b67a6a0"
   },
   "engines": {
-    "node": ">=12.x.x <=16.x.x",
+    "node": ">=18.x.x <=22.x.x",
     "npm": ">=6.0.0"
   },
   "lint-staged": {
