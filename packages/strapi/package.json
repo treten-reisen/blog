@@ -13,8 +13,8 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@strapi/plugin-users-permissions": "5.12.5",
-    "@strapi/strapi": "5.12.5",
+    "@strapi/plugin-users-permissions": "5.12.6",
+    "@strapi/strapi": "5.12.6",
     "@turf/helpers": "6.5.0",
     "@turf/projection": "^6.5.0",
     "better-sqlite3": "11.9.1",
